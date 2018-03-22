@@ -8,7 +8,7 @@ services:
     image: nginx
     container_name: leter-nginx
     ports:
-        - 8080:80
+        - 80:80
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./public:/usr/share/nginx/html
