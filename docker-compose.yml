@@ -1,14 +1,6 @@
 # docker-compose up
 # docker-compose exec nginx bash
 # ssh root@159.65.65.24
-# docker-machine create leter.co \
-# --driver=digitalocean --digitalocean-size 1gb --digitalocean-region sfo2 \
-#--digitalocean-access-token=7f5365f5842c356f30513657f35c5819d52be77d6d0abeb702066a113be50bc9
-
-# deploy to DO
-# eval $(docker-machine env leter.co)
-# docker-compose up
-# eval $(docker-machine env -u)
 
 version: '3'
 services:
