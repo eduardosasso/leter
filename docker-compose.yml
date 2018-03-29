@@ -1,7 +1,3 @@
-# docker-compose up
-# docker-compose exec nginx bash
-# ssh root@159.65.65.24
-
 version: '3'
 services:
   nginx:
@@ -13,5 +9,5 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./public:/usr/share/nginx/html
-      - ./ssl:/etc/nginx/conf.d
+      - ./ssl:/etc/nginx/conf.d/ssl
       
