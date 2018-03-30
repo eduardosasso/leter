@@ -96,49 +96,145 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
 body {
-    padding-left: 50px;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+    /*padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
-    padding-top: 20px;
-    /* width: 100%; */
-    max-width: 700px;
-    font-family: 'Roboto Mono', monospace;
-    background: #f7f7f7;
-    color: #2E383F;
+    padding-top: 20px;*/
+    /*font-family: 'Roboto Mono', monospace;*/
+    /*background: #f7f7f7;*/
+    /*color: #2E383F;*/
 }
 
 h1 {
-    background-color: #F6BB42;
-    /* padding: 20px; */
-    width: 80px;
-    text-align: center;
+  /*background-color: #F6BB42;*/
+  /* padding: 20px; */
+  display:inline-block;
+  text-align: center;
+  padding: 0.5em;
 }
 
 a {
-    color:#2E383F;
-    text-decoration: none;
-    border-bottom: 2px solid #F6BB42;
+  text-decoration: none;
+  border-bottom: 2px solid;
 }
 
-img#bye {
-    width: 32px;
-    height: 32px;
+section {
+  max-width: 700px;
 }
 
+footer {
+  padding-top: 2em;
+  text-align: center;
+  color: #E6E6E6;
+  font-size: 0.6em;
+}
 
+footer a {
+  color: #E6E6E6 !important;
+  border-bottom: none;
+}
 
+.emoji {
+  font-size: 3em;
+  margin: 0;
+}
 
+section .emoji {
+  font-size: 1.8em;
+}
 
+body#home  {
+  font-family: 'Roboto', sans-serif;
+  color: #1C3E5B;
+  background-color: #f7f7f7;
+}
 
+@media screen and (min-width: 768px) {
+  #banana section {
+    padding-left: 50px;
+  }
+}  
 
+#home section {  
+  margin: 0 auto;  
+}
 
+#home h1 {  
+  background-color: #EF476F;
+  color: #f7f7f7;
+  font-size: 2.2em;  
+}
 
+#home h2 {  
+  font-size: 2.2em;
+}
+
+#home p {
+  font-size: 1.15em;
+}
+
+#home a {
+  color:#1C3E5B;  
+  border-bottom-color: #F16889;
+}
+
+body#banana {
+  font-family: 'Roboto Mono', monospace;
+  background: #f7f7f7;
+  color: #2E383F;
+}
+
+#banana h1 {  
+  background-color: #F6BB42;
+  padding: 0.3em;
+}
+
+#banana a {
+  color: #2E383F;
+  border-bottom-color: #F6BB42;
+}
+/*
+font-family: 'Source Sans Pro', sans-serif;
+font-family: 'PT Sans', sans-serif;
+font-family: 'Playfair Display', serif;*/
+
+body#jazz {
+  font-family: 'Source Sans Pro', sans-serif;
+  /*font-family: 'PT Sans', sans-serif;*/
+  /*font-family: 'Playfair Display', serif;*/  
+  background: #F9F9F8;
+  color: #034E3B;
+}
+
+#jazz section {  
+  margin: 0 auto;  
+}
+
+#jazz h1 {  
+  background-color: #06D6A0;
+  color:#036249;
+  padding: 0.3em;
+}
+
+#jazz p {
+  font-size: 1.2em;
+  line-height: 1.5em
+}
+
+#jazz a {
+  color: #034E3B;
+  
+  /*color: #2E383F;*/
+  border-bottom-color: #06D6A0;
+}
 
 /* ==========================================================================
    Helper classes
-   ========================================================================== */
+   ========================================================================== 
 
 /*
  * Hide visually and from screen readers
