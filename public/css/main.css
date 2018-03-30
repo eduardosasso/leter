@@ -157,6 +157,10 @@ body#home  {
   #banana section {
     padding-left: 50px;
   }
+
+  #home h2 {
+    font-size: 2.2em;
+  }
 }  
 
 #home section {  
@@ -169,10 +173,10 @@ body#home  {
   font-size: 2.2em;  
 }
 
-#home h2 {  
+/*#home h2 {  
   font-size: 2.2em;
 }
-
+*/
 #home p {
   font-size: 1.15em;
 }
@@ -227,7 +231,7 @@ body#jazz {
 
 #jazz a {
   color: #034E3B;
-  
+
   /*color: #2E383F;*/
   border-bottom-color: #06D6A0;
 }
