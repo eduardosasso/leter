@@ -278,7 +278,7 @@ body#zee {
 
 @media only screen and (max-width: 600px) {
   #zee h2 {
-    font-size: 1.1m;
+    font-size: 1em;
   }
 }
 
