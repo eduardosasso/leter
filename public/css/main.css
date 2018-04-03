@@ -356,16 +356,17 @@ font-family: 'Libre Baskerville', serif;
 #anna .emoji_custom {
   padding-top: 0.5em;
   text-align:center;
-  font-size: 3em;
+  font-size: 2em;
 }
 
 @media only screen and (max-width: 600px) {
   #anna h2 {
-    font-size: 2em;
+    font-size: 1.5em;
     /*line-height: 1.4em*/
   }
 
   #anna h1 {
+    font-size: 3em;
     text-align:center;
   }
 
