@@ -282,6 +282,42 @@ body#zee {
   }
 }
 
+body#bright {
+  font-family: 'Playfair Display', serif;
+  background: #ff5a3d;
+  color: #FAFAFA;
+}
+
+#bright section {  
+  margin: 0 auto;  
+}
+
+#bright h1 {
+  /*background-color: #262626;*/
+  color:#FAFAFA;
+  padding: 0em;
+  padding-top: 0.3em;
+  font-size: 2.8em;
+}
+
+#bright p {
+  /*color: #FAFAFA;*/
+  font-size: 1.4em;
+  line-height: 1.5em
+
+  /*color: #2E383F;*/  
+}
+
+
+#bright a {
+  color: #FAFAFA;
+
+  /*color: #2E383F;*/
+  border-bottom-color: #FAFAFA;
+}
+
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== 
