@@ -363,7 +363,7 @@ font-family: 'Quicksand', sans-serif;
 
 @media only screen and (max-width: 600px) {
   #anna h2 {
-    font-size: 1.6em;
+    font-size: 1.5em;
     /*line-height: 1.4em*/
   }
 
