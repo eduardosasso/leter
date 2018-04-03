@@ -134,7 +134,7 @@ footer {
 }
 
 footer a {
-  color: #E6E6E6 !important;
+  /*color: #E6E6E6 !important;*/
   border-bottom: none;
 }
 
@@ -319,6 +319,48 @@ body#bright {
 
 #bright a {
   color: #FAFAFA;
+
+  /*color: #2E383F;*/
+  border-bottom-color: #FAFAFA;
+}
+
+body#anna {
+  /*font-family: 'Pacifico', cursive;*/
+/*font-family: 'PT Serif', serif;*/
+font-family: 'Libre Baskerville', serif;
+/*font-family: 'Cardo', serif;*/
+/*font-family: 'Domine', serif;*/
+  background: #E8DAF0;
+  color: #695F86;
+}
+
+#anna section {  
+  margin: 0 auto;  
+}
+
+#anna h1 {
+  display: block;
+  font-family: 'Pacifico', cursive;
+  /*background-color: #262626;*/
+  /*color:#FAFAFA;*/
+  padding: 0em;
+  padding-top: 0.3em;
+  font-size: 5em;
+  text-align: left;
+}
+
+#anna h2 {
+  font-size: 2.4em;
+}
+
+#anna .emoji_custom {
+  padding-top: 0.5em;
+  text-align:center;
+  font-size: 3em;
+}
+
+#anna a {
+  color: #695F86;
 
   /*color: #2E383F;*/
   border-bottom-color: #FAFAFA;
