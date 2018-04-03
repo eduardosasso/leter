@@ -247,14 +247,8 @@ body#jazz {
 }
 
 body#zee {
-  /*font-family: 'Quicksand', sans-serif;*/
-
-
-/*font-family: 'Open Sans', sans-serif;*/
-font-family: 'Lato', sans-serif;
-
+  font-family: 'Quicksand', sans-serif;
   background: #FAFAFA;
-
   color: #373A3E;
 }
 
