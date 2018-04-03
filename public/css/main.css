@@ -309,6 +309,14 @@ body#bright {
 }
 
 
+@media only screen and (max-width: 600px) {
+  #bright p {
+    font-size: 1.2em;
+    line-height: 1.4em
+  }
+}
+
+
 #bright a {
   color: #FAFAFA;
 
