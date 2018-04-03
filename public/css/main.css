@@ -166,6 +166,11 @@ body#home  {
     font-size: 2.2em;
   }
 
+  #zee p {
+    font-size: 1.2em;
+    line-height: 1.5em
+  }
+
   #zee h2 {
     font-size: 1.6em;
   }
@@ -263,10 +268,6 @@ body#zee {
   padding: 0.3em;
 }
 
-#zee p {
-  font-size: 1.2em;
-  line-height: 1.5em
-}
 
 #zee a {
   color: #373A3E;
