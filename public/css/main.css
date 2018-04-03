@@ -165,15 +165,6 @@ body#home  {
   #home h2 {
     font-size: 2.2em;
   }
-
-  #zee p {
-    font-size: 1.2em;
-    line-height: 1.5em
-  }
-
-  #zee h2 {
-    font-size: 1.6em;
-  }
 }  
 
 #home section {  
@@ -283,6 +274,12 @@ body#zee {
   /*color: #2E383F;*/
   border-bottom-style: none;
   padding-right: 0.5em;
+}
+
+@media only screen and (max-width: 600px) {
+  #zee h2 {
+    font-size: 1.2em;
+  }
 }
 
 /* ==========================================================================
