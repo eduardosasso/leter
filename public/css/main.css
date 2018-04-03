@@ -327,7 +327,9 @@ body#bright {
 body#anna {
   /*font-family: 'Pacifico', cursive;*/
 /*font-family: 'PT Serif', serif;*/
-font-family: 'Libre Baskerville', serif;
+/*font-family: 'Nunito', sans-serif;*/
+font-family: 'Quicksand', sans-serif;
+/*font-family: 'Libre Baskerville', serif;*/
 /*font-family: 'Cardo', serif;*/
 /*font-family: 'Domine', serif;*/
   background: #E8DAF0;
@@ -350,7 +352,7 @@ font-family: 'Libre Baskerville', serif;
 }
 
 #anna h2 {
-  font-size: 2.4em;
+  font-size: 2.5em;
 }
 
 #anna .emoji_custom {
@@ -361,12 +363,12 @@ font-family: 'Libre Baskerville', serif;
 
 @media only screen and (max-width: 600px) {
   #anna h2 {
-    font-size: 1.5em;
+    font-size: 1.6em;
     /*line-height: 1.4em*/
   }
 
   #anna h1 {
-    font-size: 3em;
+    font-size: 4em;
     text-align:center;
   }
 
