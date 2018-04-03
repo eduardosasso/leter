@@ -165,6 +165,10 @@ body#home  {
   #home h2 {
     font-size: 2.2em;
   }
+
+  #zee h2 {
+    font-size: 1.6em;
+  }
 }  
 
 #home section {  
@@ -205,10 +209,7 @@ body#banana {
   color: #2E383F;
   border-bottom-color: #F6BB42;
 }
-/*
-font-family: 'Source Sans Pro', sans-serif;
-font-family: 'PT Sans', sans-serif;
-font-family: 'Playfair Display', serif;*/
+
 
 body#jazz {
   font-family: 'Source Sans Pro', sans-serif;
@@ -238,6 +239,55 @@ body#jazz {
 
   /*color: #2E383F;*/
   border-bottom-color: #06D6A0;
+}
+
+body#zee {
+  font-family: 'Quicksand', sans-serif;
+
+
+/*font-family: 'Open Sans', sans-serif;*/
+/*font-family: 'Lato', sans-serif;*/
+
+  background: #FAFAFA;
+
+  color: #373A3E;
+}
+
+#zee section {  
+  margin: 0 auto;  
+}
+
+#zee h1 {
+  background-color: #262626;
+  color:#FAFAFA;
+  padding: 0.3em;
+}
+
+#zee p {
+  font-size: 1.2em;
+  line-height: 1.5em
+}
+
+#zee a {
+  color: #373A3E;
+
+  /*color: #2E383F;*/
+  border-bottom-color: #739CCF;
+}
+
+#zee .social { 
+  padding-top: 0.5em;
+ /*border-bottom: 2px solid;
+ border-bottom-color: #739CCF; 
+ display:inline-block;*/
+}
+
+#zee .social a {
+  /*color: #373A3E;*/
+
+  /*color: #2E383F;*/
+  border-bottom-style: none;
+  padding-right: 0.5em;
 }
 
 /* ==========================================================================
