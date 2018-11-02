@@ -1,5 +1,28 @@
 version: '3'
 services:
+  # mysql:
+  #   container_name: leter-mysql
+  #   image: mysql:8
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - ../dev_data/mysql_data:/var/lib/mysql
+  #     - ./db/mysql_dev_docker.cnf:/etc/mysql/conf.d/mysql.cnf
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: pass
+  #     MYSQL_DATABASE: db
+  #     MYSQL_USER: user
+  #     MYSQL_PASSWORD: pass
+  admin:
+    container_name: leter-rails
+    build: .
+    environment:
+      - RAILS_ENV=development
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
   nginx:
     image: nginx
     container_name: leter-nginx    
