@@ -17,8 +17,10 @@ services:
   admin:
     container_name: leter-rails
     build: .
+    # command: bundle exec rails s -p 3000 -b '0.0.0.0'
     environment:
-      - RAILS_ENV=development
+      RAILS_LOG_TO_STDOUT: 'true'
+      RAILS_ENV: development
     ports:
       - 3000:3000
     volumes:

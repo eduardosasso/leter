@@ -1,5 +1,9 @@
 Rails.application.configure do
+  logger = ActiveSupport::Logger.new(STDOUT)
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
   # Settings specified here will take precedence over those in config/application.rb.
+
+  # config.session_store :cookie_store, key: '_app_session', domain: 'admin.leter.test'
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
