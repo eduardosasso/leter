@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="NGINX config" filepath="nginx_test.rb" skipped="0" failures="0" errors="0" tests="3" assertions="3" time="0.05551269999705255">
+    <testcase name="test_0003_shows internal page" lineno="28" classname="NGINX config" assertions="1" time="0.011969499988481402">
+    </testcase>
+    <testcase name="test_0002_shows the home page" lineno="20" classname="NGINX config" assertions="1" time="0.012430000002495944">
+    </testcase>
+    <testcase name="test_0001_redirects to rails admin page" lineno="12" classname="NGINX config" assertions="1" time="0.031113200006075203">
+    </testcase>
+  </testsuite>
+</testsuites>

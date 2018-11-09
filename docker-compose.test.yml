@@ -1,0 +1,3 @@
+nginx:
+  environment:
+    NGINX_ENV: test

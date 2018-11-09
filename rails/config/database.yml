@@ -27,6 +27,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  port: 3307
+  host: host.docker.internal
   database: leter_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
