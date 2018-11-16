@@ -6,6 +6,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
+
 ARG BUNDLE_ARGS
 
 # --deployment --without development test
