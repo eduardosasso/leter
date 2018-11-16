@@ -1,31 +1,31 @@
-require "minitest/reporters"
-require "minitest/autorun"
-require "net/https"
-require "uri"
+require 'minitest/reporters'
+require 'minitest/autorun'
+require 'net/https'
+require 'uri'
 
 # curl -k https://admin.leter.test
 # curl -k https://eduardosasso.leter.test
-describe "NGINX config" do
+describe 'NGINX config' do
   Minitest::Reporters.use!
 
-  it "redirects to rails admin page" do
-    uri = URI.parse("https://admin.leter.test")
+  it 'redirects to rails admin page' do
+    uri = URI.parse('https://admin.leter.test')
 
     response = request(uri)
 
     assert response.code.to_i == 302
   end
 
-  it "shows the home page" do
-    uri = URI.parse("https://eduardosasso.leter.test")
+  it 'shows the home page' do
+    uri = URI.parse('https://eduardosasso.leter.test')
 
     response = request(uri)
 
     assert response.code.to_i == 200
   end
 
-  it "shows internal page" do
-    uri = URI.parse("https://eduardosasso.leter.test/resume")
+  it 'shows internal page' do
+    uri = URI.parse('https://eduardosasso.leter.test/resume')
 
     response = request(uri)
 

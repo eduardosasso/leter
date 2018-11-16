@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
 
   def index
     # user_sites = current_user.sites
-    # list sites 
+    # list sites
     # have button to add new site
-
   end
 end

@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :user_account
-  has_one :account, through: :user_account  
+  has_one :account, through: :user_account
   has_many :sites, through: :account
 end
