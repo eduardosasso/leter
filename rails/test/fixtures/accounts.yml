@@ -2,8 +2,10 @@
 
 one:
   name: MyString
+  name: MyString
   paid: false
 
 two:
+  name: MyString
   name: MyString
   paid: false

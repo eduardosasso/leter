@@ -1,4 +1,19 @@
-<%= button_to "New", {action: :new, controller: :sites}, method: :get  %>
-<%= link_to "Add a new site", new_site_path %>
+<h1><%= @primary_site.domain%></h1>
 
-<%= accounts_new_url%>
+<h2>Pages</h2>
+
+<table>
+  <tbody>
+    <% @primary_site.pages.each do |page| %>
+      <tr>
+        <td>
+            <a href="<%= edit_page_path(page)%>">
+              <%= page.title %>
+            </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New Page", new_page_path %>

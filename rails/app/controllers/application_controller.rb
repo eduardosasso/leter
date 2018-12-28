@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def index
+    @primary_site = current_user.default_site
+
     # user_sites = current_user.sites
     # list sites
     # have button to add new site
