@@ -2,7 +2,11 @@ require 'test_helper'
 
 class PageRenderTest < ActiveSupport::TestCase
   test 'page render' do
-    page= 'aaaa' 
-p    PageRender.new(page, nil).render
+    content = 'test'
+
+    page_render = PageRender.new(content).result
+
+    assert_match('html', page_render)
+    assert_match(content, page_render)
   end
 end

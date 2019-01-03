@@ -1,32 +1,21 @@
 class PageRender
-  def initialize(content, layout)
+  #TODO move somewhere else
+  LAYOUT = File.read("#{Rails.root}/app/views/layouts/default.html.erb")
+
+  def initialize(content, layout = LAYOUT)
     @content = content
     @layout = layout
   end
 
-  def render
+  def result
     render_layout do
       ERB.new(@content).result(binding)
     end
-    # ERB.new(
   end
 
   private
 
   def render_layout
-layout = "<html>
-<head>
-  <title>Layout</title>
-</head>
-<body>
-  <%= yield %>
-</body>
-</html>"
-
-ERB.new(layout).result(binding)
-  end
-
-  def render_template
-    # ERB
+    ERB.new(@layout).result(binding)
   end
 end
