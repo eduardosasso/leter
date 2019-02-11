@@ -79,6 +79,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.7.1)
     execjs (2.7.0)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -89,6 +91,7 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jwt (2.1.0)
     libv8 (6.7.288.46.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -101,6 +104,7 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
+    metaclass (0.0.4)
     method_source (0.9.0)
     mimemagic (0.3.2)
     mini_mime (1.0.1)
@@ -113,12 +117,17 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    mocha (1.8.0)
+      metaclass (~> 0.0.1)
     msgpack (1.2.4)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     mysql2 (0.5.2)
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
+    octokit (4.13.0)
+      sawyer (~> 0.8.0, >= 0.5.3)
     orm_adapter (0.5.0)
     parallel (1.12.1)
     parser (2.5.3.0)
@@ -183,6 +192,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sawyer (0.8.1)
+      addressable (>= 2.3.5, < 2.6)
+      faraday (~> 0.8, < 1.0)
     selenium-webdriver (3.14.1)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -234,10 +246,13 @@ DEPENDENCIES
   database_cleaner
   devise
   jbuilder (~> 2.5)
+  jwt (~> 2.1)
   listen (>= 3.0.5, < 3.2)
   mini_racer
   minitest-reporters
+  mocha
   mysql2 (>= 0.4.4, < 0.6.0)
+  octokit (~> 4.3)
   puma (~> 3.11)
   rails (~> 5.2.0)
   rubocop

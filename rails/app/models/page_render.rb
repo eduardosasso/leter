@@ -1,5 +1,5 @@
 class PageRender
-  #TODO move somewhere else
+  # TODO, move somewhere else
   LAYOUT = File.read("#{Rails.root}/app/views/layouts/default.html.erb")
 
   def initialize(content, layout = LAYOUT)

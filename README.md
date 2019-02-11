@@ -1,5 +1,10 @@
 # Leter.co
 
+Edit secrets
+rails credentials:edit
+docker-compose exec rails rails credentials:edit
+
+
 curl https://get.acme.sh | sh
 
 export DO_API_KEY=
@@ -45,3 +50,8 @@ docker run -it leter rails db:create
 
 
 docker run -it demo "rake test"
+
+rails generate migration add_github_app_install_json_to_users
+
+aws configure 
+aws s3 cp ~/Desktop/vimhelp s3://leter-sites/ --profile leter-s3

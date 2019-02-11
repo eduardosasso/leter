@@ -1,6 +1,8 @@
 FROM ruby:2.5
 
-RUN apt-get update && apt-get install -y build-essential nodejs mysql-client
+RUN apt-get update && apt-get install -y build-essential nodejs mysql-client vim
+
+ENV EDITOR=vim
 
 RUN mkdir -p /app
 WORKDIR /app

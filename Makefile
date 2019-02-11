@@ -13,4 +13,7 @@ sh:
 	docker-compose exec rails bash
 railsc:
 	docker-compose exec rails rails c
+ngrok:
+	ngrok http 3000
+
 

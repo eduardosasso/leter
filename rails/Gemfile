@@ -36,6 +36,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 
+gem 'jwt', '~> 2.1'
+gem 'octokit', '~> 4.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'brakeman', require: false
@@ -60,6 +63,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'minitest-reporters'
   gem 'database_cleaner'
+  gem 'mocha'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
