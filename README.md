@@ -4,6 +4,12 @@ Edit secrets
 rails credentials:edit
 docker-compose exec rails rails credentials:edit
 
+rails db:migrate
+RAILS_ENV=test rake db:migrate
+
+id = 645366
+conn = GithubService.new.authenticate_installation(id)
+conn.user('eduardosasso')
 
 curl https://get.acme.sh | sh
 
@@ -55,3 +61,5 @@ rails generate migration add_github_app_install_json_to_users
 
 aws configure 
 aws s3 cp ~/Desktop/vimhelp s3://leter-sites/ --profile leter-s3
+
+

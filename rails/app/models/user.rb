@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_one :account, through: :user_account
   has_many :sites, through: :account
 
-  after_commit :create_default_account, on: :create
+  # after_commit :create_default_account, on: :create
 
   def create_default_account
     User.transaction do
