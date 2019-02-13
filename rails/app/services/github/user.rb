@@ -1,10 +1,10 @@
 module Github
   class User
     def initialize(conn, username)
-			@conn = conn
+      @conn = conn
       @username = username
     end
-    
+
     def email
       data['email']
     end
@@ -14,7 +14,7 @@ module Github
     end
 
     def data
-      data ||= @conn.user(@username)
+      @data ||= @conn.user(@username)
     end
   end
 end
