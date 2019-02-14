@@ -12,9 +12,10 @@ class GitubControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'event handler' do
+    GithubController.any_instance.stubs(:verify_is_user)
     GithubController.any_instance.stubs(:verify_webhook_signature)
 
-    post github_event_handler_path
+    post(github_event_handler_path, params: @payload)
 
     assert_response :not_implemented
   end
@@ -24,5 +25,15 @@ class GitubControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :accepted
     assert(User.first)
+  end
+
+  test 'block bot request' do
+    GithubController.any_instance.stubs(:verify_webhook_signature)
+
+    payload = file_fixture('github_bot_request.json').read
+
+    post(github_event_handler_path, params: payload, headers: @headers)
+
+    assert_response :not_acceptable
   end
 end

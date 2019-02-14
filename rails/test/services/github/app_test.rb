@@ -11,4 +11,10 @@ class AppTest < ActiveSupport::TestCase
     assert(user.github_app_install_id.present?)
     assert_equal(user.email, 'eduardo.sasso@gmail.com')
   end
+
+  test 'build' do
+    payload = JSON.parse(file_fixture('github_push_update.json').read)
+
+    Github::App.new(payload).build
+  end
 end
