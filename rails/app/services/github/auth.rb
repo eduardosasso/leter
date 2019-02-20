@@ -9,8 +9,6 @@ module Github
     # The GitHub App's identifier (type integer) set when registering an app.
     APP_IDENTIFIER = Rails.application.credentials.dig(:github_app_identifier)
 
-    attr_reader :conn
-
     # instantiate an Octokit client, authenticated as an installation of a
     # gitHub App, to run API operations.
     def client(app_install_id)
@@ -19,13 +17,7 @@ module Github
         accept: 'application/vnd.github.machine-man-preview+json'
       )[:token]
 
-      @conn = Octokit::Client.new(bearer_token: install_token)
-
-      self
-    end
-
-    def user(username)
-      Github::User.new(conn, username)
+      Octokit::Client.new(bearer_token: install_token)
     end
 
     private

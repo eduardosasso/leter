@@ -8,7 +8,6 @@ class GithubController < ActionController::Base
   #TODO, should validate account if paid or not rules
   #TODO, only trigger if changes on master 
   #webhook that listen for all events coming
-  #from the github app
   def event_handler
     event = request.headers['X-GitHub-Event']
     status = :accepted
@@ -20,6 +19,8 @@ class GithubController < ActionController::Base
       app.install
     when 'push'
       app.build_async
+    when 'integration_installation_repositories'
+      #TODO, new repo being added to the app
     else
       status = :not_implemented
     end
