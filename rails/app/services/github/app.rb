@@ -37,7 +37,7 @@ module Github
     def build
       #TODO, should be single commit
       repo = payload.repository_name
-      file = Github::File.new(conn)
+      file = Github::File.new(conn, repo)
 
       #TODO,
       #rename file from md to html
@@ -45,7 +45,7 @@ module Github
       #and save the content inside index file so can hit url without .html
       
       items = payload.files_updated.map do |f|
-        content = file.content(repo, 'index.md')
+        content = file.content('index.md')
 
         Item.new.tap do |i|
           i.filename = f

@@ -11,9 +11,7 @@ module Github
 
     #http://mattgreensmith.net/2013/08/08/commit-directly-to-github-via-api-with-octokit/
     def push(items = [])
-      #TODO, delete
       #TODO, create dir
-      #TODO understand if the latest commit is enough
       sha_latest_commit = github.ref(repo, ref).object.sha
       sha_base_tree = github.commit(repo, sha_latest_commit).commit.tree.sha
 
@@ -30,18 +28,8 @@ module Github
         }
       end
 
-      # blob_sha = github.create_blob(repo, Base64.encode64('new commit updated'), "base64")
-
-      # sha_new_tree = github.create_tree(repo,
-      #                                   [ { :path => 'index.html',
-      #                                  :mode => "100644",
-      #                                  :type => "blob",
-      #                                  :sha => blob_sha }] ,
-      #                              {:base_tree => sha_base_tree }).sha
-
       sha_new_tree = github.create_tree(repo, changes, base_tree: sha_base_tree).sha
 
-      #TODO should mimick commit msg from last commit
       sha_new_commit = github.create_commit(
         repo,
         commit_message,
