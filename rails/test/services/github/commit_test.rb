@@ -12,7 +12,7 @@ class CommitTest < ActiveSupport::TestCase
     conn = Github::Auth.new.client(payload.installation_id)
 
     item = Item.new
-    item.filename = 'index.html'
+    item.filename = 'resume/index.html'
     item.html = "<h1>Hello World #{timestamp}</h1>"
     item.status = Item::STATUS[:updated]
 

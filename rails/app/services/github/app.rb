@@ -43,27 +43,25 @@ module Github
       #rename file from md to html
       #if file not index then create a folder with file name slug minus extension
       #and save the content inside index file so can hit url without .html
-      
+
       items = payload.files_updated.map do |f|
-        content = file.content('index.md')
+        content = file.content(f)
 
         Item.new.tap do |i|
-          i.filename = f
+          i.filename = Slug.new(f).to_s
           i.html = Markdown.new(content).to_html
           i.status = Item::STATUS[:updated]
         end
       end
 
-      items |= payload.files_deleted.map do |f|
-        Item.new.tap do |i|
-          i.filename = f
-          i.status = Item::STATUS[:deleted]
-        end
+      Github::Commit.new(conn, payload).push(items) if items.any?
+
+      payload.files_deleted.each do |f|
+        name = Slug.new(f).to_s
+
+        file.delete(name, "original deleted #{f}")
       end
-
-      Github::Commit.new(conn, payload).push(items)
     end
-
 
     #TODO serverless build?
     def build_async

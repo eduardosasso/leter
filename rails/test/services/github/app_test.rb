@@ -13,7 +13,7 @@ class AppTest < ActiveSupport::TestCase
   end
 
   test 'build' do
-    payload = JSON.parse(file_fixture('github_push_update.json').read)
+    payload = JSON.parse(file_fixture('github_push_update_test_repo.json').read)
 
     Github::App.new(payload).build
   end
