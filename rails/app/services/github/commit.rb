@@ -11,10 +11,6 @@ module Github
 
     #http://mattgreensmith.net/2013/08/08/commit-directly-to-github-via-api-with-octokit/
     def push(items = [])
-      #TODO, create dir
-      sha_latest_commit = github.ref(repo, ref).object.sha
-      sha_base_tree = github.commit(repo, sha_latest_commit).commit.tree.sha
-
       changes = items.map do |item|
         content = Base64.encode64(item.html)
 
@@ -28,6 +24,12 @@ module Github
         }
       end
 
+      commit(changes) if changes.any?
+    end
+
+    private
+
+    def commit(changes = [])
       sha_new_tree = github.create_tree(repo, changes, base_tree: sha_base_tree).sha
 
       sha_new_commit = github.create_commit(
@@ -38,6 +40,14 @@ module Github
       ).sha
 
       github.update_ref(repo, ref, sha_new_commit)
+    end
+
+    def sha_latest_commit
+      github.ref(repo, ref).object.sha
+    end
+
+    def sha_base_tree
+      github.commit(repo, sha_latest_commit).commit.tree.sha
     end
   end
 end

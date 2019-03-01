@@ -254,6 +254,7 @@ DEPENDENCIES
   minitest-reporters
   mocha
   mysql2 (>= 0.4.4, < 0.6.0)
+  nokogiri (~> 1.6, >= 1.6.8)
   octokit (~> 4.3)
   puma (~> 3.11)
   rails (~> 5.2.0)

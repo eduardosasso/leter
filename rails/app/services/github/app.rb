@@ -35,14 +35,9 @@ module Github
     end
 
     def build
-      #TODO, should be single commit
       repo = payload.repository_name
-      file = Github::File.new(conn, repo)
-
-      #TODO,
-      #rename file from md to html
-      #if file not index then create a folder with file name slug minus extension
-      #and save the content inside index file so can hit url without .html
+      file = Github::File.new(conn, repo)      
+      response = {push: nil, delete: nil}
 
       items = payload.files_updated.map do |f|
         content = file.content(f)
@@ -50,17 +45,18 @@ module Github
         Item.new.tap do |i|
           i.filename = Slug.new(f).to_s
           i.html = Markdown.new(content).to_html
-          i.status = Item::STATUS[:updated]
         end
       end
 
-      Github::Commit.new(conn, payload).push(items) if items.any?
+      response[:push] = Github::Commit.new(conn, payload).push(items)
 
-      payload.files_deleted.each do |f|
+      response[:delete] = payload.files_deleted.map do |f|
         name = Slug.new(f).to_s
 
         file.delete(name, "original deleted #{f}")
       end
+
+      response
     end
 
     #TODO serverless build?

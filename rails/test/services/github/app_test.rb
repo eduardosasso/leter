@@ -12,9 +12,11 @@ class AppTest < ActiveSupport::TestCase
     assert_equal(user.email, 'eduardo.sasso@gmail.com')
   end
 
-  test 'build' do
+  test 'build files added and updated' do
     payload = JSON.parse(file_fixture('github_push_update_test_repo.json').read)
 
-    Github::App.new(payload).build
+   res = Github::App.new(payload).build
+
+   assert(res[:push].object.sha)
   end
 end
