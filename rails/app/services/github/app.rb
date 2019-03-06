@@ -19,6 +19,7 @@ module Github
 
       #TODO - should loop on repos and add to user_repos?
       #TODO, premium - one repo free, many repos?
+      #TODO save leter.yml with config params 
     end
 
     def uninstall
@@ -44,7 +45,7 @@ module Github
 
         Item.new.tap do |i|
           i.filename = Slug.new(f).to_s
-          i.html = Markdown.new(content).to_html
+          i.html = PageBuilder.new(content, config).html 
         end
       end
 
@@ -65,6 +66,11 @@ module Github
     end
 
     private
+    
+    def config
+      AccountConfig.default
+      # TODO load leter.yml from master
+    end
 
     def conn
       Github::Auth.new.client(payload.installation_id)
