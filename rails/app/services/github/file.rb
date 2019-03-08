@@ -11,6 +11,8 @@ module Github
       data = content_ref(filename)
 
       Base64.decode64(data['content'])
+    rescue Octokit::NotFound
+      raise FileNotFoundError.new("#{filename} not found")
     end
 
     def delete(filename, message)

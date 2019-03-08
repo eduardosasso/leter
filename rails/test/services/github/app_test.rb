@@ -35,6 +35,20 @@ class AppTest < ActiveSupport::TestCase
     payload = JSON.parse(file_fixture('github_push_update_test_repo.json').read)
 
     # TODO check better way without going to github
+    config = AccountConfig.new.tap { |c| c.theme = 'fancy' }
+
+    Github::File.any_instance.stubs(:content).returns(config.to_yaml)
+
+    config = Github::App.new(payload).send(:config)
+
+    assert_equal(config.theme, 'fancy')
+  end
+
+  test 'default config' do
+    payload = JSON.parse(file_fixture('github_push_update_test_repo.json').read)
+
+    # TODO check better way without going to github
+    AccountConfig.stubs(:filename).returns('non_existing_config.yml')
     # Github::File.any_instance.stubs(:content).returns(AccountConfig.default.to_yaml)
 
     config = Github::App.new(payload).send(:config)

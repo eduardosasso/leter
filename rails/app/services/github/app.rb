@@ -90,6 +90,9 @@ module Github
       user_config = YAML.load(config_yml)
 
       AccountConfig.new(user_config)
+    rescue FileNotFoundError
+      #TODO this should be logged  
+      AccountConfig.default
     end
 
     def conn
