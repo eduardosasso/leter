@@ -4,5 +4,5 @@ class Item
     deleted: 1
   }.freeze
 
-  attr_accessor :filename, :html, :status
+  attr_accessor :filename, :data, :status
 end

@@ -35,6 +35,22 @@ module Github
       #TODO, test
     end
 
+    def setup
+      repo = payload.repository_name
+
+      config = Item.new.tap do |i|
+        i.filename = AccountConfig.filename 
+        i.data = AccountConfig.default.to_yaml 
+      end
+
+      nojekyll = Item.new.tap do |i|
+        i.filename = '.nojekyll'
+        i.data = ''
+      end
+
+      Github::Commit.new(conn, payload).push([config, nojekyll])
+    end
+
     def build
       repo = payload.repository_name
       file = Github::File.new(conn, repo)      
@@ -45,7 +61,7 @@ module Github
 
         Item.new.tap do |i|
           i.filename = Slug.new(f).to_s
-          i.html = PageBuilder.new(content, config).html 
+          i.data = PageBuilder.new(content, config).html 
         end
       end
 
@@ -68,8 +84,12 @@ module Github
     private
     
     def config
-      AccountConfig.default
-      # TODO load leter.yml from master
+      file = Github::File.new(conn, payload.repository_name)
+      config_yml = file.content(AccountConfig.filename)
+      
+      user_config = YAML.load(config_yml)
+
+      AccountConfig.new(user_config)
     end
 
     def conn

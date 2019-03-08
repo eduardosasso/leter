@@ -12,7 +12,7 @@ module Github
     #http://mattgreensmith.net/2013/08/08/commit-directly-to-github-via-api-with-octokit/
     def push(items = [])
       changes = items.map do |item|
-        content = Base64.encode64(item.html)
+        content = Base64.encode64(item.data)
 
         blob_sha = github.create_blob(repo, content, :base64)
 
