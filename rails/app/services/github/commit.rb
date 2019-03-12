@@ -4,7 +4,7 @@ module Github
 
     def initialize(conn, payload)
       @github = conn
-      @repo = payload.repository_name
+      @repo = Github::Repo.new(conn, payload)
       @ref = 'heads/master' #TODO, other branches gh-pages?
       @commit_message = '〰️ ' + payload.commit_message
     end
@@ -14,7 +14,7 @@ module Github
       changes = items.map do |item|
         content = Base64.encode64(item.data)
 
-        blob_sha = github.create_blob(repo, content, :base64)
+        blob_sha = github.create_blob(repo_name, content, :base64)
 
         {
           path: item.filename,
@@ -30,24 +30,28 @@ module Github
     private
 
     def commit(changes = [])
-      sha_new_tree = github.create_tree(repo, changes, base_tree: sha_base_tree).sha
+      sha_new_tree = github.create_tree(repo_name, changes, base_tree: sha_base_tree).sha
 
       sha_new_commit = github.create_commit(
-        repo,
+        repo_name,
         commit_message,
         sha_new_tree,
         sha_latest_commit
       ).sha
 
-      github.update_ref(repo, ref, sha_new_commit)
+      github.update_ref(repo_name, ref, sha_new_commit)
     end
 
     def sha_latest_commit
-      github.ref(repo, ref).object.sha
+      repo.sha_latest_commit
     end
 
     def sha_base_tree
-      github.commit(repo, sha_latest_commit).commit.tree.sha
+      repo.sha_base_tree
+    end
+
+    def repo_name
+      repo.name
     end
   end
 end
