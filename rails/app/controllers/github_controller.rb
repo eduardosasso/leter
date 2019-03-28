@@ -1,6 +1,7 @@
 class GithubController < ActionController::Base
   include GithubHelper
 
+  skip_before_action :verify_authenticity_token
   before_action :verify_is_user
   before_action :verify_webhook_signature, only: :event_handler
 

@@ -78,7 +78,8 @@ module Github
 
     #TODO serverless build?
     def build_async
-      Github::BuildJob.perform(payload.original)
+      build
+      # Github::BuildJob.perform(payload.original)
     end
 
     private

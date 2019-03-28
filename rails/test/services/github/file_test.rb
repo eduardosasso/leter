@@ -23,7 +23,7 @@ class Github::FileTest < ActiveSupport::TestCase
 
     item = Item.new
     item.filename = 'delete.html'
-    item.html = "<h1>Hello World #{timestamp}</h1>"
+    item.data = "<h1>Hello World #{timestamp}</h1>"
     item.status = Item::STATUS[:updated]
 
     Github::Commit.new(conn, payload).push([item])

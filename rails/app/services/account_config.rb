@@ -34,7 +34,7 @@ class AccountConfig
     @pro || false
   end
 
-  # pro is internal only don't
+  # pro is internal only
   # users can't change it
   def pro=(pro)
     @pro = pro
