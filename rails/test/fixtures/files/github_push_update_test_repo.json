@@ -1,20 +1,20 @@
 {
   "ref": "refs/heads/master",
-  "before": "e7eefaa55c27a7e043bc3281d6e68378edf4c6eb",
-  "after": "f206c2023eb5273b35c03c2afa1313de76eb4531",
+  "before": "393bb8b181dcf92d36ebf9e8bf204024de508d08",
+  "after": "3f6fa74e105ad8b89e1cf2d612bd269fde0f738a",
   "created": false,
   "deleted": false,
   "forced": false,
   "base_ref": null,
-  "compare": "https://github.com/eduardosasso/leter-test/compare/e7eefaa55c27...f206c2023eb5",
+  "compare": "https://github.com/eduardosasso/leter-test/compare/393bb8b181dc...3f6fa74e105a",
   "commits": [
     {
-      "id": "f206c2023eb5273b35c03c2afa1313de76eb4531",
-      "tree_id": "5f0835ae797c7b2e504b50610632a9bcd0cd3f85",
+      "id": "25df1c63c5d3ec27b279a52ce067b82ede923008",
+      "tree_id": "c4c7684a3a0042e7b3e2acf65c83098ce3e3993f",
       "distinct": true,
-      "message": "adding resume and changing index",
-      "timestamp": "2019-02-27T11:26:02-08:00",
-      "url": "https://github.com/eduardosasso/leter-test/commit/f206c2023eb5273b35c03c2afa1313de76eb4531",
+      "message": "update index.md",
+      "timestamp": "2019-04-13T17:56:06+02:00",
+      "url": "https://github.com/eduardosasso/leter-test/commit/25df1c63c5d3ec27b279a52ce067b82ede923008",
       "author": {
         "name": "eduardosasso",
         "email": "eduardo.sasso@gmail.com",
@@ -26,7 +26,7 @@
         "username": "eduardosasso"
       },
       "added": [
-        "resume.md"
+
       ],
       "removed": [
 
@@ -34,15 +34,44 @@
       "modified": [
         "index.md"
       ]
+    },
+    {
+      "id": "3f6fa74e105ad8b89e1cf2d612bd269fde0f738a",
+      "tree_id": "a477b6c8bfeba4bb5285aac184c42ee9bccb3e85",
+      "distinct": true,
+      "message": "change index.md and merge",
+      "timestamp": "2019-04-13T17:57:33+02:00",
+      "url": "https://github.com/eduardosasso/leter-test/commit/3f6fa74e105ad8b89e1cf2d612bd269fde0f738a",
+      "author": {
+        "name": "eduardosasso",
+        "email": "eduardo.sasso@gmail.com",
+        "username": "eduardosasso"
+      },
+      "committer": {
+        "name": "eduardosasso",
+        "email": "eduardo.sasso@gmail.com",
+        "username": "eduardosasso"
+      },
+      "added": [
+        "leter.yml",
+        "resume.html",
+        "resume/index.html"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "index.html"
+      ]
     }
   ],
   "head_commit": {
-    "id": "f206c2023eb5273b35c03c2afa1313de76eb4531",
-    "tree_id": "5f0835ae797c7b2e504b50610632a9bcd0cd3f85",
+    "id": "3f6fa74e105ad8b89e1cf2d612bd269fde0f738a",
+    "tree_id": "a477b6c8bfeba4bb5285aac184c42ee9bccb3e85",
     "distinct": true,
-    "message": "adding resume and changing index",
-    "timestamp": "2019-02-27T11:26:02-08:00",
-    "url": "https://github.com/eduardosasso/leter-test/commit/f206c2023eb5273b35c03c2afa1313de76eb4531",
+    "message": "change index.md and merge",
+    "timestamp": "2019-04-13T17:57:33+02:00",
+    "url": "https://github.com/eduardosasso/leter-test/commit/3f6fa74e105ad8b89e1cf2d612bd269fde0f738a",
     "author": {
       "name": "eduardosasso",
       "email": "eduardo.sasso@gmail.com",
@@ -54,13 +83,15 @@
       "username": "eduardosasso"
     },
     "added": [
-      "resume.md"
+      "leter.yml",
+      "resume.html",
+      "resume/index.html"
     ],
     "removed": [
 
     ],
     "modified": [
-      "index.md"
+      "index.html"
     ]
   },
   "repository": {
@@ -132,14 +163,14 @@
     "releases_url": "https://api.github.com/repos/eduardosasso/leter-test/releases{/id}",
     "deployments_url": "https://api.github.com/repos/eduardosasso/leter-test/deployments",
     "created_at": 1550690114,
-    "updated_at": "2019-02-27T19:24:11Z",
-    "pushed_at": 1551295574,
+    "updated_at": "2019-04-13T15:53:31Z",
+    "pushed_at": 1555171101,
     "git_url": "git://github.com/eduardosasso/leter-test.git",
     "ssh_url": "git@github.com:eduardosasso/leter-test.git",
     "clone_url": "https://github.com/eduardosasso/leter-test.git",
     "svn_url": "https://github.com/eduardosasso/leter-test",
     "homepage": null,
-    "size": 13,
+    "size": 27,
     "stargazers_count": 0,
     "watchers_count": 0,
     "language": "HTML",
@@ -151,6 +182,7 @@
     "forks_count": 0,
     "mirror_url": null,
     "archived": false,
+    "disabled": false,
     "open_issues_count": 0,
     "license": null,
     "forks": 0,

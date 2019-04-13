@@ -19,7 +19,7 @@ module Github
 
       #TODO - should loop on repos and add to user_repos?
       #TODO, premium - one repo free, many repos?
-      #TODO save leter.yml with config params 
+      #TODO save leter.yml with config params
     end
 
     def uninstall
@@ -39,8 +39,8 @@ module Github
       repo = payload.repository_name
 
       config = Item.new.tap do |i|
-        i.filename = AccountConfig.filename 
-        i.data = AccountConfig.default.to_yaml 
+        i.filename = AccountConfig.filename
+        i.data = AccountConfig.default.to_yaml
       end
 
       nojekyll = Item.new.tap do |i|
@@ -53,17 +53,19 @@ module Github
 
     def build
       repo = payload.repository_name
-      file = Github::File.new(conn, repo)      
+      file = Github::File.new(conn, repo)
       response = {push: nil, delete: nil}
 
       items = payload.files_updated.map do |f|
+        next unless Markdown.is?(f)
+
         content = file.content(f)
 
         Item.new.tap do |i|
           i.filename = Slug.new(f).to_s
-          i.data = PageBuilder.new(content, config).html 
+          i.data = PageBuilder.new(content, config).html
         end
-      end
+      end.compact
 
       response[:push] = Github::Commit.new(conn, payload).push(items)
 
@@ -83,16 +85,16 @@ module Github
     end
 
     private
-    
+
     def config
       file = Github::File.new(conn, payload.repository_name)
       config_yml = file.content(AccountConfig.filename)
-      
+
       user_config = YAML.load(config_yml)
 
       AccountConfig.new(user_config)
     rescue FileNotFoundError
-      #TODO this should be logged  
+      #TODO this should be logged
       AccountConfig.default
     end
 

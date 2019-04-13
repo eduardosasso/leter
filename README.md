@@ -1,5 +1,7 @@
 # Leter.co
 
+https://github.com/settings/apps/leter-co/advanced
+
 Edit secrets
 rails credentials:edit
 docker-compose exec rails rails credentials:edit

@@ -17,11 +17,12 @@ module Github
     end
 
     def commit_message
-      commits['message']
+      #TODO improve to only get message from commits with changed MD files
+      commits['message'].join(', ')
     end
 
     def files_updated
-      commits['added'] | commits['modified']
+      commits['updated']
     end
 
     def files_deleted
@@ -35,7 +36,19 @@ module Github
     private
 
     def commits
-      @commits ||= @data['head_commit']
+      commits = {
+        'updated' => [],
+        'removed' => [],
+        'message' => []
+      }
+
+      @data['commits'].each do |c|
+        commits['updated'] += (c['added'] | c['modified'])
+        commits['removed'] += c['removed']
+        commits['message'] << c['message']
+      end
+
+      commits
     end
 
   end
