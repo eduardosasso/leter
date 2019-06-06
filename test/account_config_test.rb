@@ -6,7 +6,6 @@ class AccountConfigTest < Minitest::Test
 
     assert_equal(config.theme, 'default')
     assert_nil(config.google_analytics)
-    assert(config.pro? == false)
   end
 
   def test_theme
@@ -27,18 +26,5 @@ class AccountConfigTest < Minitest::Test
 
     assert_equal(config.theme, 'fancy')
     assert_equal(config.google_analytics, 123)
-  end
-
-  def test_pro_account
-    config = Leter::AccountConfig.new.tap { |c| c.pro = true }
-
-    assert(config.pro?)
-  end
-
-  def test_pro_internal_only
-    config = Leter::AccountConfig.new.tap { |c| c.pro = true }
-    new_config = YAML.load(config.to_yaml)
-    
-    assert_empty(new_config)
   end
 end

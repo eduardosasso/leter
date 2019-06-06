@@ -33,16 +33,6 @@ module Leter
       @config[:date_format] = format
     end
 
-    def pro?
-      @pro || false
-    end
-
-    # pro is internal only
-    # users can't change it
-    def pro=(pro)
-      @pro = pro
-    end
-
     def to_yaml
       @config.to_yaml
     end
