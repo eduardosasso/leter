@@ -5,13 +5,13 @@ module Leter
   class PageBuilder
     LAYOUT = File.read("#{Dir.pwd}/lib/leter/layout.html.erb")
 
-    def initialize(markdown, config = AccountConfig.default)
+    def initialize(markdown, config = Leter::AccountConfig.default)
       @markdown = markdown
       @config = config
     end
 
     def html
-      html_template = HtmlTemplate.new.tap do |h|
+      html_template = Leter::HtmlTemplate.new.tap do |h|
         h.title = title
         h.description = description
         h.body = content
@@ -22,7 +22,7 @@ module Leter
     end
 
     def content
-      Markdown.new(@markdown).to_html
+      Leter::Markdown.new(@markdown).to_html
     end
 
     private
