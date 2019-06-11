@@ -1,6 +1,25 @@
 require "test_helper"
 
 class LeterTest < Minitest::Test
+  include Aruba::Api
+
+  def setup
+    setup_aruba
+  end
+
+  def test_usage_instructions
+     run_command_and_stop('leter')
+
+     assert_match(/Usage: leter/, last_command_started.output)
+  end
+
+  def test_new_project
+     run_command_and_stop('leter --new')
+
+     assert_match(/leter.yml created/, last_command_started.output)
+     assert(read(Leter::AccountConfig.filename))
+  end
+
   def test_that_it_has_a_version_number
     refute_nil ::Leter::VERSION
   end

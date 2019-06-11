@@ -4,7 +4,7 @@ require 'erb'
 
 module Leter
   class PageBuilder
-    LAYOUT = File.read("#{Dir.pwd}/lib/leter/layout.html.erb")
+    LAYOUT = File.read(File.expand_path('layout.html.erb', __dir__))
 
     def initialize(markdown, config = Leter::AccountConfig.default)
       @markdown = markdown

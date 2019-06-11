@@ -40,6 +40,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
+  # spec.add_development_dependency 'aruba', '~> 0.14.1'
+  spec.add_development_dependency 'aruba', '~> 1.0.0.pre.alpha.4'
 
   spec.add_dependency 'kramdown', '~> 2.1'
   spec.add_dependency "nokogiri", "~> 1.10", ">= 1.10.3"

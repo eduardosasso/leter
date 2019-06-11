@@ -8,8 +8,8 @@ module Leter
 
     end
 
-    def save_file(path, content)
-
+    def self.save_file(path, content)
+      File.open(path, 'w+') { |file| file.write(content) }
     end
   end
 end

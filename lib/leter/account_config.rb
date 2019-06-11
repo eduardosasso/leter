@@ -2,7 +2,7 @@ require 'yaml'
 
 module Leter
   class AccountConfig
-    DEFAULT_CONFIG = YAML.load_file("#{Dir.pwd}/lib/leter/default_config.yml")
+    DEFAULT_CONFIG = YAML.load_file(File.expand_path('default_config.yml', __dir__))
 
     def initialize(config = {})
       @config = config.transform_keys(&:to_sym)

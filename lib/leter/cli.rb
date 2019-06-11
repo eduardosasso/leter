@@ -7,16 +7,18 @@ module Leter
         #TODO add description in banner
         parser.banner = "Usage: leter [options]"
 
-        parser.on('-n', '--new', 'Setup leter.yml file') do |name|
-          options[:name] = name
+        parser.on('-n', '--new', 'Setup leter.yml file') do
+          config = Leter::AccountConfig
+
+          warning('leter.yml already exists') && exit if File.file?(config.filename)
+
+          Leter::IO.save_file(config.filename, config.default.to_yaml)
+
+          info('✔ leter.yml created!')
         end
 
-        parser.on('-f', '--file NAME ...', 'Convert individual markdown files to HTML') do |name|
-          #TODO check for leter.yml in home folder, throw error suggest running leter --new
-          options[:name] = name
-        end
-
-        parser.on('-a', '--all', 'Convert all markdown files to HTML') do |name|
+        parser.on('-b', '--build', 'Convert all markdown files to HTML') do |name|
+          #TODO alert configuration not found, or run leter -n
           options[:name] = name
         end
 
@@ -28,7 +30,19 @@ module Leter
           puts Leter::VERSION
         end
 
+        parser.on("-c", "--clean", "Clean") do ||
+          puts Leter::VERSION
+        end
+
       end.parse!
+    end
+
+    def info(message)
+      puts message
+    end
+
+    def warning(message)
+      puts message
     end
   end
 end
