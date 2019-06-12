@@ -17,7 +17,16 @@ class LeterTest < Minitest::Test
      run_command_and_stop('leter --new')
 
      assert_match(/leter.yml created/, last_command_started.output)
+
      assert(read(Leter::AccountConfig.filename))
+  end
+
+  def test_project_exists
+     write_file(Leter::AccountConfig.filename, '')
+
+     run_command_and_stop('leter --new')
+
+     assert_match(/already exists/, last_command_started.output)
   end
 
   def test_that_it_has_a_version_number
