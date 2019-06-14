@@ -1,11 +1,16 @@
 module Leter
   class IO
-    def list_files(ext='*.md')
+    def self.list_files(ext='md')
+      Dir["**/*.#{ext}"]
+    end
+
+    def self.read_file(file)
 
     end
 
-    def read_file(file)
-
+    def self.delete_file(file)
+      File.delete(file) if File.exist?(file)
+      #TODO should delete folder if empty after removing file
     end
 
     def self.save_file(path, content)
