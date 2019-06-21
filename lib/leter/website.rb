@@ -7,6 +7,21 @@ module Leter
       # generate index for every folder with html files? - for every page being built keep a track of name and url
       # and use that to power the index
       # same can apply for sitemap and rss
+      
+      #TODO should read config from system
+      config = Leter::AccountConfig.default
+
+      io = Leter::IO
+
+      io.list_files.each do |file|
+        markdown = io.read_file(file)
+
+        html = Leter::PageBuilder.new(markdown, config).html
+
+        path_and_file = Leter::Slug.new(file).to_s
+
+        io.save_file(path_and_file, html) 
+      end
     end
 
     def clean

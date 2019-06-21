@@ -5,12 +5,16 @@ module Leter
     end
 
     def self.read_file(file)
-
+      File.read(file)
     end
 
     def self.delete_file(file)
       File.delete(file) if File.exist?(file)
       #TODO should delete folder if empty after removing file
+    end
+
+    def self.delete_all(path)
+      FileUtils.rm_rf(path)
     end
 
     def self.save_file(path, content)
