@@ -27,4 +27,14 @@ class AccountConfigTest < Minitest::Test
     assert_equal(config.theme, 'fancy')
     assert_equal(config.google_analytics, 123)
   end
+
+  def test_load_config
+    config = Leter::AccountConfig
+
+    Leter::IO.save_file(config.filename, {'theme' => 'violet'}.to_yaml)
+
+    assert_equal('violet', config.load(config.filename).theme)
+
+    File.delete(config.filename)
+  end
 end

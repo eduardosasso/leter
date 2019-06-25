@@ -1,5 +1,11 @@
 module Leter
   class Website
+    attr_reader :config
+
+    def initialize(config = Leter::AccountConfig.default)
+      @config = config
+    end
+
     def build
       #
       # create assets folder and copy all assets
@@ -9,7 +15,6 @@ module Leter
       # same can apply for sitemap and rss
       
       #TODO should read config from system
-      config = Leter::AccountConfig.default
 
       io = Leter::IO
 

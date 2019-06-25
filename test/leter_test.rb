@@ -29,6 +29,14 @@ class LeterTest < Minitest::Test
      assert_match(/already exists/, last_command_started.output)
   end
 
+  def test_project_build
+    run_command_and_stop('leter --new')
+
+    run_command_and_stop('leter --build')
+
+    assert_match(/Build complete/, last_command_started.output) 
+  end
+
   def test_that_it_has_a_version_number
     refute_nil ::Leter::VERSION
   end

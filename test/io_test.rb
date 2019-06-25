@@ -29,6 +29,9 @@ class IOTest < Minitest::Test
     contents = Leter::IO.read_file(file)
 
     assert_equal('hello world', contents)
+
+    File.delete(file)
+
   end
 
   def test_save_file

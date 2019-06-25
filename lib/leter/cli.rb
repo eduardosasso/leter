@@ -17,9 +17,14 @@ module Leter
           info('✔ leter.yml created!')
         end
 
-        parser.on('-b', '--build', 'Convert all markdown files to HTML') do |name|
+        parser.on('-b', '--build', 'Build website') do
           #TODO alert configuration not found, or run leter -n
-          options[:name] = name
+          
+          config = load_config
+          
+          Leter::Website.new(config).build
+
+          info('Build complete')
         end
 
         parser.on("-h", "--help", "Show this help message") do ||
@@ -31,7 +36,7 @@ module Leter
         end
 
         parser.on("-c", "--clean", "Clean") do ||
-          puts Leter::VERSION
+          # puts Leter::VERSION
         end
 
       end.parse!
@@ -43,6 +48,14 @@ module Leter
 
     def warning(message)
       puts message
+    end
+
+    private
+
+    def load_config
+      path = Leter::AccountConfig.filename
+
+      Leter::AccountConfig.load(path)
     end
   end
 end
