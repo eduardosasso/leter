@@ -2,7 +2,7 @@ require 'test_helper'
 
 class WebsiteTest < Minitest::Test
   def teardown
-    Leter::IO.delete_all('tmp/test')
+    Leter::IO.delete_all('tmp/test', 'readme')
   end
 
   def test_assets_folder_on_build

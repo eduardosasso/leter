@@ -10,11 +10,14 @@ module Leter
 
     def self.delete_file(file)
       File.delete(file) if File.exist?(file)
-      #TODO should delete folder if empty after removing file
+
+      dir = File.dirname(file)
+
+      delete_all(dir) if Dir.empty?(dir)
     end
 
-    def self.delete_all(path)
-      FileUtils.rm_rf(path)
+    def self.delete_all(*path)
+      path.each {|p| FileUtils.remove_dir(p, force: true)}
     end
 
     def self.save_file(path, content)

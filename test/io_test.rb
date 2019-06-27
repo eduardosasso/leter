@@ -31,7 +31,19 @@ class IOTest < Minitest::Test
     assert_equal('hello world', contents)
 
     File.delete(file)
+  end
 
+  def test_delete_file_and_empty_folder
+    folder = 'tmp/articles/folder'
+    file = "#{folder}/file.html"
+
+    Leter::IO.save_file(file, 'hello world') 
+    
+    assert(Dir.exist?(folder))
+    
+    Leter::IO.delete_file(file)
+
+    refute(Dir.exist?(folder))
   end
 
   def test_save_file
