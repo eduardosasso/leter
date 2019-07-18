@@ -13,4 +13,5 @@ module Leter
   require 'leter/account_config'
   require 'leter/markdown'
   require 'leter/html_template'
+  require 'leter/index_template'
 end
