@@ -9,14 +9,10 @@ module Leter
       @index = {}
     end
 
-    def add(path, title)
+    def add(key, item = Leter::Item)
       #TODO reading time only if greater than like 2 min
 
-      root = Pathname(path).dirname.split.first.to_s
-      updated_at = File.mtime(path)
-
-      #TODO struct or poro
-      (@index[root] ||= []) << {title: title, url: path, updated_at: updated_at}
+      (@index[key] ||= []) << item if key 
     end
 
     def html(&block)

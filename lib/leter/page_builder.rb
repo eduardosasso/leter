@@ -26,8 +26,6 @@ module Leter
       Leter::Markdown.new(@markdown).to_html
     end
 
-    private
-
     def title
       first_h1 || first_h2
     end
@@ -47,6 +45,8 @@ module Leter
     def first_paragraph
       html_parser.at_css('p').try(:text)
     end
+
+    private
 
     def html_parser
       @html_parser ||= Nokogiri::HTML.parse(content)

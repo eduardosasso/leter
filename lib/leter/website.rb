@@ -16,15 +16,32 @@ module Leter
       
       io = Leter::IO
 
+      index_builder = Leter::IndexBuilder.new(config)
+
       io.list_files.each do |file|
         markdown = io.read_file(file)
 
-        html = Leter::PageBuilder.new(markdown, config).html
+        #TODO same constructor as index_builder 
+        page_builder = Leter::PageBuilder.new(markdown, config)
 
-        path_and_file = Leter::Slug.new(file).to_s
+        url_path = Leter::Slug.new(file).to_s
 
-        io.save_file(path_and_file, html) 
+        io.save_file(url_path, page_builder.html) 
+
+        item = Leter::IndexItem.new.tap do |i|
+          i.title = page_builder.title
+          i.url = url_path
+          i.updated_at = File.mtime(file)
+        end
+
+        index_builder.add(root_folder(file), item)
       end
+
+      #TODO save index file
+      #fix index_builder test
+      #test index in website test
+      #setup eduardosasso.leter.io and test real use case
+      pp index_builder.index
     end
 
     def clean
@@ -40,6 +57,17 @@ module Leter
 
         io.delete_file(html_file)
       end
+    end
+
+    private
+
+    def root_folder(file)
+      Pathname(file)
+        .dirname
+        .split
+        .collect(&:to_s)
+        .reject{|e| e =~ /^.{1,2}$/}
+        .first
     end
   end
 end

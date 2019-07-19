@@ -14,4 +14,5 @@ module Leter
   require 'leter/markdown'
   require 'leter/html_template'
   require 'leter/index_template'
+  require 'leter/index_item.rb'
 end
