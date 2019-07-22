@@ -15,22 +15,22 @@ module Leter
       (@index[key] ||= []) << item if key 
     end
 
-    def html(&block)
+    def run(&block)
       # takes a block that can be used to save the file to disk
 
       html_template = Leter::HtmlTemplate.new.tap do |h|
         h.theme = @config.theme
       end
 
-      index.each do |index_title, items|
+      index.each do |key, items|
         html_template.tap do |h|
-          h.title = index_title
+          h.title = key
           h.body = index_html(items) 
         end
 
         html = ERB.new(Leter::LAYOUT).result(html_template.get_binding)
 
-        block.call(html)
+        block.call(key, html)
       end
 
       nil
@@ -41,6 +41,7 @@ module Leter
     def index_html(items)
       index_template = Leter::IndexTemplate.new.tap do |index|
         #TODO pass title to render as h1
+        #partial with link on li and date
         index.items = items 
       end
 

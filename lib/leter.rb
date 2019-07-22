@@ -15,4 +15,5 @@ module Leter
   require 'leter/html_template'
   require 'leter/index_template'
   require 'leter/index_item.rb'
+  require 'leter/html_parser.rb'
 end

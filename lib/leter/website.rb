@@ -41,7 +41,10 @@ module Leter
       #fix index_builder test
       #test index in website test
       #setup eduardosasso.leter.io and test real use case
-      pp index_builder.index
+
+      index_builder.run do |index_root, html|
+        io.save_file("#{index_root}/index.html", html)
+      end
     end
 
     def clean
@@ -52,10 +55,12 @@ module Leter
 
       io = Leter::IO
 
-      io.list_files.each do |file|
-        html_file = Leter::Slug.new(file).to_s
+      io.list_files('html').each do |filename|
+        html = io.read_file(filename)
 
-        io.delete_file(html_file)
+        html_parser = Leter::HtmlParser.new(html)
+
+        io.delete_file(filename) if html_parser.powered_by == 'Leter'
       end
     end
 
