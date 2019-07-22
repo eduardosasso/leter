@@ -43,10 +43,12 @@ class IndexBuilderTest < Minitest::Test
 
     london = Leter::IndexItem.new.tap do |i|
       i.title = 'Exploring London' 
+      i.url = '/blog/london/index.html'
     end
 
     paris = Leter::IndexItem.new.tap do |i|
       i.title = 'Walking in Paris' 
+      i.url = '/blog/paris/index.html'
     end
 
     index_builder.add('articles', london)
@@ -54,7 +56,8 @@ class IndexBuilderTest < Minitest::Test
 
     index_builder.run do |index_root, html|
       html_parser = Nokogiri::HTML.parse(html)
-      assert_equal(['Exploring London', 'Walking in Paris'], html_parser.css('li').collect(&:text))
+
+      assert_equal(['Exploring London', 'Walking in Paris'], html_parser.css('li').collect(&:text).collect(&:strip))
     end
   end
 end

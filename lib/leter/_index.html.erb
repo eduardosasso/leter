@@ -1,5 +1,11 @@
+<h1><%= root %></h1>
+
 <ul>
   <% items.each do |item| %>
-  <li><%= item.title %></li>
+    <li>
+      <a href="<%= item.url %>">
+        <%= item.title %>
+      </a>
+    </li>
   <% end %>
 </ul>

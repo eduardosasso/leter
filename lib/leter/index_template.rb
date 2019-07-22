@@ -1,6 +1,6 @@
 module Leter
   class IndexTemplate
-    attr_accessor :items
+    attr_accessor :root, :items
 
     # support templating of member data.
     def get_binding

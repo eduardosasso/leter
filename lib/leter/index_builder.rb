@@ -25,7 +25,7 @@ module Leter
       index.each do |key, items|
         html_template.tap do |h|
           h.title = key
-          h.body = index_html(items) 
+          h.body = index_html(key, items) 
         end
 
         html = ERB.new(Leter::LAYOUT).result(html_template.get_binding)
@@ -38,10 +38,11 @@ module Leter
 
     private
 
-    def index_html(items)
+    def index_html(root, items)
       index_template = Leter::IndexTemplate.new.tap do |index|
         #TODO pass title to render as h1
         #partial with link on li and date
+        index.root = root
         index.items = items 
       end
 
