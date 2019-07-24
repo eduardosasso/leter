@@ -35,7 +35,7 @@ module Leter
     end
 
     def html_parser
-      Leter::HtmlParser.new(content)
+      Leter::Html.new(content)
     end
   end
 end

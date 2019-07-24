@@ -24,7 +24,6 @@ module Leter
       @config[:google_analytics] = id
     end
 
-    #TODO date format for blog posts
     def date_format
       @config[:date_format]
     end
@@ -42,7 +41,13 @@ module Leter
     end
 
     def self.load(filename)
-      new(YAML.load_file(filename))
+      config_yaml = YAML.load(
+        ERB.new(
+          File.read(filename)
+        ).result
+      )
+
+      new(config_yaml)
     end
 
     def self.default

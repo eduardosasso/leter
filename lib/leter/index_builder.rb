@@ -40,8 +40,6 @@ module Leter
 
     def index_html(root, items)
       index_template = Leter::IndexTemplate.new.tap do |index|
-        #TODO pass title to render as h1
-        #partial with link on li and date
         index.root = root
         index.items = items 
       end

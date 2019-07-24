@@ -6,6 +6,12 @@
       <a href="<%= item.url %>">
         <%= item.title %>
       </a>
+
+      <% if item.updated_at %>
+        <div id='updated_at'>
+          <%= item.updated_at %>
+        </div>
+      <% end %>
     </li>
   <% end %>
 </ul>

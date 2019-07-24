@@ -2,6 +2,7 @@ module Leter
   class Error < StandardError; end
 
   LAYOUT = File.read(File.expand_path('leter/layout.html.erb', __dir__))
+  DATE_FORMAT = '%b-%d-%Y'
 
   require "leter/io"
   require "leter/version"
@@ -15,5 +16,5 @@ module Leter
   require 'leter/html_template'
   require 'leter/index_template'
   require 'leter/index_item.rb'
-  require 'leter/html_parser.rb'
+  require 'leter/html.rb'
 end

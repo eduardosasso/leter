@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'date'
 
 class AccountConfigTest < Minitest::Test
   def test_default_config
@@ -36,5 +37,12 @@ class AccountConfigTest < Minitest::Test
     assert_equal('violet', config.load(config.filename).theme)
 
     File.delete(config.filename)
+  end
+
+  def test_default_date_format
+    config = Leter::AccountConfig.default
+    date = Date.today 
+
+    assert_equal(date.strftime(Leter::DATE_FORMAT), date.strftime(config.date_format))
   end
 end
