@@ -1,12 +1,17 @@
+require "observer"
 module Leter
   class Website
-    attr_reader :config
+    include Observable
+
+    attr_reader :config, :status
 
     def initialize(config = Leter::AccountConfig.default)
       @config = config
     end
 
     def build
+      notify('Building...')
+
       io = Leter::IO
 
       index_builder = Leter::IndexBuilder.new(config)
@@ -29,11 +34,17 @@ module Leter
         end
 
         index_builder.add(root_folder(file), item)
+
+        notify(file)
       end
 
       index_builder.run do |index_root, html|
         io.save_file("#{index_root}/index.html", html)
+
+        notify("creating index for #{index_root}")
       end
+
+      notify('Done!')
     end
 
     def clean
@@ -45,11 +56,22 @@ module Leter
         html = Leter::Html.new(html)
 
         #TODO remove hardcoded Leter
-        io.delete_file(filename) if html.powered_by == 'Leter'
+        if html.powered_by == 'Leter'
+          io.delete_file(filename) 
+
+          notify(filename)
+        end
       end
+
+      notify('Cleaned!')
     end
 
     private
+
+    def notify(message)
+      changed
+      notify_observers(message)
+    end
 
     def root_folder(file)
       Pathname(file)
