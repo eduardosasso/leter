@@ -43,13 +43,20 @@ module Leter
     end
 
     def build
-      #TODO alert configuration not found, or run leter -n
+      spinner.start
 
-      spinner.start { website.build }
+      website.try(:build)
+
+      spinner.stop
     end
 
     def clean
-      spinner.start { website.clean }
+      spinner.start
+
+      website.try(:clean)
+
+      spinner.stop
+
     end
 
     def info(message)
@@ -62,6 +69,9 @@ module Leter
 
     # callback for observer
     def update(status)
+      #for testing only
+      info(status) unless $stdout.tty?
+
       spinner.status = status
     end
 
@@ -71,11 +81,13 @@ module Leter
       Leter::Website.new(load_config).tap do |w|
         w.add_observer(self)
       end
+    rescue Leter::NoConfigError
+      warning('leter.yml not found!') 
     end
 
     def spinner
       @spinner ||= Whirly.tap do |w|
-        w.configure spinner: 'bouncingBar'
+        w.configure(spinner: 'bouncingBar')
       end
     end
 

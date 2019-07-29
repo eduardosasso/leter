@@ -34,7 +34,21 @@ class LeterTest < Minitest::Test
 
     run_command_and_stop('leter --build')
 
-    assert_match(/Build complete/, last_command_started.output) 
+    assert_match(/Done!/, last_command_started.stdout) 
+  end
+
+  def test_project_build_no_config
+    run_command_and_stop('leter --build')
+
+    assert_match(/leter.yml not found!/, last_command_started.stdout) 
+  end
+
+  def test_project_build
+    run_command_and_stop('leter --new')
+
+    run_command_and_stop('leter --clean')
+
+    assert_match(/Cleaned!/, last_command_started.stdout) 
   end
 
   def test_that_it_has_a_version_number
