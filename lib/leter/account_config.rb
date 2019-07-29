@@ -49,7 +49,7 @@ module Leter
 
       new(config_yaml)
     rescue Errno::ENOENT
-      raise Leter::NoConfigError.new('leter.yml not found!')
+      raise Leter::NoConfigError.new
     end
 
     def self.default
