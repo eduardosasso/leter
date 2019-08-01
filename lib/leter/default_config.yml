@@ -1,5 +1,4 @@
 theme: default
 date_format: "<%= Leter::DATE_FORMAT %>"
 
-# pro features
 google_analytics:

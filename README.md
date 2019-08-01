@@ -1,9 +1,23 @@
 # Leter
-A code free, static site generator for idealist individuals
+A code-free, minimalist thus modern static site for the idealistic.
 
-## Motivation
+
+## Overview
+The motivation to build Leter came from the desire to have a good, clean-looking personal website and blog that was fast, mobile, and SEO friendly, fully automated with great defaults and required zero coding or learning curve.
 
 ## Features
+
+- Zero coding
+- Fully automated
+- Beautiful themes
+- SEO optimized
+- Mobile friendly
+- Google analytics
+- Syntax highlight
+- Permalinks
+- Sensible defaults
+- Index page for blogs
+- Support for Github Markdown
 
 ## Installation
 
@@ -22,6 +36,18 @@ Usage: leter [options]
     -h, --help                       Show this help message
     -v, --version                    Show Leter version
 ```
+
+## Configuration
+```yaml
+theme: default
+date_format: "<%= Leter::DATE_FORMAT %>"
+
+google_analytics:
+```
+
+## Getting Started
+https://github.com/middleman/middleman tips
+## Showcase
 
 ## License
 
