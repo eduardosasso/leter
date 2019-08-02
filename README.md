@@ -1,5 +1,5 @@
 # Leter
-A code-free, minimalist thus modern static site for the idealistic.
+A code-free, minimalist thus modern static site generator for the idealistic.
 
 
 ## Overview
