@@ -27,7 +27,7 @@ module Leter
     end
 
     def powered_by
-      parser.at('meta[name="generator"]')['content']
+      (parser.at('meta[name="generator"]') || {})['content']
     end
 
     def parser
