@@ -38,7 +38,7 @@ Usage: leter [options]
 ```
 
 ## Getting Started
-After Leter got installed, go to the root folder of your project in the terminal and run:
+After installing Leter go to the root folder of your project in the terminal and run:
 
 ```bash
 leter --new 
