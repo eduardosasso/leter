@@ -1,4 +1,6 @@
 # Leter
+[![Build Status](https://travis-ci.org/eduardosasso/leter.svg?branch=master)](https://travis-ci.org/eduardosasso/leter)<Paste>
+
 A code-free, minimalist thus modern static site generator for the idealistic.
 
 
