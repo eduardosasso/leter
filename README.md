@@ -1,5 +1,7 @@
 # Leter
 [![Build Status](https://travis-ci.org/eduardosasso/leter.svg?branch=master)](https://travis-ci.org/eduardosasso/leter)<Paste>
+[![Maintainability](https://api.codeclimate.com/v1/badges/b3b1378f11980d81d7c2/maintainability)](https://codeclimate.com/github/eduardosasso/leter/maintainability)
+[![codecov](https://codecov.io/gh/eduardosasso/leter/branch/master/graph/badge.svg)](https://codecov.io/gh/eduardosasso/leter)
 
 A code-free, minimalist thus modern static site generator for the idealistic.
 
