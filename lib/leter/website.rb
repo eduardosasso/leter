@@ -22,14 +22,14 @@ module Leter
         #TODO same constructor as index_builder 
         page_builder = Leter::PageBuilder.new(markdown, config)
 
-        url_path = Leter::Slug.new(file).to_s
+        slug = Leter::Slug.new(file)
         updated_at = File.mtime(file)
 
-        io.save_file(url_path, page_builder.html) 
+        io.save_file(slug.to_s, page_builder.html) 
 
         item = Leter::IndexItem.new.tap do |i|
           i.title = page_builder.title
-          i.url = url_path
+          i.url = slug.to_url
           i.updated_at = format_date(updated_at)
         end
 

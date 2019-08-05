@@ -9,14 +9,19 @@ module Leter
     # translate stuff like my_blog_post.md to my-blog-post/index.html
     # for pretty urls
     def to_s
-      [folder, slug].reject(&:empty?).join('')
+      html_filename = index_file? ? '.html' : '/index.html'
+
+      slug + html_filename
+    end
+
+    def to_url
+      '/' + slug.gsub(/index$/,'')
     end
 
     private
 
     def slug
-      index = index_file? ? '.html' : '/index.html'
-      basename.parameterize.dasherize + index
+      [folder, basename.parameterize.dasherize].reject(&:empty?).join('')
     end
 
     def folder

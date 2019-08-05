@@ -2,26 +2,30 @@ require 'test_helper'
 
 class SlugTest < Minitest::Test
   def test_index
-    slug = Leter::Slug.new('index.md').to_s
+    slug = Leter::Slug.new('index.md')
 
-    assert slug == 'index.html'
+    assert_equal('index.html', slug.to_s)
+    assert_equal('/', slug.to_url)
   end
 
   def test_regular_page
-    slug = Leter::Slug.new('resume.md').to_s
+    slug = Leter::Slug.new('resume.md')
 
-    assert slug == 'resume/index.html'
+    assert_equal('resume/index.html', slug.to_s)
+    assert_equal('/resume', slug.to_url)
   end
 
   def test_blog_entry
-    slug = Leter::Slug.new('blog/how_to_master_vim.md').to_s
+    slug = Leter::Slug.new('blog/how_to_master_vim.md')
 
-    assert slug == 'blog/how-to-master-vim/index.html'
+    assert_equal('blog/how-to-master-vim/index.html', slug.to_s)
+    assert_equal('/blog/how-to-master-vim', slug.to_url)
   end
 
   def test_index_folder
-    slug = Leter::Slug.new('blog/index/how_to_master_vim.md').to_s
+    slug = Leter::Slug.new('blog/index/how_to_master_vim.md')
 
-    assert slug == 'blog/index/how-to-master-vim/index.html'
+    assert_equal('blog/index/how-to-master-vim/index.html', slug.to_s)
+    assert_equal('/blog/index/how-to-master-vim', slug.to_url)
   end
 end
