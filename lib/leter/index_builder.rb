@@ -12,7 +12,7 @@ module Leter
     def add(key, item = Leter::Item)
       #TODO reading time only if greater than like 2 min
 
-      (@index[key] ||= []) << item if key 
+      (@index[key] ||= []) << item if key && item.title 
     end
 
     def run(&block)
