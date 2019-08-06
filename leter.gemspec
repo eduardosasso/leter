@@ -43,7 +43,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'aruba', '~> 1.0.0.pre.alpha.4'
   spec.add_development_dependency 'coveralls'
 
-  spec.add_dependency 'kramdown', '~> 2.1'
+  spec.add_dependency 'motion-markdown-it', '~> 8.4', '>= 8.4.1.1'
+  spec.add_dependency 'motion-markdown-it-plugins', '~> 8.4', '>= 8.4.2.1'
   spec.add_dependency "nokogiri", "~> 1.10", ">= 1.10.3"
   spec.add_dependency 'activesupport', '~> 5.2', '>= 5.2.3'
   spec.add_dependency 'whirly', '~> 0.2.4'

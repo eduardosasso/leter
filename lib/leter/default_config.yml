@@ -1,4 +1,24 @@
 theme: default
+
 date_format: "<%= Leter::DATE_FORMAT %>"
 
 google_analytics:
+
+# TODO
+
+#center | left
+content_alignment:
+
+favicon:
+
+index_page:
+
+rss_feed:
+
+title_prefix:
+
+twitter_card:
+
+
+# TODO 
+# front_matter per file here?

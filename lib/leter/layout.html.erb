@@ -8,7 +8,6 @@
     <meta name="description" content="<%= description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
     <%# <link id="favicon" rel="icon" type="image/x-icon" href="favicon.ico"> %>
 
@@ -22,5 +21,13 @@
       <%= body %>
     </section>
   </body>
+
+  <%# TODO check config and add id %>
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
 </html>
 

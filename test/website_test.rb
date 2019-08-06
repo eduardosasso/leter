@@ -7,8 +7,8 @@ class WebsiteTest < Minitest::Test
   end
 
   def test_build
-    Leter::IO.save_file('tmp/test/index.md','#index')
-    Leter::IO.save_file('tmp/test/resume.md','#resume')
+    Leter::IO.save_file('tmp/test/index.md','# index')
+    Leter::IO.save_file('tmp/test/resume.md','# resume')
 
     Leter::Website.new.build
 
@@ -22,8 +22,8 @@ class WebsiteTest < Minitest::Test
   end
 
   def test_index_catalog
-    Leter::IO.save_file('blog/news.md','#news')
-    Leter::IO.save_file('blog/vim_tips.md','#vim tips')
+    Leter::IO.save_file('blog/news.md','# news')
+    Leter::IO.save_file('blog/vim_tips.md','# vim tips')
 
     Leter::Website.new.build
 
@@ -33,7 +33,7 @@ class WebsiteTest < Minitest::Test
   end
 
   def test_index_item_date
-    Leter::IO.save_file('blog/vim_tips.md','#vim tips')
+    Leter::IO.save_file('blog/vim_tips.md','# vim tips')
 
     Leter::Website.new.build
 
@@ -49,7 +49,7 @@ class WebsiteTest < Minitest::Test
   end
 
   def test_index_item_no_date
-    Leter::IO.save_file('blog/vim_tips.md','#vim tips')
+    Leter::IO.save_file('blog/vim_tips.md','# vim tips')
 
     config = Leter::AccountConfig.new
 
@@ -66,9 +66,9 @@ class WebsiteTest < Minitest::Test
 
 
   def test_clean
-    Leter::IO.save_file('tmp/clean/site/index.md','#index')
-    Leter::IO.save_file('tmp/clean/site/resume.md','#resume')
-    Leter::IO.save_file('tmp/clean/site/blog/docker_tutorial.md','#docker tutorial')
+    Leter::IO.save_file('tmp/clean/site/index.md','# index')
+    Leter::IO.save_file('tmp/clean/site/resume.md','# resume')
+    Leter::IO.save_file('tmp/clean/site/blog/docker_tutorial.md','# docker tutorial')
 
     Leter::Website.new.tap do |w|
       w.build
