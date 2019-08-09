@@ -1,4 +1,5 @@
 require "observer"
+
 module Leter
   class Website
     include Observable

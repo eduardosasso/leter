@@ -3,7 +3,7 @@ module Leter
   class NoConfigError < Error; end
 
   LAYOUT = File.read(File.expand_path('leter/layout.html.erb', __dir__))
-  DATE_FORMAT = '%b-%d-%Y'
+  DATE_FORMAT = '%B %d, %Y'
 
   require "leter/io"
   require "leter/version"

@@ -42,6 +42,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency 'aruba', '~> 1.0.0.pre.alpha.4'
   spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'dotenv', '~> 2.7', '>= 2.7.5' 
+  spec.add_development_dependency 'csso-rails', '~> 0.8.1' 
 
   spec.add_dependency 'motion-markdown-it', '~> 8.4', '>= 8.4.1.1'
   spec.add_dependency 'motion-markdown-it-plugins', '~> 8.4', '>= 8.4.2.1'

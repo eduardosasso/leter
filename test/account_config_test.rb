@@ -29,6 +29,23 @@ class AccountConfigTest < Minitest::Test
     assert_equal(config.google_analytics, 123)
   end
 
+  def test_debug
+    config = Leter::AccountConfig.new.tap do |c|
+      c.debug = true
+    end.to_yaml
+    
+    new_config = YAML.load(config) 
+    config = Leter::AccountConfig.new(new_config)
+
+    assert(config.debug)
+  end
+
+  def test_no_debug
+    config = Leter::AccountConfig.default
+
+    assert(config.debug == false)
+  end
+
   def test_load_config
     config = Leter::AccountConfig
 

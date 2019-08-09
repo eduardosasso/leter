@@ -32,6 +32,15 @@ module Leter
       @config[:date_format] = format
     end
 
+    #hidden
+    def debug
+      @config[:debug] || false
+    end
+
+    def debug=(value)
+      @config[:debug] = value
+    end
+
     def to_yaml
       @config.to_yaml
     end

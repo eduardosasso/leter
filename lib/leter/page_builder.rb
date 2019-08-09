@@ -16,7 +16,7 @@ module Leter
         h.title = title
         h.description = description
         h.body = content
-        h.theme = @config.theme
+        h.config = @config
       end
 
       ERB.new(LAYOUT).result(html_template.get_binding)

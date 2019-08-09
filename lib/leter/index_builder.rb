@@ -19,9 +19,10 @@ module Leter
       # takes a block that can be used to save the file to disk
 
       html_template = Leter::HtmlTemplate.new.tap do |h|
-        h.theme = @config.theme
+        h.config = @config
       end
 
+      #TODO sort by date newest to oldest
       index.each do |key, items|
         html_template.tap do |h|
           h.title = key

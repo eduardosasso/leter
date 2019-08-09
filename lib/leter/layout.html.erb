@@ -8,26 +8,31 @@
     <meta name="description" content="<%= description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="icon.png">
+    <%# TODO default leter favicon or custom/automatic like https://overreacted.io/ %>
     <%# <link id="favicon" rel="icon" type="image/x-icon" href="favicon.ico"> %>
 
+    <%# TODO merge into inline css? %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-    <%# TODO add fingerprint for caching %>
+
+    <%# TODO minify https://github.com/Vasfed/csso-rails %>
     <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/leter-themes/main.css">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   </head>
-  <body id="<%= theme %>">
+  <body id="<%= config.theme %>">
     <section>
       <%= body %>
     </section>
   </body>
 
-  <%# TODO check config and add id %>
-  <script>
-    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto');
-    ga('send', 'pageview');
-  </script>
-  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <%# TODO test google analytics%>
+  <% if config.google_analytics %>
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', "<%= config.google_analytics %>", 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <% end %>
 </html>
 

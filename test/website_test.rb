@@ -41,7 +41,7 @@ class WebsiteTest < Minitest::Test
 
     html = Leter::Html.new(blog_index)
 
-    index_item_updated_at = html.parser.at_css("div#updated_at").text.strip
+    index_item_updated_at = html.parser.at_css("span.updated_at").text.strip
 
     updated_at = Date.today.strftime(Leter::DATE_FORMAT)
 

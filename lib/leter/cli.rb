@@ -18,12 +18,22 @@ module Leter
           build
         end
 
+        parser.on('-x', '--css', 'Debug CSS') do
+          # TODO add leter.css to root
+        end
+
         parser.on("-c", "--clean", "Clean") do 
           clean
         end
 
         parser.on("-h", "--help", "Show this help message") do
           info(parser)
+
+          hidden_switch = "--css"
+
+          message = parser.to_s.split("\n").delete_if { |line| line =~ /#{hidden_switch}/ }.join("\n") 
+
+          info(message)
         end
 
         parser.on("-v", "--version", "Show Leter version") do
