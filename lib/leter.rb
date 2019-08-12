@@ -12,6 +12,7 @@ module Leter
   require 'leter/page_builder'
   require 'leter/index_builder'
   require 'leter/website'
+  require 'leter/config'
   require 'leter/account_config'
   require 'leter/markdown'
   require 'leter/html_template'
