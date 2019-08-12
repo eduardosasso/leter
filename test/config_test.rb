@@ -8,7 +8,7 @@ class ConfigTest < Minitest::Test
   end
 
   def test_css_dev_url
-    path = File.join(ENV['CSS_DEV_PATH'], '/leter.css')
+    path = File.join(ENV['CSS_DEV_PATH'], Leter::CSS)
 
     assert_equal(path, Leter::Config.css_dev_url)
   end

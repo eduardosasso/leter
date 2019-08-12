@@ -11,12 +11,15 @@ module Leter
     end 
 
     def self.css_dev_url
-      File.join(css_dev_path, 'leter.css') 
+      File.join(css_dev_path, Leter::CSS) 
     end 
 
     def self.css_prod_url 
       version = Leter::VERSION.gsub('.','_') 
-      css = "leter_#{version}.css" 
+
+      name = File.basename(Leter::CSS, ".css")
+
+      css = "#{name}_#{version}.css" 
 
       File.join(css_prod_path, css)
     end

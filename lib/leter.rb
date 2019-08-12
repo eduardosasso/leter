@@ -4,6 +4,7 @@ module Leter
 
   LAYOUT = File.read(File.expand_path('leter/layout.html.erb', __dir__))
   DATE_FORMAT = '%B %d, %Y'
+  CSS = 'leter.css'
 
   require "leter/io"
   require "leter/version"

@@ -19,7 +19,7 @@ module Leter
         end
 
         parser.on('-x', '--css', 'Debug CSS') do
-          # TODO add leter.css to root
+          FileUtils.cp(Leter::Config.css_dev_url, './')
         end
 
         parser.on("-c", "--clean", "Clean") do 

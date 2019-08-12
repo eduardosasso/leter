@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
 
     <%# TODO minify https://github.com/Vasfed/csso-rails %>
-    <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/leter-themes/main.css">
+    <% css = config.debug ? Leter::Config.css_dev_url : Leter::Config.css_prod_url %>
+        
+    <link rel="stylesheet" href="<%= css %>">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   </head>
