@@ -59,11 +59,11 @@ class PageBuilderTest < Minitest::Test
     markdown = '# hello world'
     
     config = Leter::AccountConfig.default
-    config.debug = true
+    config.css_file_path = '/root/leter.css'
 
     page_builder = Leter::PageBuilder.new(markdown, config)
     
-    assert_match(Leter::Config.css_dev_url, page_builder.html)
+    assert_match(config.css_file_path, page_builder.html)
   end
 
   def test_prod_css

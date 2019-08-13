@@ -29,21 +29,21 @@ class AccountConfigTest < Minitest::Test
     assert_equal(config.google_analytics, 123)
   end
 
-  def test_debug
+  def test_css_file_path
     config = Leter::AccountConfig.new.tap do |c|
-      c.debug = true
+      c.css_file_path = '/root/leter.css'
     end.to_yaml
     
     new_config = YAML.load(config) 
     config = Leter::AccountConfig.new(new_config)
 
-    assert(config.debug)
+    assert(config.css_file_path)
   end
 
-  def test_no_debug
+  def test_no_css_file_path
     config = Leter::AccountConfig.default
 
-    assert(config.debug == false)
+    assert_nil(config.css_file_path)
   end
 
   def test_load_config

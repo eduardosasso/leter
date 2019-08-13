@@ -32,13 +32,13 @@ module Leter
       @config[:date_format] = format
     end
 
-    #hidden
-    def debug
-      @config[:debug] || false
+    #hidden path to edit css locally
+    def css_file_path
+      @config[:css_file_path]
     end
 
-    def debug=(value)
-      @config[:debug] = value
+    def css_file_path=(value)
+      @config[:css_file_path] = value
     end
 
     def to_yaml

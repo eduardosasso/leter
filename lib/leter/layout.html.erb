@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
 
     <%# TODO minify https://github.com/Vasfed/csso-rails %>
-    <% css = config.debug ? Leter::Config.css_dev_url : Leter::Config.css_prod_url %>
+    <% css = config.css_file_path || Leter::Config.css_prod_url %>
         
     <link rel="stylesheet" href="<%= css %>">
 

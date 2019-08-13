@@ -1,18 +1,6 @@
-require 'dotenv/load'
-
 module Leter
   class Config
-    def self.css_dev_path
-      ENV['CSS_DEV_PATH']
-    end 
-
-    def self.css_prod_path 
-      ENV['CSS_PROD_PATH'] 
-    end 
-
-    def self.css_dev_url
-      File.join(css_dev_path, Leter::CSS) 
-    end 
+    CSS_PROD_PATH = "https://s3-us-west-1.amazonaws.com/leter-themes/"
 
     def self.css_prod_url 
       version = Leter::VERSION.gsub('.','_') 
@@ -21,7 +9,7 @@ module Leter
 
       css = "#{name}_#{version}.css" 
 
-      File.join(css_prod_path, css)
+      File.join(CSS_PROD_PATH, css)
     end
   end
 end

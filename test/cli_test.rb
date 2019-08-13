@@ -54,10 +54,4 @@ class CliTest < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil ::Leter::VERSION
   end
-
-  def test_debug_css
-    run_command_and_stop('leter --css')
-
-    assert(read(Leter::CSS))
-  end
 end
