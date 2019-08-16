@@ -1,5 +1,8 @@
 require "test_helper"
 
+require 'leter/cli'
+require 'leter/account_config'
+
 class CliTest < Minitest::Test
   include Aruba::Api
 

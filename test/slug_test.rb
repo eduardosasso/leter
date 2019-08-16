@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'leter/slug'
 
 class SlugTest < Minitest::Test
   def test_index

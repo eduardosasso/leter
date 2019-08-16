@@ -1,6 +1,9 @@
 require 'test_helper'
 require 'date'
 
+require 'leter/io'
+require 'leter/website'
+
 class WebsiteTest < Minitest::Test
   def teardown
     Leter::IO.delete_all('blog/', 'tmp/', 'readme/')

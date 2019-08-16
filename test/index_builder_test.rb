@@ -1,5 +1,9 @@
 require 'test_helper'
+
 require 'nokogiri'
+require 'leter/index_builder'
+require 'leter/io'
+require 'leter/index_item'
 
 class IndexBuilderTest < Minitest::Test
   def setup

@@ -1,5 +1,8 @@
 require 'test_helper'
+
 require 'date'
+require 'leter/account_config'
+require 'leter/io'
 
 class AccountConfigTest < Minitest::Test
   def test_default_config

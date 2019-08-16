@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'Leter/IO'
 
 class IOTest < Minitest::Test
   def test_list_files

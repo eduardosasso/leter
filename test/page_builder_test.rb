@@ -1,5 +1,9 @@
 require 'test_helper'
 
+require 'leter/page_builder'
+require 'leter/account_config'
+require 'leter/config'
+
 class PageBuilderTest < Minitest::Test
   def test_html_page
     markdown = '# hello world'

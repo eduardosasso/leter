@@ -1,8 +1,20 @@
 theme: default
 
+# center | left
+page_align: center
+
+text_font:
+heading_font:
+
+background_color:
+text_color:
+
+unicode_sign:
+
 date_format: "<%= Leter::DATE_FORMAT %>"
 
 google_analytics:
+
 
 # TODO
 

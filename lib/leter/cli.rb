@@ -1,6 +1,10 @@
 require 'optparse'
 require 'whirly'
 
+require 'leter/io'
+require 'leter/account_config'
+require 'leter/website'
+
 module Leter
   class Cli
     attr_reader :status

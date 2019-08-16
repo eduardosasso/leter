@@ -1,3 +1,9 @@
+require 'leter/account_config'
+require 'leter/html_template'
+require 'leter/index_template'
+require 'leter/config'
+
+
 module Leter
   class IndexBuilder
     attr_reader :index

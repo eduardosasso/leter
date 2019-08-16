@@ -1,5 +1,7 @@
 require 'test_helper'
 
+require 'leter/config'
+
 class ConfigTest < Minitest::Test
   def test_css_prod_url
     version = Leter::VERSION.gsub('.','_') 

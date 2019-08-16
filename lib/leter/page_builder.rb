@@ -2,6 +2,11 @@ require 'active_support/core_ext/object/try'
 require 'nokogiri'
 require 'erb'
 
+require 'leter/html_template'
+require 'leter/account_config'
+require 'leter/markdown'
+require 'leter/html'
+
 module Leter
   class PageBuilder
     LAYOUT = File.read(File.expand_path('layout.html.erb', __dir__))

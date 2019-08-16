@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'leter/markdown'
 
 class MarkdownTest < Minitest::Test
   def test_md_to_html
