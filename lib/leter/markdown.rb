@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'motion-markdown-it'
 require 'motion-markdown-it-plugins'
 
@@ -8,10 +10,10 @@ module Leter
     end
 
     def to_html
-      MarkdownIt::Parser.new({ 
-        linkify: true, 
-        typographer: true 
-      }).tap do |m|
+      MarkdownIt::Parser.new(
+        linkify: true,
+        typographer: true
+      ).tap do |m|
         m.use(MotionMarkdownItPlugins::Emoji)
         m.use(MotionMarkdownItPlugins::Sub)
         m.use(MotionMarkdownItPlugins::Sup)
@@ -21,7 +23,7 @@ module Leter
     end
 
     def self.is?(filename)
-      File.extname(filename).in?(['.md','.markdown'])
+      File.extname(filename).in?(['.md', '.markdown'])
     end
   end
 end

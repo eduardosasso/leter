@@ -1,4 +1,6 @@
-require "observer"
+# frozen_string_literal: true
+
+require 'observer'
 
 require 'leter/account_config'
 require 'leter/index_builder'
@@ -28,13 +30,13 @@ module Leter
       io.list_files.each do |file|
         markdown = io.read_file(file)
 
-        #TODO same constructor as index_builder 
+        # TODO: same constructor as index_builder
         page_builder = Leter::PageBuilder.new(markdown, config)
 
         slug = Leter::Slug.new(file)
         updated_at = File.mtime(file)
 
-        io.save_file(slug.to_s, page_builder.html) 
+        io.save_file(slug.to_s, page_builder.html)
 
         item = Leter::IndexItem.new.tap do |i|
           i.title = page_builder.title
@@ -64,12 +66,12 @@ module Leter
 
         html = Leter::Html.new(html)
 
-        #TODO remove hardcoded Leter
-        if html.powered_by == 'Leter'
-          io.delete_file(filename) 
+        # TODO: remove hardcoded Leter
+        next unless html.powered_by == 'Leter'
 
-          notify(filename)
-        end
+        io.delete_file(filename)
+
+        notify(filename)
       end
 
       notify('Cleaned!')
@@ -87,7 +89,7 @@ module Leter
         .dirname
         .split
         .collect(&:to_s)
-        .reject{|e| e =~ /^.{1,2}$/}
+        .reject { |e| e =~ /^.{1,2}$/ }
         .first
     end
 

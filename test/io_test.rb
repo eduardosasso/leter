@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 require 'leter/io'
 
@@ -23,10 +25,10 @@ class IOTest < Minitest::Test
   end
 
   def test_read_file
-		file = 'hello.md'
+    file = 'hello.md'
 
-		Leter::IO.save_file(file, 'hello world') 
-    
+    Leter::IO.save_file(file, 'hello world')
+
     contents = Leter::IO.read_file(file)
 
     assert_equal('hello world', contents)
@@ -38,32 +40,32 @@ class IOTest < Minitest::Test
     folder = 'tmp/articles/folder'
     file = "#{folder}/file.html"
 
-    Leter::IO.save_file(file, 'hello world') 
-    
+    Leter::IO.save_file(file, 'hello world')
+
     assert(Dir.exist?(folder))
-    
+
     Leter::IO.delete_file(file)
 
     refute(Dir.exist?(folder))
   end
 
   def test_save_file
-		file = 'hello.md'
+    file = 'hello.md'
 
-		Leter::IO.save_file(file, 'hello world') 
+    Leter::IO.save_file(file, 'hello world')
 
-		assert(File.file?(file))
+    assert(File.file?(file))
 
-		File.delete(file)
+    File.delete(file)
   end
 
   def test_save_file_and_create_folder
-		file = 'tmp/test/site/index.md'
+    file = 'tmp/test/site/index.md'
 
-		Leter::IO.save_file(file, 'index') 
+    Leter::IO.save_file(file, 'index')
 
-		assert(File.file?(file))
+    assert(File.file?(file))
 
-		File.delete(file)
+    File.delete(file)
   end
 end

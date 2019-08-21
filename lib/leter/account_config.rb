@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 
 require 'leter/theme'
@@ -17,7 +19,7 @@ module Leter
 
       return unless style
 
-      style = {name: style} if style.is_a?(String)
+      style = { name: style } if style.is_a?(String)
 
       Leter::Theme.new(style.delete(:name) || Theme::DEFAULT).tap do |t|
         style.each do |key, value|
@@ -34,7 +36,7 @@ module Leter
       @date_format || @config[:date_format]
     end
 
-    #hidden path to edit css locally
+    # hidden path to edit css locally
     def css_file_path
       @css_file_path || @config[:css_file_path]
     end
@@ -48,15 +50,16 @@ module Leter
     end
 
     def self.load(filename)
-      config_yaml = YAML.load(
+      config_yaml = YAML.safe_load(
         ERB.new(
           File.read(filename)
-        ).result
+        ).result,
+        [Symbol]
       )
 
       new(config_yaml)
     rescue Errno::ENOENT
-      raise Leter::NoConfigError.new
+      raise Leter::NoConfigError
     end
 
     def self.default

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'leter/account_config'
 require 'leter/html_template'
 require 'leter/index_template'
 require 'leter/config'
-
 
 module Leter
   class IndexBuilder
@@ -16,9 +17,9 @@ module Leter
     end
 
     def add(key, item = Leter::Item)
-      #TODO reading time only if greater than like 2 min
+      # TODO: reading time only if greater than like 2 min
 
-      (@index[key] ||= []) << item if key && item.title 
+      (@index[key] ||= []) << item if key && item.title
     end
 
     def run(&block)
@@ -28,11 +29,11 @@ module Leter
         h.config = @config
       end
 
-      #TODO sort by date newest to oldest
+      # TODO: sort by date newest to oldest
       index.each do |key, items|
         html_template.tap do |h|
           h.title = key
-          h.body = index_html(key, items) 
+          h.body = index_html(key, items)
         end
 
         html = ERB.new(Leter::LAYOUT).result(html_template.get_binding)
@@ -48,7 +49,7 @@ module Leter
     def index_html(root, items)
       index_template = Leter::IndexTemplate.new.tap do |index|
         index.root = root
-        index.items = items 
+        index.items = items
       end
 
       ERB.new(INDEX_PARTIAL).result(index_template.get_binding)

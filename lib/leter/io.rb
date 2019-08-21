@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Leter
   class IO
-    def self.list_files(ext='md')
+    def self.list_files(ext = 'md')
       Dir["**/*.#{ext}"]
     end
 
@@ -17,7 +19,7 @@ module Leter
     end
 
     def self.delete_all(*path)
-      path.each {|p| FileUtils.remove_dir(p, force: true)}
+      path.each { |p| FileUtils.remove_dir(p, force: true) }
     end
 
     def self.save_file(path, content)

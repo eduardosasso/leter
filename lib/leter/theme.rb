@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Leter
   class Theme
     attr_writer :background_color, :page_align, :text_font, :text_color, :heading_font, :heading_color
@@ -13,10 +15,8 @@ module Leter
       @theme = default_theme.merge(user_theme).transform_keys(&:to_sym)
     end
 
-    def name
-      @name
-    end
- 
+    attr_reader :name
+
     def background_color
       @background_color || @theme[:background_color]
     end
@@ -50,14 +50,14 @@ module Leter
 
       filepath = File.expand_path('themes/' + filename, __dir__)
 
-      YAML.load(File.read(filepath)).delete_if{|k, v| v.nil? || v.empty?}
+      YAML.safe_load(File.read(filepath)).delete_if { |_k, v| v.nil? || v.empty? }
     rescue Errno::ENOENT
-      # TODO own error class
-      raise Leter::NoConfigError.new
+      # TODO: own error class
+      raise Leter::NoConfigError
     end
 
     def set_attribute(attr, value)
-      self.send(attr + '=', value)
+      send(attr + '=', value)
     end
 
     private

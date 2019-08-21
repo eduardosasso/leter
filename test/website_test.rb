@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 require 'date'
 
@@ -10,8 +12,8 @@ class WebsiteTest < Minitest::Test
   end
 
   def test_build
-    Leter::IO.save_file('tmp/test/index.md','# index')
-    Leter::IO.save_file('tmp/test/resume.md','# resume')
+    Leter::IO.save_file('tmp/test/index.md', '# index')
+    Leter::IO.save_file('tmp/test/resume.md', '# resume')
 
     Leter::Website.new.build
 
@@ -21,12 +23,12 @@ class WebsiteTest < Minitest::Test
     assert(index)
     assert(resume)
 
-    assert_equal("resume", Leter::Html.new(resume).title)
+    assert_equal('resume', Leter::Html.new(resume).title)
   end
 
   def test_index_catalog
-    Leter::IO.save_file('blog/news.md','# news')
-    Leter::IO.save_file('blog/vim_tips.md','# vim tips')
+    Leter::IO.save_file('blog/news.md', '# news')
+    Leter::IO.save_file('blog/vim_tips.md', '# vim tips')
 
     Leter::Website.new.build
 
@@ -36,7 +38,7 @@ class WebsiteTest < Minitest::Test
   end
 
   def test_index_item_date
-    Leter::IO.save_file('blog/vim_tips.md','# vim tips')
+    Leter::IO.save_file('blog/vim_tips.md', '# vim tips')
 
     Leter::Website.new.build
 
@@ -44,7 +46,7 @@ class WebsiteTest < Minitest::Test
 
     html = Leter::Html.new(blog_index)
 
-    index_item_updated_at = html.parser.at_css("span.updated_at").text.strip
+    index_item_updated_at = html.parser.at_css('span.updated_at').text.strip
 
     updated_at = Date.today.strftime(Leter::DATE_FORMAT)
 
@@ -52,7 +54,7 @@ class WebsiteTest < Minitest::Test
   end
 
   def test_index_item_no_date
-    Leter::IO.save_file('blog/vim_tips.md','# vim tips')
+    Leter::IO.save_file('blog/vim_tips.md', '# vim tips')
 
     config = Leter::AccountConfig.new
 
@@ -62,22 +64,21 @@ class WebsiteTest < Minitest::Test
 
     html = Leter::Html.new(blog_index)
 
-    index_item_updated_at = html.parser.at_css("div#updated_at")
+    index_item_updated_at = html.parser.at_css('div#updated_at')
 
     assert_nil(index_item_updated_at)
   end
 
-
   def test_clean
-    Leter::IO.save_file('tmp/clean/site/index.md','# index')
-    Leter::IO.save_file('tmp/clean/site/resume.md','# resume')
-    Leter::IO.save_file('tmp/clean/site/blog/docker_tutorial.md','# docker tutorial')
+    Leter::IO.save_file('tmp/clean/site/index.md', '# index')
+    Leter::IO.save_file('tmp/clean/site/resume.md', '# resume')
+    Leter::IO.save_file('tmp/clean/site/blog/docker_tutorial.md', '# docker tutorial')
 
     Leter::Website.new.tap do |w|
       w.build
       w.clean
     end
 
-    assert(Dir["tmp/clean/site/**/*.html"].empty?)
+    assert(Dir['tmp/clean/site/**/*.html'].empty?)
   end
 end

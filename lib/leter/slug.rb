@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/inflector'
 
 module Leter
@@ -15,7 +17,7 @@ module Leter
     end
 
     def to_url
-      '/' + slug.gsub(/index$/,'')
+      '/' + slug.gsub(/index$/, '')
     end
 
     private

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Leter
   class Error < StandardError; end
   class NoConfigError < Error; end
@@ -6,5 +8,5 @@ module Leter
   DATE_FORMAT = '%B %d, %Y'
   CSS = 'leter.css'
 
-  require "leter/cli"
+  require 'leter/cli'
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 require 'date'
@@ -25,15 +27,15 @@ class AccountConfigTest < Minitest::Test
       page_align: 'blabla'
     }
 
-    config = {theme: theme}
+    config = { theme: theme }
     account_config = Leter::AccountConfig.new(config)
 
     assert_equal(theme[:page_align], account_config.theme.page_align)
   end
-  #TODO test override with non existent attr
+  # TODO: test override with non existent attr
 
   def test_new_config
-    new_config = {theme: 'banana', google_analytics: 123} 
+    new_config = { theme: 'banana', google_analytics: 123 }
 
     config = Leter::AccountConfig.new(new_config)
 
@@ -42,8 +44,8 @@ class AccountConfigTest < Minitest::Test
   end
 
   def test_css_file_path
-    new_config = {'css_file_path' => '/root/leter.css'}
-    
+    new_config = { 'css_file_path' => '/root/leter.css' }
+
     config = Leter::AccountConfig.new(new_config)
 
     assert(config.css_file_path)
@@ -58,7 +60,7 @@ class AccountConfigTest < Minitest::Test
   def test_load_config
     config = Leter::AccountConfig
 
-    Leter::IO.save_file(config.filename, {'theme' => 'banana'}.to_yaml)
+    Leter::IO.save_file(config.filename, { 'theme' => 'banana' }.to_yaml)
 
     theme = config.load(config.filename).theme
 
@@ -69,7 +71,7 @@ class AccountConfigTest < Minitest::Test
 
   def test_default_date_format
     config = Leter::AccountConfig.default
-    date = Date.today 
+    date = Date.today
 
     assert_equal(date.strftime(Leter::DATE_FORMAT), date.strftime(config.date_format))
   end

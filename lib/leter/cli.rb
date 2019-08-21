@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'optparse'
 require 'whirly'
 
@@ -11,26 +13,26 @@ module Leter
 
     def start
       OptionParser.new do |parser|
-        #TODO add description in banner
-        parser.banner = "Usage: leter [options]"
+        # TODO: add description in banner
+        parser.banner = 'Usage: leter [options]'
 
         parser.on('-n', '--new', 'Setup leter.yml file') do
-         setup
+          setup
         end
 
         parser.on('-b', '--build', 'Build website') do
           build
         end
 
-        parser.on("-c", "--clean", "Clean") do 
+        parser.on('-c', '--clean', 'Clean') do
           clean
         end
 
-        parser.on("-h", "--help", "Show this help message") do
+        parser.on('-h', '--help', 'Show this help message') do
           info(parser)
         end
 
-        parser.on("-v", "--version", "Show Leter version") do
+        parser.on('-v', '--version', 'Show Leter version') do
           info(Leter::VERSION)
         end
       end.parse!
@@ -60,7 +62,6 @@ module Leter
       website.try(:clean)
 
       spinner.stop
-
     end
 
     def info(message)
@@ -73,7 +74,7 @@ module Leter
 
     # callback for observer
     def update(status)
-      #for testing only
+      # for testing only
       info(status) unless $stdout.tty?
 
       spinner.status = status
@@ -86,7 +87,7 @@ module Leter
         w.add_observer(self)
       end
     rescue Leter::NoConfigError
-      warning('leter.yml not found!') 
+      warning('leter.yml not found!')
     end
 
     def spinner
