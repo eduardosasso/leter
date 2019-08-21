@@ -14,6 +14,8 @@
     <%# TODO merge into inline css? %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
 
+    <style><%= config.theme.try(:name) %></style>
+
     <%# TODO minify https://github.com/Vasfed/csso-rails %>
     <% css = config.css_file_path || Leter::Config.css_prod_url %>
         
@@ -22,7 +24,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   </head>
-  <body id="<%= config.theme %>">
+
+  <body id="<%= config.theme.try(:name) %>">
     <section>
       <%= body %>
     </section>

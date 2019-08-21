@@ -1,7 +1,6 @@
 require "test_helper"
 
 require 'leter/cli'
-require 'leter/account_config'
 
 class CliTest < Minitest::Test
   include Aruba::Api
@@ -46,7 +45,7 @@ class CliTest < Minitest::Test
     assert_match(/leter.yml not found!/, last_command_started.stdout) 
   end
 
-  def test_project_build
+  def test_project_clean
     run_command_and_stop('leter --new')
 
     run_command_and_stop('leter --clean')

@@ -1,36 +1,21 @@
 theme: default
 
-# center | left
-page_align: center
-
-text_font:
-heading_font:
-
-background_color:
-text_color:
-
-unicode_sign:
+# theme:
+#   name: banana
+#   page_align: center #center|left
+#   text_font:
+#   heading_font:
+#   background_color:
+#   text_color:
+#   unicode_sign:
 
 date_format: "<%= Leter::DATE_FORMAT %>"
-
 google_analytics:
 
-
 # TODO
-
-#center | left
-content_alignment:
-
-favicon:
-
-index_page:
-
-rss_feed:
-
-title_prefix:
-
-twitter_card:
-
-
-# TODO 
+# favicon:
+# index_page:
+# rss_feed:
+# title_prefix:
+# twitter_card:
 # front_matter per file here?

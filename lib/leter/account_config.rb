@@ -1,7 +1,11 @@
 require 'yaml'
 
+require 'leter/theme'
+
 module Leter
   class AccountConfig
+    attr_writer :theme, :google_analytics, :date_format, :css_file_path
+
     DEFAULT_CONFIG = File.expand_path('default_config.yml', __dir__)
 
     def initialize(config = {})
@@ -9,36 +13,30 @@ module Leter
     end
 
     def theme
-      @config[:theme] || 'default'
-    end
+      style = @theme || @config[:theme]
 
-    def theme=(theme)
-      @config[:theme] = theme
+      return unless style
+
+      style = {name: style} if style.is_a?(String)
+
+      Leter::Theme.new(style.delete(:name) || Theme::DEFAULT).tap do |t|
+        style.each do |key, value|
+          t.set_attribute(key.to_s, value)
+        end
+      end
     end
 
     def google_analytics
-      @config[:google_analytics]
-    end
-
-    def google_analytics=(id)
-      @config[:google_analytics] = id
+      @google_analytics || @config[:google_analytics]
     end
 
     def date_format
-      @config[:date_format]
-    end
-
-    def date_format=(format)
-      @config[:date_format] = format
+      @date_format || @config[:date_format]
     end
 
     #hidden path to edit css locally
     def css_file_path
-      @config[:css_file_path]
-    end
-
-    def css_file_path=(value)
-      @config[:css_file_path] = value
+      @css_file_path || @config[:css_file_path]
     end
 
     def to_yaml
