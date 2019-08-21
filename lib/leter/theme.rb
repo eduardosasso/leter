@@ -2,7 +2,13 @@
 
 module Leter
   class Theme
-    attr_writer :background_color, :page_align, :text_font, :text_color, :heading_font, :heading_color
+    attr_writer \
+      :background_color,
+      :page_align,
+      :text_font,
+      :text_color,
+      :heading_font,
+      :heading_color
 
     THEME = File.read(File.expand_path('theme.css.erb', __dir__))
     DEFAULT = 'default'

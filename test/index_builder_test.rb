@@ -23,20 +23,8 @@ class IndexBuilderTest < Minitest::Test
   def test_add
     index_builder = Leter::IndexBuilder.new
 
-    docker = Leter::IndexItem.new.tap do |i|
-      i.title = 'Playing with Docker Compose'
-    end
-
-    vim = Leter::IndexItem.new.tap do |i|
-      i.title = 'Learning Vim'
-    end
-
     index_builder.add('blog', docker)
     index_builder.add('blog', vim)
-
-    london = Leter::IndexItem.new.tap do |i|
-      i.title = 'Learning Vim'
-    end
 
     index_builder.add('articles', london)
 
@@ -47,23 +35,43 @@ class IndexBuilderTest < Minitest::Test
   def test_html
     index_builder = Leter::IndexBuilder.new
 
-    london = Leter::IndexItem.new.tap do |i|
-      i.title = 'Exploring London'
-      i.url = '/blog/london/index.html'
-    end
-
-    paris = Leter::IndexItem.new.tap do |i|
-      i.title = 'Walking in Paris'
-      i.url = '/blog/paris/index.html'
-    end
-
     index_builder.add('articles', london)
     index_builder.add('articles', paris)
 
     index_builder.run do |_index_root, html|
       html_parser = Nokogiri::HTML.parse(html)
 
-      assert_equal(['Exploring London', 'Walking in Paris'], html_parser.css('li').collect(&:text).collect(&:strip))
+      items = html_parser.css('li').collect(&:text).collect(&:strip)
+
+      assert_equal(['Exploring London', 'Walking in Paris'], items)
+    end
+  end
+
+  private
+
+  def docker
+    Leter::IndexItem.new.tap do |i|
+      i.title = 'Playing with Docker Compose'
+    end
+  end
+
+  def vim
+    Leter::IndexItem.new.tap do |i|
+      i.title = 'Learning Vim'
+    end
+  end
+
+  def london
+    Leter::IndexItem.new.tap do |i|
+      i.title = 'Exploring London'
+      i.url = '/blog/london/index.html'
+    end
+  end
+
+  def paris
+    Leter::IndexItem.new.tap do |i|
+      i.title = 'Walking in Paris'
+      i.url = '/blog/paris/index.html'
     end
   end
 end

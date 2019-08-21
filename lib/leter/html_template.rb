@@ -5,7 +5,7 @@ module Leter
     attr_accessor :title, :description, :body, :config
 
     # support templating of member data.
-    def get_binding
+    def use_binding
       binding
     end
   end

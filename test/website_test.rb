@@ -70,9 +70,13 @@ class WebsiteTest < Minitest::Test
   end
 
   def test_clean
-    Leter::IO.save_file('tmp/clean/site/index.md', '# index')
-    Leter::IO.save_file('tmp/clean/site/resume.md', '# resume')
-    Leter::IO.save_file('tmp/clean/site/blog/docker_tutorial.md', '# docker tutorial')
+    index_md = 'tmp/clean/site/index.md'
+    resume_md = 'tmp/clean/site/resume.md'
+    docker_tutorial_md = 'tmp/clean/site/blog/docker_tutorial.md'
+
+    Leter::IO.save_file(index_md, '# index')
+    Leter::IO.save_file(resume_md, '# resume')
+    Leter::IO.save_file(docker_tutorial_md, '# docker tutorial')
 
     Leter::Website.new.tap do |w|
       w.build

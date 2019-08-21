@@ -36,7 +36,7 @@ module Leter
           h.body = index_html(key, items)
         end
 
-        html = ERB.new(Leter::LAYOUT).result(html_template.get_binding)
+        html = ERB.new(Leter::LAYOUT).result(html_template.use_binding)
 
         block.call(key, html)
       end
@@ -52,7 +52,7 @@ module Leter
         index.items = items
       end
 
-      ERB.new(INDEX_PARTIAL).result(index_template.get_binding)
+      ERB.new(INDEX_PARTIAL).result(index_template.use_binding)
     end
   end
 end

@@ -26,7 +26,7 @@ module Leter
         h.config = @config
       end
 
-      ERB.new(LAYOUT).result(html_template.get_binding)
+      ERB.new(LAYOUT).result(html_template.use_binding)
     end
 
     def title

@@ -7,7 +7,6 @@ require 'leter/theme'
 class ThemeTest < Minitest::Test
   def test_css
     theme = Leter::Theme.new
-
     css = ":root {\n" \
           "  --background-color: #{theme.background_color};\n" \
           "  --page-align: '#{theme.page_align}';\n" \
