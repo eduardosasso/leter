@@ -8,16 +8,28 @@ class ThemeTest < Minitest::Test
   def test_css
     theme = Leter::Theme.new
     css = ":root {\n" \
-          "  --background-color: #{theme.background_color};\n" \
-          "  --page-align: #{theme.page_align};\n" \
-          "  --text-font: #{theme.text_font};\n" \
-          "  --text-color: #{theme.text_color};\n" \
-          "  --heading-font: #{theme.heading_font};\n" \
-          "  --heading-color: #{theme.heading_color};\n" \
+          "  --background_color: #{theme.background_color};\n" \
+          "  --page_align: #{theme.page_align};\n" \
+          "  --text_font: #{theme.text_font};\n" \
+          "  --text_color: #{theme.text_color};\n" \
+          "  --heading_font: #{theme.heading_font};\n" \
+          "  --heading_color: #{theme.heading_color};\n" \
           "  \n" \
           "}\n"
 
     assert_equal(css, theme.to_css)
+  end
+
+  def test_themes
+    theme = Leter::Theme
+
+    Leter::Theme.list.each do |t|
+      assert((begin
+                theme.new(t).to_css
+              rescue StandardError
+                nil
+              end), "check theme #{t}")
+    end
   end
 
   def test_attribute

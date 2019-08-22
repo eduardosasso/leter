@@ -51,12 +51,20 @@ module Leter
       ERB.new(THEME).result(binding)
     end
 
+    def self.list
+      themes = File.expand_path('themes/*.yml', __dir__)
+
+      Dir[themes].map { |t| File.basename(t, '.yml') }
+    end
+
     def self.load(name)
       filename = File.basename(name, '.*') + '.yml'
 
       filepath = File.expand_path('themes/' + filename, __dir__)
 
-      YAML.safe_load(File.read(filepath)).delete_if { |_k, v| v.nil? || v.empty? }
+      (YAML.safe_load(File.read(filepath)) || {}).tap do |t|
+        t&.delete_if { |_k, v| v.nil? || v.empty? }
+      end
     rescue Errno::ENOENT
       # TODO: own error class
       raise Leter::NoConfigError
