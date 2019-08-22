@@ -6,7 +6,6 @@ require 'leter/page_builder'
 require 'leter/account_config'
 require 'leter/config'
 
-# TODO: checkl css vars in layout
 class PageBuilderTest < Minitest::Test
   def test_html_page
     html = Leter::PageBuilder.new('# hello world').html
@@ -26,6 +25,27 @@ class PageBuilderTest < Minitest::Test
     page = Nokogiri::HTML.parse(html)
 
     assert_equal(page.at('body')['id'], 'banana')
+  end
+
+  def test_theme_vars
+    config = Leter::AccountConfig.new(theme: 'banana')
+    page_builder = Leter::PageBuilder.new('# hello world', config)
+
+    page = Nokogiri::HTML.parse(page_builder.html)
+
+    theme = config.theme
+
+    css = ":root {\n" \
+      "  --background-color: #{theme.background_color};\n" \
+      "  --page-align: #{theme.page_align};\n" \
+      "  --text-font: #{theme.text_font};\n" \
+      "  --text-color: #{theme.text_color};\n" \
+      "  --heading-font: #{theme.heading_font};\n" \
+      "  --heading-color: #{theme.heading_color};\n" \
+      "  \n" \
+      "}\n"
+
+    assert_equal(css, page.xpath('//style').text)
   end
 
   def test_description_metatag

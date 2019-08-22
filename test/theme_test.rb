@@ -9,8 +9,8 @@ class ThemeTest < Minitest::Test
     theme = Leter::Theme.new
     css = ":root {\n" \
           "  --background-color: #{theme.background_color};\n" \
-          "  --page-align: '#{theme.page_align}';\n" \
-          "  --text-font: '#{theme.text_font}';\n" \
+          "  --page-align: #{theme.page_align};\n" \
+          "  --text-font: #{theme.text_font};\n" \
           "  --text-color: #{theme.text_color};\n" \
           "  --heading-font: #{theme.heading_font};\n" \
           "  --heading-color: #{theme.heading_color};\n" \
