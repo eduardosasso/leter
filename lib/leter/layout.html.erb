@@ -21,8 +21,9 @@
         
     <link rel="stylesheet" href="<%= css %>">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <%# TODO test font_url %>
+    <link rel="stylesheet" href="<%= config.theme.try(:font_url) %>">
   </head>
 
   <body id="<%= config.theme.try(:name) %>">

@@ -8,7 +8,8 @@ module Leter
       :text_font,
       :text_color,
       :heading_font,
-      :heading_color
+      :heading_color,
+      :font_url
 
     THEME = File.read(File.expand_path('theme.css.erb', __dir__))
     DEFAULT = 'default'
@@ -45,6 +46,10 @@ module Leter
 
     def heading_color
       @heading_color || @theme[:heading_color]
+    end
+
+    def font_url
+      @font_url || @theme[:font_url]
     end
 
     def to_css

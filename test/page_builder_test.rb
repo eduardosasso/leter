@@ -48,6 +48,17 @@ class PageBuilderTest < Minitest::Test
     assert_equal(css, page.xpath('//style').text)
   end
 
+  def test_font_url
+    config = Leter::AccountConfig.new(theme: 'bungee')
+    page_builder = Leter::PageBuilder.new('# hello world', config)
+
+    page = Nokogiri::HTML.parse(page_builder.html)
+
+    links = page.css('link').map(&:attributes).map {|m| m['href'].value}
+    
+    assert(links.include?(config.theme.font_url))
+  end
+
   def test_description_metatag
     markdown = <<~MD
       # hello world
