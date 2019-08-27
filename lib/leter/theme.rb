@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'leter/color'
+
 module Leter
   class Theme
     attr_writer \
@@ -9,10 +11,12 @@ module Leter
       :text_color,
       :heading_font,
       :heading_color,
-      :font_url
+      :font_url,
+      :accent_color
 
     THEME = File.read(File.expand_path('theme.css.erb', __dir__))
     DEFAULT = 'default'
+    RGBA_OPACITY = 0.8
 
     def initialize(name = DEFAULT)
       @name = name
@@ -50,6 +54,10 @@ module Leter
 
     def font_url
       @font_url || @theme[:font_url]
+    end
+
+    def accent_color
+      @accent_color || @theme[:accent_color] || Color.hex_to_rgba_css(heading_color, RGBA_OPACITY)
     end
 
     def to_css

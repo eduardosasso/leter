@@ -54,8 +54,8 @@ class PageBuilderTest < Minitest::Test
 
     page = Nokogiri::HTML.parse(page_builder.html)
 
-    links = page.css('link').map(&:attributes).map {|m| m['href'].value}
-    
+    links = page.css('link').map(&:attributes).map { |m| m['href'].value }
+
     assert(links.include?(config.theme.font_url))
   end
 

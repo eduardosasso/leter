@@ -3,6 +3,7 @@
 require 'test_helper'
 
 require 'leter/theme'
+require 'leter/color'
 
 class ThemeTest < Minitest::Test
   def test_css
@@ -46,5 +47,20 @@ class ThemeTest < Minitest::Test
     theme = Leter::Theme.new('banana.yml')
 
     assert_equal(default['heading_color'], theme.heading_color)
+  end
+
+  def test_accent_color_rgba
+    theme = Leter::Theme.new('bungee')
+
+    rgba_css = Leter::Color.hex_to_rgba_css(theme.heading_color, Leter::Theme::RGBA_OPACITY)
+
+    assert_equal(rgba_css, theme.accent_color)
+  end
+
+  def test_accent_color
+    theme = Leter::Theme.new('bungee')
+    theme.accent_color = 'brown'
+
+    assert_equal('brown', theme.accent_color)
   end
 end
