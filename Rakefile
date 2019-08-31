@@ -12,6 +12,7 @@ end
 
 task default: :test
 
+#TODO run this plus bundle outdated to check versions on build
 desc 'Check assets version'
 task :assets do
   puts Leter::Asset.check
