@@ -6,9 +6,14 @@ require 'leter/theme'
 
 module Leter
   class AccountConfig
-    attr_writer :theme, :google_analytics, :date_format, :css_file_path
+    attr_writer :theme, :google_analytics, :date_format, :css_file_path, :code_theme, :code_font
 
     DEFAULT_CONFIG = File.expand_path('default_config.yml', __dir__)
+
+    # TODO: load hack
+    CODE_FONT = 'Hack'
+    # TODO: document all the theme options
+    CODE_THEME = 'Atom'
 
     def initialize(config = {})
       @config = config.transform_keys(&:to_sym)
@@ -41,6 +46,16 @@ module Leter
       @css_file_path || @config[:css_file_path]
     end
 
+    # TODO: atom for default
+    def code_theme
+      @code_theme || code[:theme] || CODE_THEME
+    end
+
+    # TODO: test hack font
+    def code_font
+      @code_font || code[:font] || CODE_FONT
+    end
+
     def to_yaml
       @config.to_yaml
     end
@@ -64,6 +79,12 @@ module Leter
 
     def self.default
       load(DEFAULT_CONFIG)
+    end
+
+    private
+
+    def code
+      @config[:code] || {}
     end
   end
 end

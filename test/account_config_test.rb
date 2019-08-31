@@ -75,4 +75,16 @@ class AccountConfigTest < Minitest::Test
 
     assert_equal(date.strftime(Leter::DATE_FORMAT), date.strftime(config.date_format))
   end
+
+  def test_default_code_font
+    config = Leter::AccountConfig.default
+
+    assert_equal(Leter::AccountConfig::CODE_FONT, config.code_font)
+  end
+
+  def test_default_code_theme
+    config = Leter::AccountConfig.default
+
+    assert_equal(Leter::AccountConfig::CODE_THEME, config.code_theme)
+  end
 end

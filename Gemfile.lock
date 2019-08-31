@@ -27,6 +27,7 @@ GEM
     builder (3.2.3)
     childprocess (1.0.1)
       rake (< 13.0)
+    colorize (0.8.1)
     concurrent-ruby (1.1.5)
     contracts (0.16.0)
     coveralls (0.8.23)
@@ -105,6 +106,7 @@ PLATFORMS
 DEPENDENCIES
   aruba (~> 1.0.0.pre.alpha.4)
   bundler (~> 2.0)
+  colorize (~> 0.8.1)
   coveralls
   csso-rails (~> 0.8.1)
   dotenv (~> 2.7, >= 2.7.5)

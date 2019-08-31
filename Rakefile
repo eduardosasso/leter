@@ -2,6 +2,7 @@
 
 require 'bundler/gem_tasks'
 require 'rake/testtask'
+require 'leter/asset'
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
@@ -10,3 +11,8 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task default: :test
+
+desc 'Check assets version'
+task :assets do
+  puts Leter::Asset.check
+end

@@ -32,6 +32,10 @@ module Leter
       (parser.at('meta[name="generator"]') || {})['content']
     end
 
+    def code?
+      parser.at_css('code').present?
+    end
+
     def parser
       @parser ||= Nokogiri::HTML.parse(html)
     end

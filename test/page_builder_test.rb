@@ -108,4 +108,22 @@ class PageBuilderTest < Minitest::Test
 
     assert_match(Leter::Config.css_prod_url, page_builder.html)
   end
+
+  def test_code
+    markdown = <<-CODE
+      ``` js
+      var foo = function (bar) {
+        return bar++;
+      };
+
+      console.log(foo(5));
+      ```
+    CODE
+
+    config = Leter::AccountConfig.default
+
+    page_builder = Leter::PageBuilder.new(markdown, config)
+
+    pp page_builder.html
+  end
 end

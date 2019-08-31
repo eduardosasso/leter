@@ -24,6 +24,7 @@ module Leter
         h.description = description
         h.body = content
         h.config = @config
+        h.has_code = code?
       end
 
       ERB.new(LAYOUT).result(html_template.use_binding)
@@ -35,6 +36,10 @@ module Leter
 
     def description
       html_parser.description
+    end
+
+    def code?
+      html_parser.code?
     end
 
     def content
