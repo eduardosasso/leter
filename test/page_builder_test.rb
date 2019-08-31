@@ -124,6 +124,19 @@ class PageBuilderTest < Minitest::Test
 
     page_builder = Leter::PageBuilder.new(markdown, config)
 
-    pp page_builder.html
+    assert_match(Leter::Asset.new(:highlightjs).url, page_builder.html)
+  end
+
+  def test_no_code
+    markdown = '#hello'
+    config = Leter::AccountConfig.default
+
+    page_builder = Leter::PageBuilder.new(markdown, config)
+
+    js = Leter::Asset.new(:highlightjs).url
+
+    np_code_highlight = !page_builder.html.match?(js)
+    
+    assert(np_code_highlight)
   end
 end

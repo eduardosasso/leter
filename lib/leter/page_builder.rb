@@ -8,6 +8,7 @@ require 'leter/html_template'
 require 'leter/account_config'
 require 'leter/markdown'
 require 'leter/html'
+require 'leter/code'
 
 module Leter
   class PageBuilder
