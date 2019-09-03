@@ -87,4 +87,20 @@ class AccountConfigTest < Minitest::Test
 
     assert_equal(Leter::AccountConfig::CODE_THEME, config.code_theme)
   end
+
+  def test_code_font
+    code = { font: 'mono', theme: 'dark' }
+
+    config = Leter::AccountConfig.new(theme: 'banana', code: code)
+
+    assert_equal('mono', config.code_font)
+  end
+
+  def test_code_theme
+    code = { font: 'mono', theme: 'dark' }
+
+    config = Leter::AccountConfig.new(theme: 'banana', code: code)
+
+    assert_equal('dark', config.code_theme)
+  end
 end

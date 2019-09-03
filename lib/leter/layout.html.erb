@@ -25,7 +25,7 @@
 
     <link rel="stylesheet" href="<%= config.theme.try(:font_url) %>">
 
-    <%= Leter::Code.new(config).add if has_code %>
+    <%= Leter::Code.new(config).result if has_code %>
   </head>
 
   <body id="<%= config.theme.try(:name) %>">

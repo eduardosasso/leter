@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'leter/asset'
-# TODO write tests
+
 module Leter
   class Code
     CODE_PARTIAL = File.read(File.expand_path('_code.html.erb', __dir__))
@@ -10,9 +10,10 @@ module Leter
       @config = account_config
     end
 
-    def add
+    def result
       asset = Leter::Asset.new(:highlightjs)
-      css = File.join(asset.path, 'styles', @config.code_theme, '.min.css')
+      filename = @config.code_theme + '.min.css'
+      css = File.join(asset.path, 'styles', filename)
 
       resources = {
         js: asset.url,

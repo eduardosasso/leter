@@ -32,7 +32,7 @@ module Leter
 
     def self.check
       LIBRARIES.keys.map do |lib|
-        asset = Asset.new(library)
+        asset = Asset.new(lib)
 
         status = asset.version == asset.cdn_latest_version ? :green : :red
 

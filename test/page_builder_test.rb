@@ -136,7 +136,7 @@ class PageBuilderTest < Minitest::Test
     js = Leter::Asset.new(:highlightjs).url
 
     np_code_highlight = !page_builder.html.match?(js)
-    
+
     assert(np_code_highlight)
   end
 end
