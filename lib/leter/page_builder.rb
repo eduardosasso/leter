@@ -28,6 +28,7 @@ module Leter
         h.has_code = code?
       end
 
+      # TODO: use result with hash can remove html_template file
       ERB.new(LAYOUT).result(html_template.use_binding)
     end
 
@@ -44,11 +45,11 @@ module Leter
     end
 
     def content
-      Leter::Markdown.new(@markdown).to_html
+      @content ||= Leter::Markdown.new(@markdown).to_html
     end
 
     def html_parser
-      Leter::Html.new(content)
+      @html_parser ||= Leter::Html.new(content)
     end
   end
 end
