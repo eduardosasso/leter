@@ -33,6 +33,8 @@ module Leter
           root_folder(file)
         )
 
+        pp page.builder.html
+
         add_page(page)
 
         add_index(page)
