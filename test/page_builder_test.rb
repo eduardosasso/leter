@@ -5,6 +5,7 @@ require 'test_helper'
 require 'leter/page_builder'
 require 'leter/account_config'
 require 'leter/config'
+require 'date'
 
 class PageBuilderTest < Minitest::Test
   def test_html_page
@@ -110,7 +111,7 @@ class PageBuilderTest < Minitest::Test
   end
 
   def test_code
-    markdown = <<-CODE
+    markdown = <<~CODE
       ``` js
       var foo = function (bar) {
         return bar++;
@@ -128,7 +129,7 @@ class PageBuilderTest < Minitest::Test
   end
 
   def test_no_code
-    markdown = '#hello'
+    markdown = '# hello'
     config = Leter::AccountConfig.default
 
     page_builder = Leter::PageBuilder.new(markdown, config)
@@ -138,5 +139,18 @@ class PageBuilderTest < Minitest::Test
     np_code_highlight = !page_builder.html.match?(js)
 
     assert(np_code_highlight)
+  end
+
+  def test_add_date
+    markdown = <<~MD
+      # hello world
+      Testing
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    page_builder.add_date(Date.today.to_s)
+
+    assert_equal(Date.today.to_s, page_builder.date)
   end
 end

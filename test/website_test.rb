@@ -85,4 +85,24 @@ class WebsiteTest < Minitest::Test
 
     assert(Dir['tmp/clean/site/**/*.html'].empty?)
   end
+
+  def test_add_date
+    Leter::IO.save_file('tmp/test/resume.md', '# resume')
+
+    Leter::Website.new.build
+
+    resume = Leter::IO.read_file('tmp/test/resume/index.html')
+
+    assert(Leter::Html.new(resume).date)
+  end
+
+  def test_dont_add_date
+    Leter::IO.save_file('tmp/test/index.md', '# main page')
+
+    Leter::Website.new.build
+
+    index = Leter::IO.read_file('tmp/test/index.html')
+
+    assert_nil(Leter::Html.new(index).date)
+  end
 end

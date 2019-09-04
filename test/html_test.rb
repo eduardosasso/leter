@@ -17,7 +17,21 @@ class HtmlTest < Minitest::Test
     assert_equal('Leter', html_parser.powered_by)
   end
 
-  def test_code?
+  def test_title
+    markdown = <<~MD
+      # hello world
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    html_parser = Leter::Html.new(html)
+
+    assert_equal('hello world', html_parser.title)
+  end
+
+  def test_code
     markdown = <<~MD
       ``` ruby
       p 'hi'
@@ -33,7 +47,7 @@ class HtmlTest < Minitest::Test
     assert(html_parser.code?)
   end
 
-  def code?
+  def test_no_code
     markdown = <<~MD
       ## no code block
     MD

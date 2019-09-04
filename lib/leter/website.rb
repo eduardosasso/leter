@@ -14,6 +14,8 @@ module Leter
   class Website
     include Observable
 
+    Page = Struct.new(:builder, :slug, :date, :root_folder)
+
     attr_reader :config, :status
 
     def initialize(config = AccountConfig.default)
@@ -22,9 +24,18 @@ module Leter
 
     def build
       IO.list_files.each do |file|
-        IO.save_file(slug(file).to_s, page_builder(file).html)
+        updated_at = File.mtime(file)
 
-        add_to_index(file)
+        page = Page.new(
+          page_builder(file),
+          slug(file),
+          format_date(updated_at),
+          root_folder(file)
+        )
+
+        add_page(page)
+
+        add_index(page)
 
         notify(file)
       end
@@ -60,20 +71,26 @@ module Leter
     def page_builder(file)
       markdown = IO.read_file(file)
 
-      # TODO: page_builder same constructor as index_builder
       PageBuilder.new(markdown, config)
     end
 
-    def add_to_index(file)
-      updated_at = File.mtime(file)
+    def add_page(page)
+      html = page.builder.tap do |p|
+        # add date only for non index pages
+        p.add_date(page.date) if page.date && !page.slug.index?
+      end.html
 
+      IO.save_file(page.slug.to_s, html)
+    end
+
+    def add_index(page)
       item = IndexItem.new.tap do |i|
-        i.title = page_builder(file).title
-        i.url = slug(file).to_url
-        i.updated_at = format_date(updated_at)
+        i.title = page.builder.title
+        i.url = page.slug.to_url
+        i.updated_at = page.date
       end
 
-      index_builder.add(root_folder(file), item)
+      index_builder.add(page.root_folder, item)
     end
 
     def build_index

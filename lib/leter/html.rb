@@ -9,23 +9,23 @@ module Leter
     end
 
     def title
-      first_h1 || first_h2
+      first_h1.try(:text) || first_h2.try(:text)
     end
 
     def description
-      first_h2 || first_paragraph
+      first_h2.try(:text) || first_paragraph.try(:text)
     end
 
     def first_h1
-      parser.at_css('h1').try(:text)
+      parser.at_css('h1')
     end
 
     def first_h2
-      parser.at_css('h2').try(:text)
+      parser.at_css('h2')
     end
 
     def first_paragraph
-      parser.at_css('p').try(:text)
+      parser.at_css('p')
     end
 
     def powered_by
@@ -34,6 +34,14 @@ module Leter
 
     def code?
       parser.at_css('code').present?
+    end
+
+    def body
+      parser.at_css('body').to_html
+    end
+
+    def date
+      parser.at_css('.published').try(:text)
     end
 
     def parser

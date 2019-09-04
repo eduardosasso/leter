@@ -23,7 +23,7 @@ module Leter
       html_template = Leter::HtmlTemplate.new.tap do |h|
         h.title = title
         h.description = description
-        h.body = content
+        h.body = body
         h.config = @config
         h.has_code = code?
       end
@@ -33,23 +33,38 @@ module Leter
     end
 
     def title
-      html_parser.title
+      html_helper.title
     end
 
     def description
-      html_parser.description
+      html_helper.description
     end
 
     def code?
-      html_parser.code?
+      html_helper.code?
     end
 
-    def content
-      @content ||= Leter::Markdown.new(@markdown).to_html
+    def date
+      html_helper.date
     end
 
-    def html_parser
-      @html_parser ||= Leter::Html.new(content)
+    def add_date(date)
+      published = "<span class='published'>#{date}</span>"
+
+      html_helper.first_h1.after(published)
+
+      self
+    end
+
+    def body
+      html_helper.body
+    end
+
+    def html_helper
+      @html_helper ||= begin
+        html = Leter::Markdown.new(@markdown).to_html
+        Leter::Html.new(html)
+      end
     end
   end
 end

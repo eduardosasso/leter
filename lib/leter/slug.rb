@@ -11,13 +11,17 @@ module Leter
     # translate stuff like my_blog_post.md to my-blog-post/index.html
     # for pretty urls
     def to_s
-      html_filename = index_file? ? '.html' : '/index.html'
+      html_filename = index? ? '.html' : '/index.html'
 
       slug + html_filename
     end
 
     def to_url
       '/' + slug.gsub(/index$/, '')
+    end
+
+    def index?
+      basename == 'index'
     end
 
     private
@@ -33,10 +37,6 @@ module Leter
 
     def basename
       File.basename(@name, '.*')
-    end
-
-    def index_file?
-      basename == 'index'
     end
   end
 end
