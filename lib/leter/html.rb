@@ -37,7 +37,7 @@ module Leter
     end
 
     def body
-      parser.at_css('body').to_html
+      parser.at_css('body').inner_html
     end
 
     def date
