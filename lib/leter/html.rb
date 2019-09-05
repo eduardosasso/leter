@@ -45,7 +45,8 @@ module Leter
     end
 
     def parser
-      @parser ||= Nokogiri::HTML.parse(html)
+      # @parser ||= Nokogiri::HTML.parse(html)
+      Nokogiri::HTML.parse(html)
     end
   end
 end
