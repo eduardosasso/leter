@@ -15,7 +15,7 @@ class ThemeTest < Minitest::Test
           "  --text_color: #{theme.text_color};\n" \
           "  --heading_font: #{theme.heading_font};\n" \
           "  --heading_color: #{theme.heading_color};\n" \
-          "  \n" \
+          "  --accent_color: #{theme.accent_color};\n" \
           "}\n"
 
     assert_equal(css, theme.to_css)

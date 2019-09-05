@@ -1,7 +1,7 @@
-background_color: blue
+background_color: '#FFFFFF'
 page_align: center
 text_font: times 
-text_color: fushai
+text_color: '#111111'
 heading_font: times
-heading_color: orange
+heading_color: '#111111'
 

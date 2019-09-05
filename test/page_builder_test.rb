@@ -36,17 +36,7 @@ class PageBuilderTest < Minitest::Test
 
     theme = config.theme
 
-    css = ":root {\n" \
-      "  --background_color: #{theme.background_color};\n" \
-      "  --page_align: #{theme.page_align};\n" \
-      "  --text_font: #{theme.text_font};\n" \
-      "  --text_color: #{theme.text_color};\n" \
-      "  --heading_font: #{theme.heading_font};\n" \
-      "  --heading_color: #{theme.heading_color};\n" \
-      "  \n" \
-      "}\n"
-
-    assert_equal(css, page.xpath('//style').text)
+    assert_equal(css(theme), page.xpath('//style').text)
   end
 
   def test_font_url
@@ -152,5 +142,17 @@ class PageBuilderTest < Minitest::Test
     page_builder.add_date(Date.today.to_s)
 
     assert_equal(Date.today.to_s, page_builder.date)
+  end
+
+  def css(theme)
+    ":root {\n" \
+      "  --background_color: #{theme.background_color};\n" \
+      "  --page_align: #{theme.page_align};\n" \
+      "  --text_font: #{theme.text_font};\n" \
+      "  --text_color: #{theme.text_color};\n" \
+      "  --heading_font: #{theme.heading_font};\n" \
+      "  --heading_color: #{theme.heading_color};\n" \
+      "  --accent_color: #{theme.accent_color};\n" \
+    "}\n"
   end
 end
