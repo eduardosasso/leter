@@ -27,6 +27,7 @@ class HtmlTest < Minitest::Test
     html = page_builder.html
 
     html_parser = Leter::Html.new(html)
+    p html_parser.body
 
     assert_equal('hello world', html_parser.title)
   end
