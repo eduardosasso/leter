@@ -51,7 +51,7 @@ module Leter
     def add_date(date)
       published = "<span class='published'>#{date}</span>"
 
-      html_helper.first_h1.after(published)
+      html_helper.first_h1.try(:after, published)
 
       self
     end

@@ -7,7 +7,7 @@ require 'leter/account_config'
 require 'leter/config'
 require 'date'
 
-class PageBuilderTest < Minitest::Test
+class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
   def test_html_page
     html = Leter::PageBuilder.new('# hello world').html
     page = Nokogiri::HTML.parse(html)
@@ -142,6 +142,19 @@ class PageBuilderTest < Minitest::Test
     page_builder.add_date(Date.today.to_s)
 
     assert_equal(Date.today.to_s, page_builder.date)
+  end
+
+  def test_dont_add_date
+    # only add dates if there's an h1
+    markdown = <<~MD
+      Testing
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    page_builder.add_date(Date.today.to_s)
+
+    assert_nil(page_builder.date)
   end
 
   def css(theme)

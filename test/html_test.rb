@@ -31,6 +31,22 @@ class HtmlTest < Minitest::Test
     assert_equal('hello world', html_parser.title)
   end
 
+  def test_multiple_h1
+    markdown = <<~MD
+      # hello one
+      # hello two
+      # hello three
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    html_parser = Leter::Html.new(html)
+
+    assert_equal('hello one', html_parser.first_h1.text)
+  end
+
   def test_code
     markdown = <<~MD
       ``` ruby

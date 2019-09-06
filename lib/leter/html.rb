@@ -33,7 +33,7 @@ module Leter
     end
 
     def code?
-      parser.at_css('code').present?
+      parser.at_css('code')
     end
 
     def body
