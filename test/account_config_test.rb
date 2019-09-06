@@ -97,10 +97,16 @@ class AccountConfigTest < Minitest::Test
   end
 
   def test_code_theme
+    config = Leter::AccountConfig
+
     code = { font: 'mono', theme: 'dark' }
 
-    config = Leter::AccountConfig.new(theme: 'banana', code: code)
+    Leter::IO.save_file(config.filename, { 'theme' => 'banana', code: code }.to_yaml)
 
-    assert_equal('dark', config.code_theme)
+    code_theme = config.load(config.filename).code_theme
+
+    assert_equal('dark', code_theme)
+
+    File.delete(config.filename)
   end
 end

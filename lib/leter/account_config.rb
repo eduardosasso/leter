@@ -3,6 +3,7 @@
 require 'yaml'
 
 require 'leter/theme'
+require 'active_support/core_ext/hash/indifferent_access'
 
 module Leter
   class AccountConfig
@@ -13,10 +14,11 @@ module Leter
     # TODO: load hack
     CODE_FONT = 'Hack'
     # TODO: document all the theme options
+    # https://github.com/highlightjs/highlight.js/tree/master/src/styles
     CODE_THEME = 'atom-one-dark'
 
     def initialize(config = {})
-      @config = config.transform_keys(&:to_sym)
+      @config = config.transform_keys(&:to_sym).with_indifferent_access
     end
 
     def theme
@@ -46,7 +48,6 @@ module Leter
       @css_file_path || @config[:css_file_path]
     end
 
-    # TODO: atom for default
     def code_theme
       @code_theme || code[:theme] || CODE_THEME
     end
@@ -69,7 +70,7 @@ module Leter
         ERB.new(
           File.read(filename)
         ).result,
-        [Symbol]
+        [Symbol, ActiveSupport::HashWithIndifferentAccess]
       )
 
       new(config_yaml)
