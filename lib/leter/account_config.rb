@@ -13,7 +13,7 @@ module Leter
     # TODO: load hack
     CODE_FONT = 'Hack'
     # TODO: document all the theme options
-    CODE_THEME = 'Atom'
+    CODE_THEME = 'atom-one-dark'
 
     def initialize(config = {})
       @config = config.transform_keys(&:to_sym)
