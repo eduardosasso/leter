@@ -12,12 +12,16 @@ module Leter
 
     def result
       asset = Leter::Asset.new(:highlightjs)
+      
       filename = @config.code_theme + '.min.css'
       css = File.join(asset.path, 'styles', filename)
 
+      font = Leter::Asset.new(:hack_font).url
+
       resources = {
         js: asset.url,
-        css: css
+        css: css,
+        font: font
       }
 
       ERB.new(CODE_PARTIAL).result_with_hash(resources)

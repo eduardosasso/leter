@@ -11,8 +11,6 @@ module Leter
 
     DEFAULT_CONFIG = File.expand_path('default_config.yml', __dir__)
 
-    # TODO: load hack
-    CODE_FONT = 'Hack'
     # TODO: document all the theme options
     # https://github.com/highlightjs/highlight.js/tree/master/src/styles
     CODE_THEME = 'atom-one-dark'
@@ -50,11 +48,6 @@ module Leter
 
     def code_theme
       @code_theme || code[:theme] || CODE_THEME
-    end
-
-    # TODO: test hack font
-    def code_font
-      @code_font || code[:font] || CODE_FONT
     end
 
     def to_yaml
