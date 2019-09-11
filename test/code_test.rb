@@ -18,7 +18,7 @@ class CodeTest < Minitest::Test
   end
 
   def test_result_css
-    code = {theme: 'dark' }
+    code = { theme: 'dark' }
 
     config = Leter::AccountConfig.new(theme: 'banana', code: code)
 

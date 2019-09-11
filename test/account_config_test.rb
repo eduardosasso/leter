@@ -85,7 +85,7 @@ class AccountConfigTest < Minitest::Test
   def test_code_theme
     config = Leter::AccountConfig
 
-    code = {theme: 'dark' }
+    code = { theme: 'dark' }
 
     Leter::IO.save_file(config.filename, { 'theme' => 'banana', code: code }.to_yaml)
 

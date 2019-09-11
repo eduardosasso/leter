@@ -1,0 +1,7 @@
+  background_color: "#F8F7EF"
+  text_font: "'Source Sans Pro', sans-serif"
+  text_color: "#3E3E47"
+  heading_font:  "'Merriweather', serif"
+  heading_color: "#FF5394"
+  font_url: "https://fonts.googleapis.com/css?family=Source+Sans+Pro|Merriweather&display=swap"
+

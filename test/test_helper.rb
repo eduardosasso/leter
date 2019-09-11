@@ -10,4 +10,4 @@ require 'minitest/autorun'
 require 'aruba/api'
 require 'minitest/reporters'
 
-Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(:color => true)]
+Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(color: true)]

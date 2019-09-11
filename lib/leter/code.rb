@@ -12,7 +12,7 @@ module Leter
 
     def result
       asset = Leter::Asset.new(:highlightjs)
-      
+
       filename = @config.code_theme + '.min.css'
       css = File.join(asset.path, 'styles', filename)
 

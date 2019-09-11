@@ -1,0 +1,7 @@
+  background_color: "#F7F5F2"
+  text_font: "'Libre Baskerville', serif"
+  text_color: "#545466"
+  heading_font:  "'Playfair Display', serif"
+  heading_color: "#f23d6d"
+  font_url: "https://fonts.googleapis.com/css?family=Libre+Baskerville|Playfair+Display&display=swap"
+

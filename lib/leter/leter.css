@@ -61,146 +61,104 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-/* font family */
-/* color scheme */
-/* theme/style */
-
-/* general text font family */
-/* color scheme background */
-/* color scheme font color */
-/* :root { */
-/*   /1* --text-font: 'Work Sans', sans-serif; no *1/ */
-/*   /1* --text-font: 'Roboto', sans-serif; *1/ */
-/*   /1* --text-font: 'Lexend Deca', sans-serif; *1/ */
-/*   /1* --text-font: 'Merriweather', serif; *1/ */
-/*   /1* --text-font: 'Ubuntu', sans-serif; *1/ */
-/*   /1* --text-font: 'Playfair Display', serif; *1/ */
-/*   /1* --text-font: 'PT Serif', serif; *1/ */
-/*   /1* --text-font: 'Lora', serif; *1/ */
-/*   /1* --text-font: 'Bree Serif', serif; no *1/ */
-/*   /1* --text-font: 'Prompt', sans-serif; no *1/ */
-/*   /1* --text-font: 'Noto Sans SC', sans-serif; no *1/ */
-/*   /1* --text-font: 'Cantata One', serif no; *1/ */
-/*   /1* --text-font: 'PT Serif Caption', serif; *1/ */
-/*   /1* --text-font: 'Open Sans', sans-serif; *1/ */
-/*   /1* --text-font: 'Lato', sans-serif no; *1/ */
-/*   /1* --text-font: 'Montserrat', sans-serif; no *1/ */
-/*   /1* --text-font: 'Source Sans Pro', sans-serif no; *1/ */
-/*   /1* --text-font: 'Roboto Slab', serif; *1/ */
-/*   --text-font: 'Noto Sans', sans-serif; */
-/*   /1* --text-font: 'Nunito', sans-serif no; *1/ */
-/*   /1* --text-font: 'Noto Serif', serif; no *1/ */
-/*   /1* --text-font: 'Libre Baskerville', serif no; *1/ */
-/*   /1* --text-font: 'Source Serif Pro', serif no; *1/ */
-/*   /1* --text-font: 'Vollkorn', serif; no *1/ */
-/*   /1* --text-font: 'Bitter', serif; no *1/ */
-
-/*   --text-color: #313131; */
-
-/*   /1* --heading-font: 'Crimson Text', serif; *1/ */
-/*   /1* --heading-font: 'Roboto', sans-serif; *1/ */
-/*   /1* --heading-font: 'Lexend Deca', sans-serif; *1/ */
-/*   --heading-font: 'Merriweather', serif; */
-/*   /1* --heading-font: 'Ubuntu', sans-serif; *1/ */
-/*   /1* --heading-font: 'Playfair Display', serif; *1/ */
-/*   /1* --heading-font: 'PT Serif', serif; *1/ */
-/*   /1* --heading-font: 'Lora', serif; *1/ */
-/*   /1* --heading-font: 'Bree Serif', serif no; *1/ */
-/*   /1* --heading-font: 'Prompt', sans-serif no; *1/ */
-/*   /1* --heading-font: 'Noto Sans SC', sans-serif; *1/ */
-/*   /1* --heading-font: 'Cantata One', serif; *1/ */
-/*   /1* --heading-font: 'PT Serif Caption', serif; *1/ */
-/*   /1* --heading-font: 'Open Sans', sans-serif; *1/ */
-/*   /1* --heading-font: 'Lato', sans-serif; *1/ */
-/*   /1* --heading-font: 'Montserrat', sans-serif; *1/ */
-/*   /1* --heading-font: 'Source Sans Pro', sans-serif no; *1/ */
-/*   /1* --heading-font: 'Roboto Slab', serif no; *1/ */
-/*   /1* --heading-font: 'Noto Sans', sans-serif no; *1/ */
-/*   /1* --heading-font: 'Nunito', sans-serif; *1/ */
-/*   /1* --heading-font: 'Noto Serif', serif; *1/ */
-/*   /1* --heading-font: 'Libre Baskerville', serif; *1/ */
-/*   /1* --heading-font: 'Source Serif Pro', serif; *1/ */
-/*   /1* --heading-font: 'Vollkorn', serif; *1/ */
-/*   /1* --heading-font: 'Bitter', serif; *1/ */
-
-/*   --heading-color: rgb(72, 76, 127); */
-/*   /1* --background-color: #F8F8F8; *1/ */
-/*   --background-color: #f6f6f6; */
-/*   --unicode-flair: "﹏"; */
-/* } */
-
-body {
-  /* font-family: 'Cardo', serif; */
-  font-family: var(--text-font);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  /* font-family: 'Oswald', sans-serif; */
-  font-family: var(--heading-font);
+h2, h3, h4, h5, h6 {
+  font-family: var(--text_font);
+  /* color: var(--accent_color); */
+  color: var(--heading_color);
 }
 
 body {
-  color: var(--text-color);
-  /* background: #feffdb; */
-  background: var(--background-color);
-
+  font-family: var(--text_font);
+  color: var(--text_color);
+  background: var(--background_color);
   padding-left: 1.2em;
   padding-right: 1.2em;
   padding-bottom: 1.2em;
+  font-weight: normal;
 }
 
 h1 {
-  /* font family for h1, 2 3 etc */ 
-  /* custom attrs based on theme style? */
   /* display:inline-block; */
   /* text-align: center; */
-  /* padding: 0.5em; */
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   margin-top: 50px;
   font-size: 50px;
-  /* color: #ff8b00; */
-  color: var(--heading-color);
+  color: var(--heading_color);
+  font-weight: 700;
+  font-family: var(--heading_font);
 }
 
-h1:after {
- /* display: block; */
- /* content: var(--unicode-flair); */
- /* /1* color: #A1A4BD; *1/ */
- /* color: rgb(72, 76, 127, 0.5) */
- content:' ';
- display:block;
- border: 3px solid rgb(72, 76, 127, 0.5);
- /* border-radius:4px; */
- -webkit-border-radius:4px;
- /* -moz-border-radius:4px; */
- /* box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05); */
- /* -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05); */
- /* -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05); */
- width: 50px;
- margin-top: 30px;
- }
+hr {
+  /* border: 0; */
+  border-top: 1px dashed;
+  text-align:center;
+} 
+
+hr:after {
+  /* content: '⬥ ⬥ ⬥'; */
+  display: inline-block;
+  position: relative;
+  top: -13px;
+  padding: 0 3px;
+  /* background: #fff; */
+  /* color: #8c8c8c; */
+  font-size: 30px;
+}
+
+pre, code {
+  font-family: Hack, 
+  monospace;
+  font-size: 15px;
+}
+
+.published {
+  font-size: small;
+  color: var(--accent_color);
+}
+
+
+/* TODO: add dinamically? */
+/* h1:after { */
+/*  /1* width: 100%; *1/ */
+/*  /1* display:flex; *1/ */
+/*  /1* align-items: center; *1/ */
+/*  /1* justify-content: center; *1/ */
+/*  /1* display: block; *1/ */
+/*  /1* content: var(--unicode-flair); *1/ */
+/*  /1* /2* color: #A1A4BD; *2/ *1/ */
+/*  /1* color: rgb(72, 76, 127, 0.5) *1/ */
+/*  content: '_'; */
+/*  display: block; */
+/*  /1* border: 3px solid rgb(72, 76, 127, 0.5); *1/ */
+/*  /1* border: 3px solid rgb(246, 187, 66, 0.5); *1/ */
+/*  /1* border-radius:4px; *1/ */
+/*  /1* -webkit-border-radius:4px; *1/ */
+/*  /1* -moz-border-radius:4px; *1/ */
+/*  /1* box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05); *1/ */
+/*  /1* -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05); *1/ */
+/*  /1* -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05); *1/ */
+/*  /1* width: 50px; *1/ */
+/*  /1* margin-top: 30px; *1/ */
+/*  /1* text-align: center; *1/ */
+/*  } */
 
 h2 {
- color: rgb(72, 76, 127, 0.9)
+ /* color: rgb(72, 76, 127, 0.9) */
+  /* color: rgb(246, 187, 66, 0.9) */
 }
 
 a {
-  /* color scheme link color */
-  /* color scheme visited color */
-  /* theme hover style */
-  /* color: #145374; */
   text-decoration: none;
   border-bottom: 2px solid;
-  color: var(--text-color);
-  border-bottom-color: #A1A4BD;
+  color: var(--text_color);
+  border-bottom-color: var(--accent_color);
   /* border-bottom-color: var(--heading-color); */
   display: inline-block;
 }
 
 a:hover {
-  -webkit-text-stroke: 0.8px var(--text-color);
-
-  border-bottom-color: var(--heading-color);
+  /* -webkit-text-stroke: 0.8px var(--text_color); */
+  border-bottom-color: var(--heading_color);
 }
 
 section {
@@ -208,9 +166,48 @@ section {
   /* margin: 0 auto; */  
 }
 
-li {
-  padding-bottom: 18px;
+blockquote {padding: 5px 10px;margin: 0 0 0px;/* font-size: 17.5px; */border-left: 5px solid var(--accent_color);}
+
+ul {
+    list-style: none;
 }
+
+li {
+  margin-bottom:5px;
+}
+
+ul li::before {
+  content: "⦿";
+  color: var(--accent_color);
+  display: inline-block;
+  width: 1em;
+  /* margin-left: -1em; */
+  }
+
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+ol li {
+  counter-increment: my-awesome-counter;
+}
+
+ol li p {
+  display: inline;
+}
+ol li::before {
+  content: counter(my-awesome-counter) " · ";
+  color: var(--accent_color);
+  font-weight: bold;
+  font-size: smaller;
+}
+/* ol { */
+/*   list-style-type: upper-roman; */
+/* } */
+
+/* li { */
+/*   padding-bottom: 18px; */
+/* } */
 
 /* list index for blog formatting */
 #index {
@@ -222,12 +219,19 @@ li {
   font-weight: bold;
 }
 
+#index ul {
+  list-style: none;
+}
+
+#index li::before {
+  display:none;
+}
 #index span {
   font-size: smaller;
 }
 
 @media screen and (min-width: 768px) {
-  #banana section {
+  section {
     padding-left: 50px;
   }
 }  

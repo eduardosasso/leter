@@ -1,0 +1,6 @@
+background_color: "#FCEAEE"
+text_font: "'Roboto', sans-serif"
+text_color: "#340410"
+heading_font:  "'Lora', serif"
+heading_color: "#E70D3D"
+font_url: "https://fonts.googleapis.com/css?family=Roboto:400,700|Lora&display=swap"
