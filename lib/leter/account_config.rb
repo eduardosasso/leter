@@ -7,7 +7,7 @@ require 'active_support/core_ext/hash/indifferent_access'
 
 module Leter
   class AccountConfig
-    attr_writer :theme, :google_analytics, :date_format, :css_file_path, :code_theme, :code_font
+    attr_writer :theme, :google_analytics, :date_format, :css_url, :code_theme, :code_font
 
     DEFAULT_CONFIG = File.expand_path('default_config.yml', __dir__)
 
@@ -41,9 +41,10 @@ module Leter
       @date_format || @config[:date_format]
     end
 
-    # hidden path to edit css locally
-    def css_file_path
-      @css_file_path || @config[:css_file_path]
+    # hidden to use local css
+    # TODO rename config and css_prof_url - jsdelivr bump version
+    def css_url
+      @css_url || @config[:css_url] || Leter::Config.css_prod_url
     end
 
     def code_theme

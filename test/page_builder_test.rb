@@ -83,11 +83,11 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     markdown = '# hello world'
 
     config = Leter::AccountConfig.default
-    config.css_file_path = '/root/leter.css'
+    config.css_url = '/root/leter.css'
 
     page_builder = Leter::PageBuilder.new(markdown, config)
 
-    assert_match(config.css_file_path, page_builder.html)
+    assert_match(config.css_url, page_builder.html)
   end
 
   def test_prod_css

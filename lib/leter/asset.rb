@@ -37,7 +37,12 @@ module Leter
 
         status = asset.version == asset.cdn_latest_version ? :green : :red
 
-        "#{lib} #{asset.version.colorize(status)} » #{asset.cdn_latest_version.colorize(:green)}"
+        [
+          lib,
+          asset.version.colorize(status),
+          '»',
+          asset.cdn_latest_version.colorize(:green)
+        ].join(' ')
       end.to_a.join("\n")
     end
 

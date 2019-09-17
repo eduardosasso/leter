@@ -44,18 +44,18 @@ class AccountConfigTest < Minitest::Test
     assert_equal(config.google_analytics, 123)
   end
 
-  def test_css_file_path
-    new_config = { 'css_file_path' => '/root/leter.css' }
+  def test_css_url
+    new_config = { 'css_url' => '/root/leter.css' }
 
     config = Leter::AccountConfig.new(new_config)
 
-    assert(config.css_file_path)
+    assert(config.css_url)
   end
 
-  def test_no_css_file_path
+  def test_default_css_url
     config = Leter::AccountConfig.default
 
-    assert_nil(config.css_file_path)
+    assert_equal(Leter::Config.css_prod_url, config.css_url)
   end
 
   def test_load_config
