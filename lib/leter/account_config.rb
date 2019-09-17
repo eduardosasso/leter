@@ -26,7 +26,7 @@ module Leter
 
       style = { name: style } if style.is_a?(String)
 
-      Leter::Theme.new(style.delete(:name) || Theme::DEFAULT).tap do |t|
+      Leter::Theme.new(style[:name] || Theme::DEFAULT).tap do |t|
         style.each do |key, value|
           t.set_attribute(key.to_s, value)
         end

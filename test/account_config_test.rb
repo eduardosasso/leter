@@ -23,14 +23,15 @@ class AccountConfigTest < Minitest::Test
 
   def test_override_theme
     theme = {
-      name: 'default',
-      page_align: 'blabla'
+      name: 'crest',
+      page_align: 'left'
     }
 
     config = { theme: theme }
     account_config = Leter::AccountConfig.new(config)
 
-    assert_equal(theme[:page_align], account_config.theme.page_align)
+    assert_nil(account_config.theme.page_align)
+    assert_equal('crest', account_config.theme.name)
   end
   # TODO: test override with non existent attr
 

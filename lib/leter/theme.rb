@@ -12,11 +12,19 @@ module Leter
       :heading_font,
       :heading_color,
       :font_url,
-      :accent_color
+      :accent_color,
+      :link_color
+
+    attr_accessor :name
 
     THEME = File.read(File.expand_path('theme.css.erb', __dir__))
     DEFAULT = 'default'
     RGBA_OPACITY = 0.8
+
+    PAGE_ALIGN = {
+      center: '0 auto',
+      left: nil
+    }.freeze
 
     def initialize(name = DEFAULT)
       @name = name
@@ -26,14 +34,14 @@ module Leter
       @theme = default_theme.merge(user_theme).transform_keys(&:to_sym)
     end
 
-    attr_reader :name
-
     def background_color
       @background_color || @theme[:background_color]
     end
 
     def page_align
-      @page_align || @theme[:page_align]
+      align = @page_align || @theme[:page_align]
+
+      PAGE_ALIGN.fetch(align.try(:to_sym), PAGE_ALIGN[:center])
     end
 
     def text_font
@@ -58,6 +66,10 @@ module Leter
 
     def accent_color
       @accent_color || @theme[:accent_color] || Color.hex_to_rgba_css(heading_color, RGBA_OPACITY)
+    end
+
+    def link_color
+      @link_color || @theme[:link_color] || accent_color
     end
 
     def to_css

@@ -14,8 +14,9 @@
     <%# TODO default leter favicon or custom/automatic like https://overreacted.io/ %>
     <%# <link id="favicon" rel="icon" type="image/x-icon" href="favicon.ico"> %>
 
-    <%# TODO merge into inline css? %>
-    <link rel="stylesheet" href="<% Leter::Asset.new(:normalize).url %>">
+    <%# TODO merge into inline css?%>
+    <%# TODO way to test this to make sure its outputing correctly %>
+    <link rel="stylesheet" href="<%= Leter::Asset.new(:normalize).url %>">
 
     <style><%= config.theme.try(:to_css) %></style>
 

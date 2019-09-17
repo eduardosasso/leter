@@ -1,7 +1,1 @@
-text_font: "'Noto Sans', sans-serif"
-text_color: "#313131"
-heading_font: "'Merriweather', serif"
-heading_color: '#111111'
-background_color: "#f6f6f6"
-
-
+link_color: "#0074D9"

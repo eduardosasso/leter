@@ -13,7 +13,7 @@ class CodeTest < Minitest::Test
     font = Leter::Asset.new(:hack_font).url
 
     assert_match(js, code)
-    assert_match('hljs.initHighlightingOnLoad();', code)
+    assert_match('hljs.highlightBlock', code)
     assert_match(font, code)
   end
 

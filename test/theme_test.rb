@@ -16,6 +16,7 @@ class ThemeTest < Minitest::Test
           "  --heading_font: #{theme.heading_font};\n" \
           "  --heading_color: #{theme.heading_color};\n" \
           "  --accent_color: #{theme.accent_color};\n" \
+          "  --link_color: #{theme.link_color};\n" \
           "}\n"
 
     assert_equal(css, theme.to_css)
@@ -62,5 +63,33 @@ class ThemeTest < Minitest::Test
     theme.accent_color = 'brown'
 
     assert_equal('brown', theme.accent_color)
+  end
+
+  def test_link_color
+    theme = Leter::Theme.new('bungee')
+    theme.link_color = 'brown'
+
+    assert_equal('brown', theme.link_color)
+  end
+
+  def test_default_link_color
+    theme = Leter::Theme.new('bungee')
+    theme.accent_color = 'blue'
+
+    assert_equal('blue', theme.link_color)
+  end
+
+  def test_page_align_center
+    theme = Leter::Theme.new('bungee')
+    theme.page_align = 'center'
+
+    assert_equal(Leter::Theme::PAGE_ALIGN[:center], theme.page_align)
+  end
+
+  def test_page_align_left
+    theme = Leter::Theme.new('bungee')
+    theme.page_align = 'left'
+
+    assert_nil(theme.page_align)
   end
 end

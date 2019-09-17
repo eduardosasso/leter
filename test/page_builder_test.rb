@@ -166,6 +166,7 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
       "  --heading_font: #{theme.heading_font};\n" \
       "  --heading_color: #{theme.heading_color};\n" \
       "  --accent_color: #{theme.accent_color};\n" \
+      "  --link_color: #{theme.link_color};\n" \
     "}\n"
   end
 end
