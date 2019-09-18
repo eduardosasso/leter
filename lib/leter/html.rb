@@ -40,6 +40,10 @@ module Leter
       parser.at_css('body').inner_html
     end
 
+    def theme_name
+      parser.at('body')['id']
+    end
+
     def date
       parser.at_css('.published').try(:text)
     end

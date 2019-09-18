@@ -29,7 +29,7 @@ module Leter
         page = Page.new(
           page_builder(file),
           slug(file),
-          format_date(updated_at),
+          updated_at,
           root_folder(file)
         )
 
@@ -64,6 +64,10 @@ module Leter
 
     private
 
+    def custom_page_config(file)
+      config.custom(slug(file).to_s)
+    end
+
     def slug(file)
       Slug.new(file)
     end
@@ -71,23 +75,23 @@ module Leter
     def page_builder(file)
       markdown = IO.read_file(file)
 
-      PageBuilder.new(markdown, config)
+      PageBuilder.new(markdown, custom_page_config(file))
     end
 
     def add_page(page)
       html = page.builder.tap do |p|
         # add date only for non index pages
-        p.add_date(page.date) if page.date && !page.slug.index?
+        p.add_date(format_date(page.date, p.config.date_format)) unless page.slug.index?
       end.html
 
-      IO.save_file(page.slug.to_s, html)
+      IO.save_file(page.slug.to_filename, html)
     end
 
     def add_index(page)
       item = IndexItem.new.tap do |i|
         i.title = page.builder.title
         i.url = page.slug.to_url
-        i.updated_at = page.date
+        i.updated_at = format_date(page.date)
       end
 
       index_builder.add(page.root_folder, item)
@@ -119,10 +123,10 @@ module Leter
         .first
     end
 
-    def format_date(date)
-      return nil unless config.date_format
+    def format_date(date, format = config.date_format)
+      return nil unless format
 
-      date.strftime(config.date_format)
+      date.strftime(format)
     end
   end
 end

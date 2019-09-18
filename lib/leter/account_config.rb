@@ -8,10 +8,12 @@ require 'active_support/core_ext/hash/indifferent_access'
 module Leter
   class AccountConfig
     attr_writer :theme, :google_analytics, :date_format, :css_url, :code_theme, :code_font
+    attr_reader :config
 
     DEFAULT_CONFIG = File.expand_path('default_config.yml', __dir__)
 
     # TODO: document all the theme options
+    # TODO: document neat tricky to use drafts folder on .gitignore
     # https://github.com/highlightjs/highlight.js/tree/master/src/styles
     CODE_THEME = 'atom-one-dark'
 
@@ -20,7 +22,7 @@ module Leter
     end
 
     def theme
-      style = @theme || @config[:theme]
+      style = @theme || config[:theme]
 
       return unless style
 
@@ -34,17 +36,17 @@ module Leter
     end
 
     def google_analytics
-      @google_analytics || @config[:google_analytics]
+      @google_analytics || config[:google_analytics]
     end
 
     def date_format
-      @date_format || @config[:date_format]
+      @date_format || config[:date_format]
     end
 
     # hidden to use local css
     # TODO rename config and css_prof_url - jsdelivr bump version
     def css_url
-      @css_url || @config[:css_url] || Leter::Config.css_prod_url
+      @css_url || config[:css_url] || Leter::Config.css_prod_url
     end
 
     def code_theme
@@ -52,7 +54,7 @@ module Leter
     end
 
     def to_yaml
-      @config.to_yaml
+      config.to_yaml
     end
 
     def self.filename
@@ -76,10 +78,21 @@ module Leter
       load(DEFAULT_CONFIG)
     end
 
+    def custom(name)
+      path = name.split('/').reject(&:empty?)
+
+      custom_config = config
+                      .fetch(:custom, {})
+                      .with_indifferent_access
+                      .dig(*path)
+
+      AccountConfig.new(config.merge(custom_config || {}))
+    end
+
     private
 
     def code
-      @config[:code] || {}
+      config[:code] || {}
     end
   end
 end

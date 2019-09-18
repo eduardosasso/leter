@@ -12,6 +12,8 @@ require 'leter/code'
 
 module Leter
   class PageBuilder
+    attr_accessor :config
+
     LAYOUT = File.read(File.expand_path('layout.html.erb', __dir__))
 
     def initialize(markdown, config = Leter::AccountConfig.default)
@@ -24,7 +26,7 @@ module Leter
         h.title = title
         h.description = description
         h.body = body
-        h.config = @config
+        h.config = config
         h.has_code = code?
       end
 
@@ -49,9 +51,11 @@ module Leter
     end
 
     def add_date(date)
-      published = "<span class='published'>#{date}</span>"
+      if date
+        published = "<span class='published'>#{date}</span>"
 
-      html_helper.first_h1.try(:after, published)
+        html_helper.first_h1.try(:after, published)
+      end
 
       self
     end

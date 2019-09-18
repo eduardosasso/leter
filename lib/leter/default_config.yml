@@ -12,6 +12,13 @@ theme: default
 date_format: "<%= Leter::DATE_FORMAT %>"
 google_analytics:
 
+# TODO explain custom page override options
+# custom:
+#   index:
+#     theme: crest
+
+# TODO generate a sample yaml automatic with all the possible options
+  
 # TODO
 # favicon:
 # index_page:

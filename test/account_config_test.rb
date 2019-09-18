@@ -96,4 +96,42 @@ class AccountConfigTest < Minitest::Test
 
     File.delete(config.filename)
   end
+
+  def test_custom_page
+    account_config = Leter::AccountConfig
+
+    new_config = {
+      theme: 'banana',
+      google_analytics: 123,
+      date_format: 'xxx',
+      custom: {
+        index: {
+          theme: 'crest',
+          date_format: 'abc'
+        }
+      }
+    }
+
+    Leter::IO.save_file(account_config.filename, new_config.to_yaml)
+
+    config = Leter::AccountConfig.load(account_config.filename)
+
+    custom_config = config.custom('index')
+
+    assert_equal('crest', custom_config.theme.name)
+    assert_equal('abc', custom_config.date_format)
+
+    File.delete(account_config.filename)
+  end
+
+  def test_no_custom_page
+    new_config = {
+      theme: 'banana',
+      google_analytics: 123
+    }
+
+    config = Leter::AccountConfig.new(new_config)
+
+    assert_equal('banana', config.custom('index').theme.name)
+  end
 end

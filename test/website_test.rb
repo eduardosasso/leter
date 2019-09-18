@@ -105,4 +105,16 @@ class WebsiteTest < Minitest::Test
 
     assert_nil(Leter::Html.new(index).date)
   end
+
+  def test_custom_page_config
+    Leter::IO.save_file('blog/vim_tips.md', '# vim tips')
+    custom = { blog: { 'vim-tips': { theme: 'crest' } } }
+
+    config = Leter::AccountConfig.new(theme: 'banana', custom: custom)
+    Leter::Website.new(config).build
+
+    blog_post = Leter::IO.read_file('blog/vim-tips/index.html')
+
+    assert_equal('crest', Leter::Html.new(blog_post).theme_name)
+  end
 end
