@@ -1,0 +1,6 @@
+background_color: "#232323"
+text_font: "'Open Sans', sans-serif"
+text_color: "#c2c2c2"
+heading_font: "'Noto Serif', serif"
+heading_color: "#e2fd36"
+font_url: "https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans&display=swap"

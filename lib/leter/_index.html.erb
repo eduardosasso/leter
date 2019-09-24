@@ -3,14 +3,14 @@
 <ul id="index">
   <% items.each do |item| %>
     <li>
-      <%# TODO check why adding extra space if break line for formatting %>
-      <a href="<%= item.url %>"><%= item.title %></a>
-
       <% if item.updated_at %>
         <span class='updated_at'>
-          <%= item.updated_at %>
+          <%= item.updated_at %> »
         </span>
       <% end %>
+
+      <%# TODO check why adding extra space if break line for formatting %>
+			<a href="<%= item.url %>"><%= item.title %></a>
     </li>
   <% end %>
 </ul>
