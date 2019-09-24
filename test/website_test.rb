@@ -48,7 +48,7 @@ class WebsiteTest < Minitest::Test
 
     index_item_updated_at = html.parser.at_css('span.updated_at').text.strip
 
-    updated_at = Date.today.strftime(Leter::DATE_FORMAT)
+    updated_at = Date.today.strftime(Leter::DATE_FORMAT) + ' »'
 
     assert_equal(updated_at, index_item_updated_at)
   end
