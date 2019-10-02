@@ -36,6 +36,37 @@ module Leter
       parser.at_css('code')
     end
 
+    def image?
+      images.any?
+    end
+
+    def images
+      parser.css('img')
+    end
+
+    def image_chain
+      group = []
+      chain = Set.new
+
+      images.each do |image|
+        img_before = image.previous_element.try(:name) == 'img'
+        img_after = image.next_element.try(:name) == 'img'
+
+        chain.add(image) if img_before || img_after
+
+        if img_before && !img_after
+          group.push(chain.dup)
+          chain.clear
+        end
+      end
+
+      group
+    end
+
+    def image_chain?
+      image_chain.any?
+    end
+
     def body
       parser.at_css('body').inner_html
     end

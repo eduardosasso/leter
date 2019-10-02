@@ -42,6 +42,19 @@ module Leter
       html_helper.description
     end
 
+    # TODO
+    # carousel options
+    # https://github.com/metafizzy/flickity
+    # https://github.com/glidejs/glide
+    # popup options
+    # https://github.com/biati-digital/glightbox
+    # https://github.com/feimosi/baguetteBox.js
+    def images; end
+
+    def image?
+      # so we can add libraries and code
+    end
+
     def code?
       html_helper.code?
     end

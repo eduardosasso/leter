@@ -157,6 +157,23 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     assert_nil(page_builder.date)
   end
 
+  def test_images
+    # TODO: list images and get their sizes
+    # sequence of images together to form a carousel
+    # convert individual pictures to form a figure tag?
+    # for multiple pics remove the pics and initialize carousel
+    # suppot for click/tap lightbox to show bigger version
+
+    markdown = <<~MD
+      # Image Testing
+      Lorem ipsum blablabla another paragraph
+      ![Minion](https://octodex.github.com/images/minion.png "Minion image caption")
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+    pp page_builder.html
+  end
+
   def css(theme)
     ":root {\n" \
       "  --background_color: #{theme.background_color};\n" \

@@ -76,4 +76,57 @@ class HtmlTest < Minitest::Test
 
     assert(!html_parser.code?)
   end
+
+  def test_image
+    markdown = <<~MD
+      # Testing
+      a single image
+      ![Minion0](https://octodex.github.com/images/minion.png)
+      ## more text
+      another paragraph
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    html_parser = Leter::Html.new(html)
+
+    assert(html_parser.image?)
+  end
+
+  def test_image_chain
+    markdown = <<~MD
+      # Testing
+      a single image
+
+      ![1](1)
+      ![2](2)
+      ![3](3)
+
+      another paragraph
+
+      ### header
+      some copy
+
+      ```ruby
+      p "hello"
+      ```
+
+      ![4](4)
+      ![5](5)
+
+      ## TLDR
+      the end
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    html_parser = Leter::Html.new(html)
+
+    assert_equal(2, html_parser.image_chain.size)
+    assert_equal(%w[1 2 3], html_parser.image_chain.first.to_a.map { |c| c.attr('src') })
+  end
 end
