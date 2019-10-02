@@ -95,6 +95,37 @@ class HtmlTest < Minitest::Test
     assert(html_parser.image?)
   end
 
+  # TODO: document it need empty line between stuff to check for single
+  def test_images
+    markdown = <<~MD
+      # Testing
+      a single image
+
+      ![alt 1](a1 "title 1")
+
+      another single
+
+      ![alt 2](a2 "title 2")
+
+      and one more
+
+      ![alt 3](a3 'title 3')
+
+      ## TLDR
+      the end
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    html_parser = Leter::Html.new(html)
+
+    assert_equal(3, html_parser.images.size)
+    assert_equal('title 2', html_parser.images[1].title)
+    assert(html_parser.images.first.single?)
+  end
+
   def test_image_chain
     markdown = <<~MD
       # Testing
@@ -127,6 +158,6 @@ class HtmlTest < Minitest::Test
     html_parser = Leter::Html.new(html)
 
     assert_equal(2, html_parser.image_chain.size)
-    assert_equal(%w[1 2 3], html_parser.image_chain.first.to_a.map { |c| c.attr('src') })
+    assert_equal(%w[1 2 3], html_parser.image_chain.first.to_a.map(&:src))
   end
 end

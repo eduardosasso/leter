@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'leter/image'
+
 module Leter
   class Html
     attr_reader :html
@@ -41,7 +43,20 @@ module Leter
     end
 
     def images
-      parser.css('img')
+      parser.css('img').map do |img|
+        single = [
+          img.previous_element.try(:name) != 'img',
+          img.next_element.try(:name) != 'img'
+        ].all?
+
+        Image.new.tap do |i|
+          i.ref = img
+          i.src = img.attr(:src)
+          i.title = img.attr(:title)
+          i.alt = img.attr(:alt)
+          i.single = single
+        end
+      end
     end
 
     def image_chain

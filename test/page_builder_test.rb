@@ -164,14 +164,14 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     # for multiple pics remove the pics and initialize carousel
     # suppot for click/tap lightbox to show bigger version
 
-    markdown = <<~MD
-      # Image Testing
-      Lorem ipsum blablabla another paragraph
-      ![Minion](https://octodex.github.com/images/minion.png "Minion image caption")
-    MD
+    # markdown = <<~MD
+    #   # Image Testing
+    #   Lorem ipsum blablabla another paragraph
+    #   ![Minion](https://octodex.github.com/images/minion.png "Minion image caption")
+    # MD
 
-    page_builder = Leter::PageBuilder.new(markdown)
-    pp page_builder.html
+    # page_builder = Leter::PageBuilder.new(markdown)
+    # pp page_builder.html
   end
 
   def css(theme)

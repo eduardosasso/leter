@@ -2,18 +2,19 @@
 
 module Leter
   class Image
-    def initialize(path)
-      @path = path
+    attr_accessor :ref, :src, :title, :alt
+    attr_writer :single
+
+    def single?
+      @single
     end
 
-    def local?
-      # TODO: local or remote image
+    def previous_element
+      ref.previous_element
     end
 
-    def size; end
-
-    def orientation; end
-
-    def to_html; end
+    def next_element
+      ref.next_element
+    end
   end
 end

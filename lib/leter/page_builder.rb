@@ -77,6 +77,20 @@ module Leter
       html_helper.body
     end
 
+    def content
+      # body = html_helper.body
+
+      html_helper.image_singles.each do |image|
+        # nokogiri ref replace elemtn
+        # title for caption
+      end
+
+      html_helper.image_chain.each do |image|
+      end
+
+      # change html
+    end
+
     def html_helper
       @html_helper ||= begin
         html = Leter::Markdown.new(@markdown).to_html
