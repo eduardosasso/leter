@@ -59,6 +59,10 @@ module Leter
       end
     end
 
+    def image_singles
+      images.select(&:single?)
+    end
+
     def image_chain
       group = []
       chain = Set.new

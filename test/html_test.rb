@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class HtmlTest < Minitest::Test
+class HtmlTest < Minitest::Test # rubocop:disable Metrics/ClassLength
   def test_powered_by
     markdown = <<~MD
       # hello world
@@ -95,6 +95,34 @@ class HtmlTest < Minitest::Test
     assert(html_parser.image?)
   end
 
+  def test_image_singles
+    markdown = <<~MD
+      # Testing
+      a single image
+
+      ![alt 1](a1 "title 1")
+      another single
+
+      ![alt 2](a2 "title 2")
+      ![alt 4](a4 "title 4")
+
+      and one more
+
+      ![alt 3](a3 'title 3')
+
+      ## TLDR
+      the end
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    html_parser = Leter::Html.new(html)
+
+    assert_equal(%w[a1 a3], html_parser.image_singles.collect(&:src))
+  end
+
   # TODO: document it need empty line between stuff to check for single
   def test_images
     markdown = <<~MD
@@ -122,7 +150,6 @@ class HtmlTest < Minitest::Test
     html_parser = Leter::Html.new(html)
 
     assert_equal(3, html_parser.images.size)
-    assert_equal('title 2', html_parser.images[1].title)
     assert(html_parser.images.first.single?)
   end
 

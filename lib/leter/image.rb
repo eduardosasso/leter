@@ -2,6 +2,8 @@
 
 module Leter
   class Image
+    IMAGE_TAG = File.read(File.expand_path('_image.html.erb', __dir__))
+
     attr_accessor :ref, :src, :title, :alt
     attr_writer :single
 
@@ -15,6 +17,16 @@ module Leter
 
     def next_element
       ref.next_element
+    end
+
+    def html
+      resources = {
+        src: src,
+        alt: alt,
+        caption: alt
+      }
+
+      ERB.new(IMAGE_TAG).result_with_hash(resources)
     end
   end
 end

@@ -22,6 +22,8 @@ module Leter
     end
 
     def html
+      prepare_images
+
       html_template = Leter::HtmlTemplate.new.tap do |h|
         h.title = title
         h.description = description
@@ -49,10 +51,13 @@ module Leter
     # popup options
     # https://github.com/biati-digital/glightbox
     # https://github.com/feimosi/baguetteBox.js
+    # lazy loading
+    # https://github.com/verlok/lazyload
+    # TODO optimize images automatically
     def images; end
 
     def image?
-      # so we can add libraries and code
+      html_helper.image?
     end
 
     def code?
@@ -77,18 +82,13 @@ module Leter
       html_helper.body
     end
 
-    def content
-      # body = html_helper.body
-
+    def prepare_images
       html_helper.image_singles.each do |image|
-        # nokogiri ref replace elemtn
-        # title for caption
+        image.ref.replace(image.html)
       end
 
       html_helper.image_chain.each do |image|
       end
-
-      # change html
     end
 
     def html_helper

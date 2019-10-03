@@ -157,21 +157,37 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     assert_nil(page_builder.date)
   end
 
-  def test_images
+  def test_image_singles
     # TODO: list images and get their sizes
-    # sequence of images together to form a carousel
-    # convert individual pictures to form a figure tag?
     # for multiple pics remove the pics and initialize carousel
     # suppot for click/tap lightbox to show bigger version
 
-    # markdown = <<~MD
-    #   # Image Testing
-    #   Lorem ipsum blablabla another paragraph
-    #   ![Minion](https://octodex.github.com/images/minion.png "Minion image caption")
-    # MD
+    # convert individual pictures to form a figure tag?
+    markdown = <<~MD
+      # Testing
+      a single image
 
-    # page_builder = Leter::PageBuilder.new(markdown)
-    # pp page_builder.html
+      ![alt 1](a1 "title 1")
+      another single
+
+      ![alt 2](a2 "title 2")
+      ![alt 4](a4 "title 4")
+
+      and one more
+
+      ![alt 3](a3 'title 3')
+
+      ## TLDR
+      the end
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    page = Nokogiri::HTML.parse(html)
+
+    assert_equal('alt 1', page.at_css('figure figcaption').text)
   end
 
   def css(theme)
