@@ -83,7 +83,7 @@ class WebsiteTest < Minitest::Test
       w.clean
     end
 
-    assert(Dir['tmp/clean/site/**/*.html'].empty?)
+    assert_empty(Dir['tmp/clean/site/**/*.html'])
   end
 
   def test_add_date

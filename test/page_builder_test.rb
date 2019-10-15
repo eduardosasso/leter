@@ -47,7 +47,7 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
 
     links = page.css('link').map(&:attributes).map { |m| m['href'].value }
 
-    assert(links.include?(config.theme.font_url))
+    assert_includes(links, config.theme.font_url)
   end
 
   def test_description_metatag

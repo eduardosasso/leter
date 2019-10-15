@@ -5,19 +5,13 @@ require 'test_helper'
 require 'leter/image'
 
 class ImageTest < Minitest::Test
-  def test_html
-    image = Leter::Image.new.tap do |i|
-      i.src = 'src'
-      i.alt = 'alt'
-      i.title = 'title'
-    end
+  def test_resize
+    Leter::Image.new('test/fixtures/image_1300x900.jpg').resize
+    p Leter::Image.new('test/fixtures/image_1300x900.jpg').display_url
+  end
 
-    html = Nokogiri::HTML.parse(image.html)
-
-    assert(html.at_css('figure img'))
-    assert(html.at_css('figure figcaption'))
-
-    assert_equal('src', html.at_css('figure img').attr('src'))
-    assert_equal('alt', html.at_css('figure figcaption').text)
+  def test_original?
+    assert(Leter::Image.new('test/fixtures/image_1300x900.jpg').original?)
+    assert(!Leter::Image.new('test/fixtures/image_1300x900_L1024.jpg').original?)
   end
 end

@@ -1,3 +1,5 @@
+require: rubocop-minitest
+
 Documentation:
   Enabled: false
 
