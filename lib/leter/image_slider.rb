@@ -2,7 +2,8 @@
 
 module Leter
   class ImageSlider
-    IMAGE_SLIDER_PARTIAL = File.read(File.expand_path('_image_slider.html.erb', __dir__))
+    IMAGE_SLIDER_ASSETS = File.read(File.expand_path('_image_slider_assets.html.erb', __dir__))
+    IMAGE_SLIDER_HTML = File.read(File.expand_path('_image_slider.html.erb', __dir__))
 
     def script
       asset = Leter::Asset.new(:glidejs)
@@ -13,7 +14,11 @@ module Leter
         css: css
       }
 
-      ERB.new(IMAGE_SLIDER_PARTIAL).result_with_hash(resources)
+      ERB.new(IMAGE_SLIDER_ASSETS).result_with_hash(resources)
+    end
+
+    def html(images)
+      ERB.new(IMAGE_SLIDER_HTML).result_with_hash(images: images)
     end
   end
 end

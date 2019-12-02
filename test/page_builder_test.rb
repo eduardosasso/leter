@@ -207,6 +207,24 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     assert_match('glide.core.min.css', html)
   end
 
+  def test_image_slider_html
+    markdown = <<~MD
+      # Testing
+
+      ![1](1)
+      ![2](2)
+      ![3](3)
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    page = Nokogiri::HTML.parse(html)
+
+    assert_equal(3, page.at_css('li.glide__slide').children.count)
+  end
+
   def css(theme)
     ":root {\n" \
       "  --background_color: #{theme.background_color};\n" \

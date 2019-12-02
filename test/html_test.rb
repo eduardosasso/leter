@@ -68,9 +68,7 @@ class HtmlTest < Minitest::Test # rubocop:disable Metrics/ClassLength
       ## no code block
     MD
 
-    page_builder = Leter::PageBuilder.new(markdown)
-
-    html = page_builder.html
+    html = Leter::Markdown.new(markdown).to_html
 
     html_parser = Leter::Html.new(html)
 
@@ -86,9 +84,7 @@ class HtmlTest < Minitest::Test # rubocop:disable Metrics/ClassLength
       another paragraph
     MD
 
-    page_builder = Leter::PageBuilder.new(markdown)
-
-    html = page_builder.html
+    html = Leter::Markdown.new(markdown).to_html
 
     html_parser = Leter::Html.new(html)
 
@@ -114,9 +110,7 @@ class HtmlTest < Minitest::Test # rubocop:disable Metrics/ClassLength
       the end
     MD
 
-    page_builder = Leter::PageBuilder.new(markdown)
-
-    html = page_builder.html
+    html = Leter::Markdown.new(markdown).to_html
 
     html_parser = Leter::Html.new(html)
 
@@ -143,9 +137,7 @@ class HtmlTest < Minitest::Test # rubocop:disable Metrics/ClassLength
       the end
     MD
 
-    page_builder = Leter::PageBuilder.new(markdown)
-
-    html = page_builder.html
+    html = Leter::Markdown.new(markdown).to_html
 
     html_parser = Leter::Html.new(html)
 
@@ -153,7 +145,7 @@ class HtmlTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     assert(html_parser.images.first.single?)
   end
 
-  def test_image_chain
+  def test_image_grup
     markdown = <<~MD
       # Testing
       a single image
@@ -178,13 +170,11 @@ class HtmlTest < Minitest::Test # rubocop:disable Metrics/ClassLength
       the end
     MD
 
-    page_builder = Leter::PageBuilder.new(markdown)
-
-    html = page_builder.html
+    html = Leter::Markdown.new(markdown).to_html
 
     html_parser = Leter::Html.new(html)
 
-    assert_equal(2, html_parser.image_chain.size)
-    assert_equal(%w[1 2 3], html_parser.image_chain.first.to_a.map(&:src))
+    assert_equal(2, html_parser.image_group.size)
+    assert_equal(%w[1 2 3], html_parser.image_group.first.to_a.map(&:src))
   end
 end

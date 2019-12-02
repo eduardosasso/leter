@@ -23,16 +23,19 @@ module Leter
     end
 
     def html
-      prepare_images
-
       html_template = Leter::HtmlTemplate.new.tap do |h|
         h.title = title
         h.description = description
-        h.body = body
         h.config = config
         h.has_code = code?
         h.has_image_slider = image_slider?
       end
+
+      # replaces img in html with tag or slider
+      prepare_image_singles
+      prepare_image_groups
+
+      html_template.body = body
 
       # TODO: use result with hash can remove html_template file
       ERB.new(LAYOUT).result(html_template.use_binding)
@@ -63,7 +66,7 @@ module Leter
     end
 
     def image_slider?
-      html_helper.image_chain?
+      html_helper.image_group?
     end
 
     def code?
@@ -88,13 +91,23 @@ module Leter
       html_helper.body
     end
 
-    def prepare_images
+    def prepare_image_singles
       html_helper.image_singles.each do |image|
         image.ref.replace(image.html)
       end
+    end
 
-      # TODO: carousel
-      html_helper.image_chain.each do |image|
+    def prepare_image_groups
+      html_helper.image_group.each do |group|
+        images = group.collect(&:html)
+
+        image_slider = ImageSlider.new.html(images)
+
+        group.first.ref.replace(image_slider)
+
+        group.drop(1).each do |image|
+          image.ref.remove
+        end
       end
     end
 

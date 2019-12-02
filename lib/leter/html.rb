@@ -63,7 +63,7 @@ module Leter
       images.select(&:single?)
     end
 
-    def image_chain
+    def image_group
       group = []
       chain = Set.new
 
@@ -82,8 +82,8 @@ module Leter
       group
     end
 
-    def image_chain?
-      image_chain.any?
+    def image_group?
+      image_group.any?
     end
 
     def body

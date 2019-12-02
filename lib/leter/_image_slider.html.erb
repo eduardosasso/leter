@@ -1,7 +1,11 @@
-<link rel="stylesheet" href="<%= css %>">
-
-<script async src="<%= js %>"></script>
-
-<script>
-  new Glide('.glide').mount()
-</script>
+<div class="glide">
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides">
+      <% images.each do |image| %>
+        <li class="glide__slide">
+          <%= image %>
+        </li>
+      <% end %>  
+    </ul>
+  </div>
+</div>
