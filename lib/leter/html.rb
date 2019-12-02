@@ -49,11 +49,9 @@ module Leter
           img.next_element.try(:name) != 'img'
         ].all?
 
-        image_src = Image.new(img.attr(:src)).display_url
-
         ImageTag.new.tap do |i|
           i.ref = img
-          i.src = image_src
+          i.src = img.attr(:src)
           i.title = img.attr(:title)
           i.alt = img.attr(:alt)
           i.single = single

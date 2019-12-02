@@ -4,10 +4,10 @@ require 'test_helper'
 require 'leter/code'
 
 class CodeTest < Minitest::Test
-  def test_result
+  def test_script
     config = Leter::AccountConfig.new(theme: 'banana')
 
-    code = Leter::Code.new(config).result
+    code = Leter::Code.new(config).script
 
     js = Leter::Asset.new(:highlightjs).url
     font = Leter::Asset.new(:hack_font).url
@@ -17,15 +17,15 @@ class CodeTest < Minitest::Test
     assert_match(font, code)
   end
 
-  def test_result_css
+  def test_script_css
     code = { theme: 'dark' }
 
     config = Leter::AccountConfig.new(theme: 'banana', code: code)
 
-    result = Leter::Code.new(config).result
+    script = Leter::Code.new(config).script
 
     css = Leter::Asset.new(:highlightjs).path + '/styles/dark.min.css'
 
-    assert_match(css, result)
+    assert_match(css, script)
   end
 end

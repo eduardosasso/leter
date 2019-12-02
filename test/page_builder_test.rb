@@ -190,6 +190,23 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     assert_equal('alt 1', page.at_css('figure figcaption').text)
   end
 
+  def test_image_slider_asset
+    markdown = <<~MD
+      # Testing
+
+      ![1](1)
+      ![2](2)
+      ![3](3)
+    MD
+
+    page_builder = Leter::PageBuilder.new(markdown)
+
+    html = page_builder.html
+
+    assert_match(Leter::Asset.new(:glidejs).url, html)
+    assert_match('glide.core.min.css', html)
+  end
+
   def css(theme)
     ":root {\n" \
       "  --background_color: #{theme.background_color};\n" \

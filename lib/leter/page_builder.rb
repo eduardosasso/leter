@@ -9,6 +9,7 @@ require 'leter/account_config'
 require 'leter/markdown'
 require 'leter/html'
 require 'leter/code'
+require 'leter/image_slider'
 
 module Leter
   class PageBuilder
@@ -30,6 +31,7 @@ module Leter
         h.body = body
         h.config = config
         h.has_code = code?
+        h.has_image_slider = image_slider?
       end
 
       # TODO: use result with hash can remove html_template file
@@ -60,6 +62,10 @@ module Leter
       html_helper.image?
     end
 
+    def image_slider?
+      html_helper.image_chain?
+    end
+
     def code?
       html_helper.code?
     end
@@ -87,6 +93,7 @@ module Leter
         image.ref.replace(image.html)
       end
 
+      # TODO: carousel
       html_helper.image_chain.each do |image|
       end
     end

@@ -10,7 +10,7 @@ module Leter
       @config = account_config
     end
 
-    def result
+    def script
       asset = Leter::Asset.new(:highlightjs)
 
       filename = @config.code_theme + '.min.css'

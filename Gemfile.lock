@@ -3,7 +3,6 @@ PATH
   specs:
     leter (0.1.0)
       activesupport (~> 5.2, >= 5.2.3)
-      mini_magick (~> 4.5, >= 4.5.1)
       motion-markdown-it (~> 8.4, >= 8.4.1.1)
       motion-markdown-it-plugins (~> 8.4, >= 8.4.2.1)
       nokogiri (~> 1.10, >= 1.10.3)
@@ -70,7 +69,6 @@ GEM
     linkify-it-rb (2.0.3)
       uc.micro-rb (~> 1.0)
     mdurl-rb (1.0.5)
-    mini_magick (4.9.5)
     mini_portile2 (2.4.0)
     minitest (5.12.2)
     minitest-reporters (1.4.1)

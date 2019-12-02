@@ -2,7 +2,7 @@
 
 module Leter
   class HtmlTemplate
-    attr_accessor :title, :description, :body, :config, :has_code
+    attr_accessor :title, :description, :body, :config, :has_code, :has_image_slider
 
     # support templating of member data.
     def use_binding

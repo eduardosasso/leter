@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'mini_magick'
-
+# require 'mini_magick'
+# NOT IMPLEMENTED
 module Leter
-  #TODO check if imagemagick is installed
+  # TODO: check if imagemagick is installed
   class Image
     attr_reader :url
 
@@ -11,7 +11,7 @@ module Leter
     DISPLAY = 700
     LARGE = 1024
 
-    SIZES = [DISPLAY, LARGE]
+    SIZES = [DISPLAY, LARGE].freeze
 
     def initialize(url)
       @url = url
@@ -38,17 +38,13 @@ module Leter
 
     def original_url; end
 
-    def size(format = nil)
-    end
+    def size(format = nil); end
 
-    def dimensions(format = nil) 
-    end
+    def dimensions(format = nil); end
 
-    def width(format = nil) 
-    end
+    def width(format = nil); end
 
-    def height(format = nil) 
-    end
+    def height(format = nil); end
 
     def path
       File.dirname(url)
@@ -83,7 +79,7 @@ module Leter
       ].join('')
     end
 
-    # TODO test local and remove images
+    # TODO: test local and remove images
     # url should translate to local url
     def image_magick
       @image_magick ||= MiniMagick::Image.open(url)

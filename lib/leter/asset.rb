@@ -14,7 +14,8 @@ module Leter
     LIBRARIES = {
       highlightjs: 'highlight.js/9.15.10/highlight.min.js',
       normalize: 'normalize/8.0.1/normalize.min.css',
-      hack_font: 'hack-font/3.003/web/hack.min.css'
+      hack_font: 'hack-font/3.003/web/hack.min.css',
+      glidejs: 'Glide.js/3.4.1/glide.min.js'
     }.freeze
 
     def initialize(name)
