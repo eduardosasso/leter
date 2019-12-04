@@ -8,4 +8,10 @@
       <% end %>  
     </ul>
   </div>
+
+  <div class="glide__bullets" data-glide-el="controls[nav]">
+    <% images.each_with_index do |item, index| %>
+      <button class="glide__bullet" data-glide-dir="=<%= index %>"></button>
+    <% end %>
+  </div>
 </div>

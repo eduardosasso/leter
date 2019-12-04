@@ -8,10 +8,12 @@ module Leter
     def script
       asset = Leter::Asset.new(:glidejs)
       css = File.join(asset.path, 'css/glide.core.min.css')
+      theme = File.join(asset.path, 'css/glide.theme.min.css')
 
       resources = {
         js: asset.url,
-        css: css
+        css: css,
+        theme: theme
       }
 
       ERB.new(IMAGE_SLIDER_ASSETS).result_with_hash(resources)
