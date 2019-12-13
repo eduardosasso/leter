@@ -9,6 +9,7 @@ module Leter
       :page_align,
       :text_font,
       :text_color,
+      :text_size,
       :heading_font,
       :heading_color,
       :font_url,
@@ -20,6 +21,7 @@ module Leter
     THEME = File.read(File.expand_path('theme.css.erb', __dir__))
     DEFAULT = 'default'
     RGBA_OPACITY = 0.8
+    TEXT_SIZE = '1.1em'
 
     PAGE_ALIGN = {
       center: '0 auto',
@@ -50,6 +52,10 @@ module Leter
 
     def text_color
       @text_color || @theme[:text_color]
+    end
+
+    def text_size
+      @text_size || @theme[:text_size] || TEXT_SIZE
     end
 
     def heading_font

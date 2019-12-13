@@ -13,6 +13,7 @@ class ThemeTest < Minitest::Test
           "  --page_align: #{theme.page_align};\n" \
           "  --text_font: #{theme.text_font};\n" \
           "  --text_color: #{theme.text_color};\n" \
+          "  --text_size: #{theme.text_size};\n" \
           "  --heading_font: #{theme.heading_font};\n" \
           "  --heading_color: #{theme.heading_color};\n" \
           "  --accent_color: #{theme.accent_color};\n" \

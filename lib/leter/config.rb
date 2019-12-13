@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'leter/version'
+
 module Leter
   class Config
     CSS_PROD_PATH = 'https://s3-us-west-1.amazonaws.com/leter-themes/'
