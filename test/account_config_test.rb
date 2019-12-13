@@ -6,7 +6,7 @@ require 'date'
 require 'leter/account_config'
 require 'leter/io'
 
-class AccountConfigTest < Minitest::Test
+class AccountConfigTest < Minitest::Test # rubocop:disable Metrics/ClassLength
   def test_default_config
     config = Leter::AccountConfig.default
 
@@ -30,7 +30,7 @@ class AccountConfigTest < Minitest::Test
     config = { theme: theme }
     account_config = Leter::AccountConfig.new(config)
 
-    assert_nil(account_config.theme.page_align)
+    assert_equal(Leter::Theme::PAGE_ALIGN[:left], account_config.theme.page_align)
     assert_equal('crest', account_config.theme.name)
   end
   # TODO: test override with non existent attr
@@ -95,6 +95,46 @@ class AccountConfigTest < Minitest::Test
     assert_equal('dark', code_theme)
 
     File.delete(config.filename)
+  end
+
+  def test_title_and_description
+    config = Leter::AccountConfig
+    options = { 'title' => 'clean title', 'description' => 'nice description' }.to_yaml
+
+    Leter::IO.save_file(config.filename, options)
+
+    site = config.load(config.filename)
+
+    assert_equal('clean title', site.title)
+    assert_equal('nice description', site.description)
+
+    File.delete(config.filename)
+  end
+
+  def test_custom_page_title_and_description
+    account_config = Leter::AccountConfig
+
+    new_config = {
+      theme: 'banana',
+      title: 'plain old',
+      custom: {
+        index: {
+          title: 'hello world',
+          description: 'going to the moon'
+        }
+      }
+    }
+
+    Leter::IO.save_file(account_config.filename, new_config.to_yaml)
+
+    config = Leter::AccountConfig.load(account_config.filename)
+
+    custom_config = config.custom('index')
+
+    assert_equal('hello world', custom_config.title)
+    assert_equal('going to the moon', custom_config.description)
+
+    File.delete(account_config.filename)
   end
 
   def test_custom_page

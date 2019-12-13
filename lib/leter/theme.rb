@@ -25,7 +25,7 @@ module Leter
 
     PAGE_ALIGN = {
       center: '0 auto',
-      left: nil
+      left: '0px 0px 50px 50px'
     }.freeze
 
     def initialize(name = DEFAULT)

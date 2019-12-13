@@ -17,6 +17,18 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
     assert_equal(page.css('h1').text, 'hello world')
   end
 
+  def test_custom_page_title_and_description
+    markdown = '# hello world'
+    config = Leter::AccountConfig.new(title: 'custom page title', description: 'custom description')
+    page_builder = Leter::PageBuilder.new(markdown, config)
+
+    html = page_builder.html
+    page = Nokogiri::HTML.parse(html)
+
+    assert_equal(page.css('title').text, 'custom page title')
+    assert_equal(page.at('meta[name="description"]')['content'], 'custom description')
+  end
+
   def test_custom_theme
     markdown = '# hello world'
     config = Leter::AccountConfig.new(theme: 'banana')

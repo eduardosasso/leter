@@ -8,6 +8,7 @@ require 'active_support/core_ext/hash/indifferent_access'
 module Leter
   class AccountConfig
     attr_writer :theme, :google_analytics, :date_format, :css_url, :code_theme, :code_font
+    attr_writer :title, :description
     attr_reader :config
 
     DEFAULT_CONFIG = File.expand_path('default_config.yml', __dir__)
@@ -41,6 +42,18 @@ module Leter
 
     def date_format
       @date_format || config[:date_format]
+    end
+
+    # html title tag
+    # if empty takes from html
+    def title
+      @title || config[:title]
+    end
+
+    # html meta description
+    # if empty takes from html
+    def description
+      @description || config[:description]
     end
 
     # hidden to use local css

@@ -42,11 +42,11 @@ module Leter
     end
 
     def title
-      html_helper.title
+      config.title || html_helper.title
     end
 
     def description
-      html_helper.description
+      config.description || html_helper.description
     end
 
     # TODO

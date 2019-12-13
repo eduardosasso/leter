@@ -91,6 +91,6 @@ class ThemeTest < Minitest::Test
     theme = Leter::Theme.new('bungee')
     theme.page_align = 'left'
 
-    assert_nil(theme.page_align)
+    assert_equal(Leter::Theme::PAGE_ALIGN[:left], theme.page_align)
   end
 end
