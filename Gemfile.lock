@@ -61,6 +61,7 @@ GEM
     dotenv (2.7.5)
     execjs (2.7.0)
     ffi (1.11.1)
+    gem-release (2.1.1)
     gherkin (5.1.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
@@ -132,6 +133,7 @@ DEPENDENCIES
   coveralls
   csso-rails (~> 0.8.1)
   dotenv (~> 2.7, >= 2.7.5)
+  gem-release (~> 2.1, >= 2.1.1)
   leter!
   minitest (~> 5.0)
   minitest-reporters (~> 1.1, >= 1.1.11)
