@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    leter (0.1.0)
+    leter (0.3.0)
       activesupport (~> 5.2, >= 5.2.3)
       motion-markdown-it (~> 8.4, >= 8.4.1.1)
       motion-markdown-it-plugins (~> 8.4, >= 8.4.2.1)

@@ -9,6 +9,7 @@ require 'leter/account_config'
 require 'leter/markdown'
 require 'leter/html'
 require 'leter/code'
+require 'leter/favicon'
 require 'leter/image_slider'
 
 module Leter
