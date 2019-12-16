@@ -23,6 +23,8 @@ class CliTest < Minitest::Test
     assert_match(/leter.yml created/, last_command_started.output)
 
     assert(read(Leter::AccountConfig.filename))
+    # make sure the yaml file doesn't have any object info
+    assert_equal('---', read(Leter::AccountConfig.filename).first)
   end
 
   def test_project_exists

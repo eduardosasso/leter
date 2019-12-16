@@ -43,7 +43,7 @@ module Leter
 
       warning('leter.yml already exists') && exit if File.file?(config.filename)
 
-      Leter::IO.save_file(config.filename, config.default.to_yaml)
+      Leter::IO.save_file(config.filename, config.default.config.to_hash.to_yaml)
 
       info('✔ leter.yml created!')
     end
