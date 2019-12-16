@@ -26,6 +26,8 @@
 
     <link rel="stylesheet" href="<%= config.theme.try(:font_url) %>">
 
+    <%= Leter::Favicon.new.script %>
+
     <%= Leter::Code.new(config).script if has_code %>
 
     <%= Leter::ImageSlider.new.script if has_image_slider %>
