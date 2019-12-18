@@ -7,6 +7,7 @@ module Leter
 
     def script
       asset = Leter::Asset.new(:glidejs)
+
       css = File.join(asset.path, 'css/glide.core.min.css')
       theme = File.join(asset.path, 'css/glide.theme.min.css')
 

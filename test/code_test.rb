@@ -10,11 +10,9 @@ class CodeTest < Minitest::Test
     code = Leter::Code.new(config).script
 
     js = Leter::Asset.new(:highlightjs).url
-    font = Leter::Asset.new(:hack_font).url
 
     assert_match(js, code)
     assert_match('hljs.highlightBlock', code)
-    assert_match(font, code)
   end
 
   def test_script_css
@@ -24,7 +22,7 @@ class CodeTest < Minitest::Test
 
     script = Leter::Code.new(config).script
 
-    css = Leter::Asset.new(:highlightjs).path + '/styles/dark.min.css'
+    css = Leter::Asset.new(:highlightjs).path + 'styles/dark.min.css'
 
     assert_match(css, script)
   end

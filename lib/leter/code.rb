@@ -16,12 +16,9 @@ module Leter
       filename = @config.code_theme + '.min.css'
       css = File.join(asset.path, 'styles', filename)
 
-      font = Leter::Asset.new(:hack_font).url
-
       resources = {
         js: asset.url,
-        css: css,
-        font: font
+        css: css
       }
 
       ERB.new(CODE_PARTIAL).result_with_hash(resources)

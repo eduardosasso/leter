@@ -56,10 +56,8 @@ module Leter
       @description || config[:description]
     end
 
-    # hidden to use local css
-    # TODO rename config and css_prof_url - jsdelivr bump version
     def css_url
-      @css_url || config[:css_url] || Leter::Config.css_prod_url
+      @css_url || config[:css_url] || Leter::Asset.local(:css).url
     end
 
     def code_theme

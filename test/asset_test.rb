@@ -7,15 +7,15 @@ class AssetTest < Minitest::Test
   def test_url
     asset = Leter::Asset.new(:highlightjs)
 
-    url = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/#{asset.version}/highlight.min.js"
+    url = "jsdelivr.net/gh/highlightjs/cdn-release@#{asset.version}/build/highlight.min.js"
 
-    assert_equal(url, asset.url)
+    assert_match(url, asset.url)
   end
 
   def test_package
     asset = Leter::Asset.new(:normalize)
 
-    assert_equal('normalize', asset.package)
+    assert_equal('npm/normalize.css', asset.package)
   end
 
   def test_version
@@ -27,8 +27,16 @@ class AssetTest < Minitest::Test
   def test_path
     asset = Leter::Asset.new(:highlightjs)
 
-    path = asset.url.gsub('/highlight.min.js', '')
+    path = asset.url.gsub('highlight.min.js', '')
 
     assert_equal(path, asset.path)
+  end
+
+  def test_local_css
+    asset = Leter::Asset.local(:css)
+
+    css = "raw.githubusercontent.com/eduardosasso/leter/v#{Leter::VERSION}/lib/leter/leter.css"
+
+    assert_match(css, asset.url)
   end
 end

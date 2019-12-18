@@ -55,7 +55,7 @@ class AccountConfigTest < Minitest::Test # rubocop:disable Metrics/ClassLength
   def test_default_css_url
     config = Leter::AccountConfig.default
 
-    assert_equal(Leter::Config.css_prod_url, config.css_url)
+    assert_equal(Leter::Asset.local(:css).url, config.css_url)
   end
 
   def test_load_config

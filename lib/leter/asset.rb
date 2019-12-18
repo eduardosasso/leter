@@ -3,37 +3,49 @@
 require 'net/http'
 require 'colorize'
 require 'json'
+require 'leter/version'
 
 module Leter
   class Asset
     attr_accessor :package, :version
-    attr_reader :library
+    attr_reader :asset, :base_path
 
-    CDN_BASE_PATH = 'https://cdnjs.cloudflare.com/ajax/libs/'
+    CDN_BASE_PATH = 'https://cdn.jsdelivr.net/'
+    LOCAL_BASE_PATH = ['https://raw.githubusercontent.com/eduardosasso/leter/',
+                       "v#{Leter::VERSION}",
+                       '/lib/leter/'].join('')
 
-    LIBRARIES = {
-      highlightjs: 'highlight.js/9.15.10/highlight.min.js',
-      normalize: 'normalize/8.0.1/normalize.min.css',
-      hack_font: 'hack-font/3.003/web/hack.min.css',
-      glidejs: 'Glide.js/3.4.1/glide.min.js'
+    API = 'https://data.jsdelivr.com/v1/package/'
+
+    # TODO: support for leter.css and favicon urls from github until turns public
+    ASSETS = {
+      highlightjs: 'gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js',
+      normalize: 'npm/normalize.css@8.0.1/normalize.min.css',
+      glidejs: 'npm/@glidejs/glide@3.4.1/dist/glide.min.js'
     }.freeze
 
-    def initialize(name)
-      @library = LIBRARIES[name]
+    LOCAL_ASSETS = {
+      css: 'leter.css',
+      favicon: 'favicon-16x16.png'
+    }.freeze
+
+    def initialize(name, base_path = CDN_BASE_PATH)
+      @asset = ASSETS[name] || LOCAL_ASSETS[name]
+      @base_path = base_path
 
       parse
     end
 
-    def url
-      File.join(CDN_BASE_PATH, library)
+    def self.local(name)
+      new(name, LOCAL_BASE_PATH)
     end
 
-    def path
-      File.join(CDN_BASE_PATH, package, version)
+    def url
+      File.join(base_path, asset)
     end
 
     def self.check
-      LIBRARIES.keys.map do |lib|
+      ASSETS.keys.map do |lib|
         asset = Asset.new(lib)
 
         status = asset.version == asset.cdn_latest_version ? :green : :red
@@ -47,18 +59,24 @@ module Leter
       end.to_a.join("\n")
     end
 
+    def path
+      # path matches until last / before the filename
+      File.join(base_path, asset.match(%r{.*/}).to_s)
+    end
+
     def cdn_latest_version
-      uri = URI("https://api.cdnjs.com/libraries/#{package}?fields=version")
+      uri = URI(API + package)
 
       response = Net::HTTP.get(uri)
 
-      JSON.parse(response)['version']
+      JSON.parse(response)['versions'].first
     end
 
     private
 
     def parse
-      @package, @version = library.split('/')
+      @package = asset.match(/.+?(?=@\d)/).to_s # match up until @ followed by a number
+      @version = asset.match(%r{(?<=@)\d.+?(?=/)}).to_s # match version after @ and before /
     end
   end
 end

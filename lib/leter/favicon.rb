@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Leter
   class Favicon
     FAVICON_PARTIAL = File.read(File.expand_path('_favicon.html.erb', __dir__))

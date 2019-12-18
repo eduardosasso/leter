@@ -4,7 +4,6 @@ require 'test_helper'
 
 require 'leter/page_builder'
 require 'leter/account_config'
-require 'leter/config'
 require 'date'
 
 class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
@@ -109,7 +108,7 @@ class PageBuilderTest < Minitest::Test # rubocop:disable Metrics/ClassLength
 
     page_builder = Leter::PageBuilder.new(markdown, config)
 
-    assert_match(Leter::Config.css_prod_url, page_builder.html)
+    assert_match(Leter::Asset.local(:css).url, page_builder.html)
   end
 
   def test_code
