@@ -13,7 +13,7 @@ module Leter
     CDN_BASE_PATH = 'https://cdn.jsdelivr.net/'
     LOCAL_BASE_PATH = ['https://raw.githubusercontent.com/eduardosasso/leter/',
                        "v#{Leter::VERSION}",
-                       '/lib/leter/'].join('')
+                       '/lib/leter/assets'].join('')
 
     API = 'https://data.jsdelivr.com/v1/package/'
 
@@ -26,7 +26,7 @@ module Leter
 
     LOCAL_ASSETS = {
       css: 'leter.css',
-      favicon: 'favicon-16x16.png'
+      favicon: 'favicon.ico'
     }.freeze
 
     def initialize(name, base_path = CDN_BASE_PATH)

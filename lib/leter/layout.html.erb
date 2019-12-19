@@ -9,11 +9,10 @@
     <meta name="description" content="<%= description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-    <%# TODO default leter favicon or custom/automatic like https://overreacted.io/ %>
-    <%# <link id="favicon" rel="icon" type="image/x-icon" href="favicon.ico"> %>
+    <link id="favicon" rel="icon" type="image/x-icon" href="<%= Leter::Asset.local(:favicon).url %>">
 
     <%# TODO merge into inline css?%>
     <%# TODO way to test this to make sure its outputing correctly %>
@@ -25,8 +24,6 @@
     <link rel="stylesheet" href="<%= config.css_url %>">
 
     <link rel="stylesheet" href="<%= config.theme.try(:font_url) %>">
-
-    <%= Leter::Favicon.new.script %>
 
     <%= Leter::Code.new(config).script if has_code %>
 
