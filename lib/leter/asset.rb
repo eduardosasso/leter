@@ -11,9 +11,13 @@ module Leter
     attr_reader :asset, :base_path
 
     CDN_BASE_PATH = 'https://cdn.jsdelivr.net/'
-    LOCAL_BASE_PATH = ['https://raw.githubusercontent.com/eduardosasso/leter/',
-                       "v#{Leter::VERSION}",
-                       '/lib/leter/assets'].join('')
+
+    #TODO build system so to have leter.min.css and diff folder like dist
+    GITHUB_PATH = [
+      'gh/eduardosasso/leter@',
+      Leter::VERSION,
+      '/lib/leter/assets/'
+    ].join('')
 
     API = 'https://data.jsdelivr.com/v1/package/'
 
@@ -25,8 +29,8 @@ module Leter
     }.freeze
 
     LOCAL_ASSETS = {
-      css: 'leter.css',
-      favicon: 'favicon.ico'
+      css: GITHUB_PATH + 'leter.css',
+      favicon: GITHUB_PATH + 'favicon.ico'
     }.freeze
 
     def initialize(name, base_path = CDN_BASE_PATH)
@@ -37,7 +41,7 @@ module Leter
     end
 
     def self.local(name)
-      new(name, LOCAL_BASE_PATH)
+      new(name)
     end
 
     def url

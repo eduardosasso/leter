@@ -35,7 +35,7 @@ class AssetTest < Minitest::Test
   def test_local_css
     asset = Leter::Asset.local(:css)
 
-    css = "githubusercontent.com/eduardosasso/leter/v#{Leter::VERSION}/lib/leter/assets/leter.css"
+    css = "leter@#{Leter::VERSION}/lib/leter/assets/leter.css"
 
     assert_match(css, asset.url)
   end
