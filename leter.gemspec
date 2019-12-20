@@ -57,5 +57,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'motion-markdown-it', '~> 8.4', '>= 8.4.1.1'
   spec.add_dependency 'motion-markdown-it-plugins', '~> 8.4', '>= 8.4.2.1'
   spec.add_dependency 'nokogiri', '~> 1.10', '>= 1.10.3'
-  spec.add_dependency 'whirly', '~> 0.2.4'
 end

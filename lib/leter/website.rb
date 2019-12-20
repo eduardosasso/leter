@@ -23,7 +23,7 @@ module Leter
     end
 
     def build
-      IO.list_files.each do |file|
+      files.each do |file|
         updated_at = File.mtime(file)
 
         page = Page.new(
@@ -41,8 +41,6 @@ module Leter
       end
 
       build_index
-
-      notify('Done!')
     end
 
     def clean
@@ -58,8 +56,10 @@ module Leter
 
         notify(filename)
       end
+    end
 
-      notify('Cleaned!')
+    def files
+      IO.list_files
     end
 
     private
@@ -100,8 +100,6 @@ module Leter
     def build_index
       index_builder.run do |index_root, html|
         IO.save_file("#{index_root}/index.html", html)
-
-        notify("creating index for #{index_root}")
       end
     end
 

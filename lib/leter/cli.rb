@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'optparse'
-require 'whirly'
+require 'colorize'
 
 require 'leter/io'
 require 'leter/account_config'
@@ -29,11 +29,11 @@ module Leter
         end
 
         parser.on('-h', '--help', 'Show this help message') do
-          info(parser)
+          puts parser
         end
 
         parser.on('-v', '--version', 'Show Leter version') do
-          info(Leter::VERSION)
+          puts Leter::VERSION
         end
       end.parse!
     end
@@ -41,43 +41,45 @@ module Leter
     def setup
       config = Leter::AccountConfig
 
-      warning('leter.yml already exists') && exit if File.file?(config.filename)
+     if File.file?(config.filename)
+        info('leter.yml already exists!', :yellow)
+        exit 
+      end
 
       Leter::IO.save_file(config.filename, config.default.config.to_hash.to_yaml)
 
-      info('✔ leter.yml created!')
+      info('leter.yml created!', :blue)
     end
 
     def build
-      spinner.start
+      @color = :green
 
       website.try(:build)
 
-      spinner.stop
+      puts # empty line
+      puts('⚡ Done!')
     end
 
     def clean
-      spinner.start
+      @color = :red
 
       website.try(:clean)
 
-      spinner.stop
+      puts # empty line
+      puts('⚡ Cleaned!')
     end
 
-    def info(message)
-      puts message
+    def info(message, color = :white)
+      puts ' ⬤ '.colorize(color) + message
     end
 
     def warning(message)
-      puts message
+      info(message.colorize(:red))
     end
 
     # callback for observer
     def update(status)
-      # for testing only
-      info(status) unless $stdout.tty?
-
-      spinner.status = status
+      info(status, @color)
     end
 
     private
@@ -87,13 +89,9 @@ module Leter
         w.add_observer(self)
       end
     rescue Leter::NoConfigError
-      warning('leter.yml not found!')
-    end
+      info('leter.yml not found!', :red)
 
-    def spinner
-      @spinner ||= Whirly.tap do |w|
-        w.configure(spinner: 'bouncingBar')
-      end
+      exit
     end
 
     def load_config

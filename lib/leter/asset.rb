@@ -12,7 +12,7 @@ module Leter
 
     CDN_BASE_PATH = 'https://cdn.jsdelivr.net/'
 
-    #TODO build system so to have leter.min.css and diff folder like dist
+    # TODO: build system so to have leter.min.css and diff folder like dist
     GITHUB_PATH = [
       'gh/eduardosasso/leter@',
       Leter::VERSION,

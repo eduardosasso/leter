@@ -6,7 +6,6 @@ PATH
       motion-markdown-it (~> 8.4, >= 8.4.1.1)
       motion-markdown-it-plugins (~> 8.4, >= 8.4.2.1)
       nokogiri (~> 1.10, >= 1.10.3)
-      whirly (~> 0.2.4)
 
 GEM
   remote: https://rubygems.org/
@@ -120,8 +119,6 @@ GEM
       thread_safe (~> 0.1)
     uc.micro-rb (1.0.5)
     unicode-display_width (1.6.0)
-    whirly (0.2.6)
-      unicode-display_width (~> 1.1)
 
 PLATFORMS
   ruby
