@@ -41,9 +41,9 @@ module Leter
     def setup
       config = Leter::AccountConfig
 
-     if File.file?(config.filename)
+      if File.file?(config.filename)
         info('leter.yml already exists!', :yellow)
-        exit 
+        exit
       end
 
       Leter::IO.save_file(config.filename, config.default.config.to_hash.to_yaml)
