@@ -43,6 +43,14 @@ class ThemeTest < Minitest::Test
     assert_equal(banana['text_color'], theme.text_color)
   end
 
+  def test_print_themes
+    theme = Leter::Theme
+
+    classic = Leter::Theme.new('classic')
+
+    assert_match(classic.description, theme.print)
+  end
+
   def test_default_attribute
     default = Leter::Theme.load('default.yml')
 

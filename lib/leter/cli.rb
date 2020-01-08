@@ -6,12 +6,13 @@ require 'colorize'
 require 'leter/io'
 require 'leter/account_config'
 require 'leter/website'
+require 'leter/theme'
 
 module Leter
   class Cli
     attr_reader :status
 
-    def start
+    def start # rubocop:disable  Metrics/MethodLength
       OptionParser.new do |parser|
         # TODO: add description in banner
         parser.banner = 'Usage: leter [options]'
@@ -26,6 +27,10 @@ module Leter
 
         parser.on('-c', '--clean', 'Clean') do
           clean
+        end
+
+        parser.on('-t', '--themes', 'Print available themes') do
+          themes
         end
 
         parser.on('-h', '--help', 'Show this help message') do
@@ -67,6 +72,10 @@ module Leter
 
       puts # empty line
       puts('⚡ Cleaned!')
+    end
+
+    def themes
+      puts Theme.print
     end
 
     def info(message, color = :white)

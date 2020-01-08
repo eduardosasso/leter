@@ -43,6 +43,12 @@ class CliTest < Minitest::Test
     assert_match(/Done!/, last_command_started.output)
   end
 
+  def test_project_themes
+    run_command_and_stop('leter --themes')
+
+    assert_match(/classic/, last_command_started.output)
+  end
+
   def test_project_build_no_config
     run_command_and_stop('leter --build')
 

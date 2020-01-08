@@ -5,6 +5,7 @@ require 'leter/color'
 module Leter
   class Theme
     attr_writer \
+      :description,
       :background_color,
       :page_align,
       :text_font,
@@ -34,6 +35,10 @@ module Leter
       user_theme = self.class.load(name)
 
       @theme = default_theme.merge(user_theme).transform_keys(&:to_sym)
+    end
+
+    def description
+      @theme[:description]
     end
 
     def background_color
@@ -103,6 +108,12 @@ module Leter
 
     def set_attribute(attr, value)
       send(attr + '=', value)
+    end
+
+    def self.print
+      list.map do |theme|
+        ' ' + theme + new(theme).description.try(:prepend, ' - ').to_s
+      end.join("\n")
     end
 
     private
