@@ -74,9 +74,7 @@ module Leter
 
     def self.load(filename)
       config_yaml = YAML.safe_load(
-        ERB.new(
-          File.read(filename)
-        ).result,
+        process_file(filename),
         [Symbol, ActiveSupport::HashWithIndifferentAccess]
       )
 
@@ -85,8 +83,16 @@ module Leter
       raise Leter::NoConfigError
     end
 
+    def self.process_file(filename)
+      ERB.new(File.read(filename)).result
+    end
+
     def self.default
       load(DEFAULT_CONFIG)
+    end
+
+    def self.default_config
+      process_file(DEFAULT_CONFIG)
     end
 
     def custom(name)

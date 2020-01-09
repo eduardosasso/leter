@@ -1,28 +1,20 @@
+<%= Leter::Theme.print_commented %>
 theme: default
 
-# theme:
-#   name: banana
-#   page_align: center #center|left
-#   text_font:
-#   heading_font:
-#   background_color:
-#   text_color:
-#   unicode_sign:
-
+# %Y - year with century (2020)
+# %y - year last two digits (20)
+# %m - month of the year, zero-padded (01..12)
+# %B - the full month name  (January)
+#   %^B - uppercased (JANUARY)
+# %b - the abbreviated month name (Jan)
+#   %^b - uppercased (JAN)
+# %d - day of the month, zero-padded (01..31)
+# %-d - no-padded (1..31)
+# %A - The full weekday name (Sunday)
+#   %^A - uppercased (SUNDAY)
+# %a - The abbreviated name (Sun)
+#   %^a - uppercased (SUN)
 date_format: "<%= Leter::DATE_FORMAT %>"
+
+# UA-XXXXX-X with your web property ID
 google_analytics:
-
-# TODO explain custom page override options
-# custom:
-#   index:
-#     theme: crest
-
-# TODO generate a sample yaml automatic with all the possible options
-  
-# TODO
-# favicon:
-# index_page:
-# rss_feed:
-# title_prefix:
-# twitter_card:
-# front_matter per file here?

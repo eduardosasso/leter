@@ -51,7 +51,7 @@ module Leter
         exit
       end
 
-      Leter::IO.save_file(config.filename, config.default.config.to_hash.to_yaml)
+      Leter::IO.save_file(config.filename, config.default_config)
 
       info('leter.yml created!', :blue)
     end

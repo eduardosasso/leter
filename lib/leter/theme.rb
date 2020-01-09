@@ -110,10 +110,16 @@ module Leter
       send(attr + '=', value)
     end
 
-    def self.print
+    def self.print(comment = false)
+      start = comment ? '# ' : ' '
+
       list.map do |theme|
-        ' ' + theme + new(theme).description.try(:prepend, ' - ').to_s
+        start + theme + new(theme).description.try(:prepend, ' - ').to_s
       end.join("\n")
+    end
+
+    def self.print_commented
+      print(true)
     end
 
     private
