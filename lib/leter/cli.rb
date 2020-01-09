@@ -21,23 +21,23 @@ module Leter
           setup
         end
 
-        parser.on('-b', '--build', 'Build website') do
+        parser.on('-b', '--build', 'Compile your website') do
           build
         end
 
-        parser.on('-c', '--clean', 'Clean') do
+        parser.on('-c', '--clean', 'Reset to clean slate') do
           clean
         end
 
-        parser.on('-t', '--themes', 'Print available themes') do
+        parser.on('-t', '--themes', 'List available themes') do
           themes
         end
 
-        parser.on('-h', '--help', 'Show this help message') do
+        parser.on('-h', '--help', 'Displays this message') do
           puts parser
         end
 
-        parser.on('-v', '--version', 'Show Leter version') do
+        parser.on('-v', '--version', 'Current version number') do
           puts Leter::VERSION
         end
       end.parse!
