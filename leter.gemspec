@@ -48,7 +48,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'dotenv', '~> 2.7', '>= 2.7.5'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'minitest-reporters', '~> 1.1', '>= 1.1.11'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 13.0'
   # TODO: add rubocop and auto run on test
   spec.add_development_dependency 'gem-release', '~> 2.1', '>= 2.1.1'
   spec.add_development_dependency 'rubocop-minitest', '~> 0.3.0'
