@@ -9,6 +9,7 @@ require 'leter/slug'
 require 'leter/index_item'
 require 'leter/html'
 require 'leter/io'
+require 'pathname'
 
 module Leter
   class Website
@@ -22,8 +23,10 @@ module Leter
       @config = config
     end
 
-    def build
-      files.each do |file|
+    def build(name = nil)
+      list = name ? files.grep(/#{name}/i) : files
+
+      list.each do |file|
         updated_at = File.mtime(file)
 
         page = Page.new(
@@ -113,7 +116,7 @@ module Leter
     end
 
     def root_folder(file)
-      Pathname(file)
+      Pathname.new(file)
         .dirname
         .split
         .collect(&:to_s)

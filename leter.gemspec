@@ -40,7 +40,7 @@ Gem::Specification.new do |spec|
   spec.executables = ['leter']
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'aruba', '~> 1.0.0.pre.alpha.4'
+  spec.add_development_dependency 'aruba', '~> 1.0.0'
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'colorize', '~> 0.8.1'
   spec.add_development_dependency 'coveralls'

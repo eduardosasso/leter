@@ -6,7 +6,6 @@ require 'leter/cli'
 
 class CliTest < Minitest::Test
   include Aruba::Api
-
   def setup
     setup_aruba
   end

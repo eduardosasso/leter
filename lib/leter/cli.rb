@@ -21,8 +21,8 @@ module Leter
           setup
         end
 
-        parser.on('-b', '--build', 'Compile your website') do
-          build
+        parser.on('-b', '--build [name]', 'Compile your website') do |name|
+          build(name)
         end
 
         parser.on('-c', '--clean', 'Reset to clean slate') do
@@ -56,10 +56,10 @@ module Leter
       info('leter.yml created!', :blue)
     end
 
-    def build
+    def build(name=nil)
       @color = :green
 
-      website.try(:build)
+      website.try(:build, name)
 
       puts # empty line
       puts('⚡ Done!')
@@ -79,7 +79,7 @@ module Leter
     end
 
     def info(message, color = :white)
-      puts ' ⬤ '.colorize(color) + message
+      puts ' ● '.colorize(color) + message
     end
 
     def warning(message)

@@ -26,6 +26,20 @@ class WebsiteTest < Minitest::Test
     assert_equal('resume', Leter::Html.new(resume).title)
   end
 
+  # build a single file with a pattern
+  def test_build_single
+    Leter::IO.save_file('tmp/test/Working in Silicon Valley.md', '# SV')
+    Leter::IO.save_file('tmp/test/Building a WFH shed.md', '# WFH')
+
+    Leter::Website.new.build('wfh')
+
+    sv = Leter::IO.read_file('tmp/test/working-in-silicon-valley/index.html') rescue nil
+    shed = Leter::IO.read_file('tmp/test/building-a-wfh-shed/index.html') 
+
+    assert_nil(sv)
+    assert(shed)
+  end
+
   def test_index_catalog
     Leter::IO.save_file('blog/news.md', '# news')
     Leter::IO.save_file('blog/vim_tips.md', '# vim tips')
