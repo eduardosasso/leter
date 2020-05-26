@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     leter (0.4.0)
-      activesupport (~> 5.2, >= 5.2.3)
+      activesupport (>= 5.2.3, < 7.0)
       motion-markdown-it (~> 8.4, >= 8.4.1.1)
       motion-markdown-it-plugins (~> 8.4, >= 8.4.2.1)
       nokogiri (~> 1.10, >= 1.10.3)
@@ -10,11 +10,12 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.4.2)
+    activesupport (6.0.3.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.2, >= 2.2.2)
     ansi (1.5.0)
     aruba (1.0.0)
       childprocess (~> 3.0)
@@ -122,6 +123,7 @@ GEM
       thread_safe (~> 0.1)
     uc.micro-rb (1.0.5)
     unicode-display_width (1.7.0)
+    zeitwerk (2.3.0)
 
 PLATFORMS
   ruby
