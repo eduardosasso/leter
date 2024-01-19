@@ -1,0 +1,23 @@
+{
+  "name": "leter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bear-sync.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardosasso/leter.git"
+  },
+  "author": "Eduardo Sasso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eduardosasso/leter/issues"
+  },
+  "homepage": "https://github.com/eduardosasso/leter#readme",
+  "dependencies": {
+    "better-sqlite3": "^9.3.0"
+  }
+}
