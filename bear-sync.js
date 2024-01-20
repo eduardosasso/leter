@@ -3,8 +3,30 @@ import Database from "better-sqlite3";
 
 let timeout;
 const bearDbPath = process.env.BEAR_DB_PATH;
+const blogTag = "online";
+const homePageTag = "homepage";
+const appleCocoaTimestamp = 978307200;
 
 const db = new Database(bearDbPath, { readonly: true });
+
+const query = `
+  SELECT
+    ZSUBTITLE as subtitle,
+    ZTEXT as text,
+    datetime(ZCREATIONDATE + ${appleCocoaTimestamp}, 'unixepoch') as created,
+    datetime(ZMODIFICATIONDATE + ${appleCocoaTimestamp}, 'unixepoch') as updated,	
+    (
+      SELECT GROUP_CONCAT(ZSFNOTETAG.ZTITLE)
+      FROM Z_5TAGS, ZSFNOTETAG
+      WHERE ZSFNOTE.Z_PK = Z_5TAGS.Z_5NOTES
+      AND Z_5TAGS.Z_13TAGS = ZSFNOTETAG.Z_PK	
+      GROUP BY Z_5NOTES
+    ) as tags
+  FROM
+    ZSFNOTE
+  WHERE
+    updated BETWEEN datetime(?) AND datetime(?);
+`;
 
 // TODO
 // run query that fetch all the notes with a given tag sorted by the most recent updated
@@ -13,14 +35,17 @@ const db = new Database(bearDbPath, { readonly: true });
 // commit to github
 // push to github
 
-watch(bearDbPath, (eventType, filename) => {
+let currentDate = new Date().toISOString();
+
+watch(bearDbPath, () => {
   clearTimeout(timeout);
   timeout = setTimeout(() => {
-    console.log(`Event type is: ${eventType}`);
-    if (filename) {
-      console.log(`Filename provided: ${filename}`);
-    } else {
-      console.log("Filename not provided");
-    }
+    const changedDate = new Date().toISOString();
+
+    const notes = db.prepare(query).all(currentDate, changedDate);
+    console.log(currentDate, changedDate);
+    console.log(notes);
+
+    currentDate = changedDate;
   }, 5000); // 5 seconds debounce
 });
