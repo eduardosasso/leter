@@ -1,8 +1,12 @@
-import { watch } from "fs";
 import Database from "better-sqlite3";
+import { watch } from "fs";
+import { marked } from "marked";
+import fs from "fs";
+import slugify from "@sindresorhus/slugify";
 
 let timeout;
 const bearDbPath = process.env.BEAR_DB_PATH;
+const ouputPath = process.env.OUTPUT_PATH;
 const blogTag = "online";
 const homePageTag = "homepage";
 const appleCocoaTimestamp = 978307200;
@@ -29,8 +33,7 @@ const query = `
 `;
 
 // TODO
-// run query that fetch all the notes with a given tag sorted by the most recent updated
-// if its within the last x seconds then save that to a file in a location defined in the .env file for github pages or similar
+// decide if want to keep certain tags
 // save file(s) to disk in markdown format
 // commit to github
 // push to github
@@ -42,9 +45,30 @@ watch(bearDbPath, () => {
   timeout = setTimeout(() => {
     const changedDate = new Date().toISOString();
 
-    const notes = db.prepare(query).all(currentDate, changedDate);
-    console.log(currentDate, changedDate);
-    console.log(notes);
+    const result = db.prepare(query).all(currentDate, changedDate);
+    const notes = result.map((note) => note.text);
+
+    for (const note of notes) {
+      const tokens = marked.lexer(note);
+      const firstH1 = tokens.find(
+        (token) => token.type === "heading" && token.depth === 1
+      );
+
+      if (firstH1) {
+        const fileName = slugify(firstH1.text);
+        const filePath = `${ouputPath}/${fileName}.md`;
+
+        const cleanNote = note.replace(/#[a-zA-Z0-9_]+/g, ""); // Remove all tags
+
+        fs.writeFile(filePath, cleanNote, (err) => {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(`File ${fileName}.md created or updated.`);
+          }
+        });
+      }
+    }
 
     currentDate = changedDate;
   }, 5000); // 5 seconds debounce
