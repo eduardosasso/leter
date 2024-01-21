@@ -44,9 +44,7 @@ const buildHomepage = (note) => {
 
   const filePath = `${homepagePath}/${homepageFilename}`;
 
-  const homepage = notePlusMetadata(note);
-
-  saveFile(filePath, homepage);
+  saveFile(filePath, note.text);
 };
 
 const buildPost = (note) => {
