@@ -5,10 +5,15 @@ import fs from "fs";
 import slugify from "@sindresorhus/slugify";
 
 let timeout;
+
 const bearDbPath = process.env.BEAR_DB_PATH;
 const ouputPath = process.env.OUTPUT_PATH;
-const blogTag = "online";
-const homePageTag = "homepage";
+const isAstro = process.env.ASTRO;
+const postPath = isAstro ? `${ouputPath}/src/content/posts` : null;
+const homepagePath = isAstro ? `${ouputPath}/src/pages` : null;
+const homepageFilename = "index.md";
+const postTag = "post";
+const homepageTag = "homepage";
 const appleCocoaTimestamp = 978307200;
 
 const db = new Database(bearDbPath, { readonly: true });
@@ -32,42 +37,63 @@ const query = `
     updated BETWEEN datetime(?) AND datetime(?);
 `;
 
-// TODO
-// decide if want to keep certain tags
-// save file(s) to disk in markdown format
-// commit to github
-// push to github
+const buildHomepage = (note) => {
+  if (!note.tags.includes(homepageTag)) return false;
+
+  const filePath = `${homepagePath}/${homepageFilename}`;
+
+  saveFile(filePath, note.text);
+};
+
+const buildPost = (note) => {
+  if (!note.tags.includes(postTag)) return false;
+
+  const tokens = marked.lexer(note.text);
+  const firstH1 = tokens.find(
+    (token) => token.type === "heading" && token.depth === 1
+  );
+
+  if (firstH1) {
+    const fileName = slugify(firstH1.text);
+    const filePath = `${postPath}/${fileName}.md`;
+
+    saveFile(filePath, note.text);
+  } else {
+    console.error("No H1 title found in note tagged with post. Skipping.");
+  }
+};
+
+const saveFile = (filePath, content) => {
+  fs.writeFile(filePath, content, (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`File ${filePath} created or updated.`);
+    }
+  });
+};
 
 let currentDate = new Date().toISOString();
 
 watch(bearDbPath, () => {
   clearTimeout(timeout);
+
   timeout = setTimeout(() => {
     const changedDate = new Date().toISOString();
 
     const result = db.prepare(query).all(currentDate, changedDate);
-    const notes = result.map((note) => note.text);
+
+    const notes = result
+      .filter((note) => {
+        const tags = note.tags ? note.tags.split(",") : [];
+        return tags.includes(postTag) || tags.includes(homepageTag);
+      });
 
     for (const note of notes) {
-      const tokens = marked.lexer(note);
-      const firstH1 = tokens.find(
-        (token) => token.type === "heading" && token.depth === 1
-      );
+      note.tags = note.tags ? note.tags.split(",") : [];
+      note.text = note.text.replace(/#[a-zA-Z0-9_]+/g, ""); // Remove all tags
 
-      if (firstH1) {
-        const fileName = slugify(firstH1.text);
-        const filePath = `${ouputPath}/${fileName}.md`;
-
-        const cleanNote = note.replace(/#[a-zA-Z0-9_]+/g, ""); // Remove all tags
-
-        fs.writeFile(filePath, cleanNote, (err) => {
-          if (err) {
-            console.error(err);
-          } else {
-            console.log(`File ${fileName}.md created or updated.`);
-          }
-        });
-      }
+      buildPost(note) || buildHomepage(note);
     }
 
     currentDate = changedDate;
