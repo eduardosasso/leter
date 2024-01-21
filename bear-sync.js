@@ -18,9 +18,11 @@ const appleCocoaTimestamp = 978307200;
 
 const db = new Database(bearDbPath, { readonly: true });
 
+// TODO
+// time to reflecrt my timezone PT instead of UTC
 const query = `
   SELECT
-    ZSUBTITLE as subtitle,
+    ZSUBTITLE as description,
     ZTEXT as text,
     datetime(ZCREATIONDATE + ${appleCocoaTimestamp}, 'unixepoch') as created,
     datetime(ZMODIFICATIONDATE + ${appleCocoaTimestamp}, 'unixepoch') as updated,	
@@ -42,7 +44,9 @@ const buildHomepage = (note) => {
 
   const filePath = `${homepagePath}/${homepageFilename}`;
 
-  saveFile(filePath, note.text);
+  const homepage = notePlusMetadata(note);
+
+  saveFile(filePath, homepage);
 };
 
 const buildPost = (note) => {
@@ -57,10 +61,24 @@ const buildPost = (note) => {
     const fileName = slugify(firstH1.text);
     const filePath = `${postPath}/${fileName}.md`;
 
-    saveFile(filePath, note.text);
+    const post = notePlusMetadata(note);
+
+    saveFile(filePath, post);
   } else {
     console.error("No H1 title found in note tagged with post. Skipping.");
   }
+};
+
+const notePlusMetadata = (note) => {
+  const frontmatter = `
+  ---
+    description: ${note.description}
+    created: ${note.created}
+    updated: ${note.updated}
+  ---
+  `;
+
+  return `${frontmatter}\n${note.text}`;
 };
 
 const saveFile = (filePath, content) => {
@@ -83,11 +101,10 @@ watch(bearDbPath, () => {
 
     const result = db.prepare(query).all(currentDate, changedDate);
 
-    const notes = result
-      .filter((note) => {
-        const tags = note.tags ? note.tags.split(",") : [];
-        return tags.includes(postTag) || tags.includes(homepageTag);
-      });
+    const notes = result.filter((note) => {
+      const tags = note.tags ? note.tags.split(",") : [];
+      return tags.includes(postTag) || tags.includes(homepageTag);
+    });
 
     for (const note of notes) {
       note.tags = note.tags ? note.tags.split(",") : [];
