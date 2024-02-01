@@ -59,6 +59,7 @@ const buildPost = (note) => {
     const fileName = slugify(firstH1.text);
     const filePath = `${postPath}/${fileName}.md`;
 
+    note.title = firstH1.text;
     const post = notePlusMetadata(note);
 
     saveFile(filePath, post);
@@ -69,12 +70,13 @@ const buildPost = (note) => {
 
 const notePlusMetadata = (note) => {
   const frontmatter = `
-  ---
-    description: ${note.description}
-    created: ${note.created}
-    updated: ${note.updated}
-  ---
-  `;
+---
+  title: ${note.title}
+  description: ${note.description}
+  created: ${note.created}
+  updated: ${note.updated}
+---
+`.trim();
 
   return `${frontmatter}\n${note.text}`;
 };
