@@ -6,20 +6,22 @@ import slugify from "@sindresorhus/slugify";
 
 let timeout;
 
-const bearDbPath = process.env.BEAR_DB_PATH;
-const ouputPath = process.env.OUTPUT_PATH;
-const isAstro = process.env.ASTRO;
-const postPath = isAstro ? `${ouputPath}/src/content/posts` : null;
-const homepagePath = isAstro ? `${ouputPath}/src/pages` : null;
-const homepageFilename = "home.md";
-const postTag = "post";
-const homepageTag = "homepage";
+const filePath = "./leter.json";
+
+const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+const bearDbPath = jsonData.bearNotes.database;
+const postPath = "/src/content/posts";
+const homePath = "/src/pages";
+const homeFilename = "home.md";
+const homeTag = jsonData.bearNotes.tags.home;
+const postTag = jsonData.bearNotes.tags.post;
 const appleCocoaTimestamp = 978307200;
 
 const db = new Database(bearDbPath, { readonly: true });
 
 // TODO
-// time to reflecrt my timezone PT instead of UTC
+// time to reflect my timezone PT instead of UTC
 const query = `
   SELECT
     ZSUBTITLE as description,
@@ -39,10 +41,22 @@ const query = `
     updated BETWEEN datetime(?) AND datetime(?);
 `;
 
-const buildHomepage = (note) => {
-  if (!note.tags.includes(homepageTag)) return false;
+const projects = {};
+jsonData.bearNotes.projects.forEach((project) => {
+  projects[project.url] = project.output;
+});
 
-  const filePath = `${homepagePath}/${homepageFilename}`;
+const project = (tags) => {
+  const projectTag = tags.find((tag) => projects[tag]);
+  return projects[projectTag];
+};
+
+const buildHomepage = (note) => {
+  if (!note.tags.includes(homeTag)) return false;
+
+  const output = project(note.tags).output;
+
+  const filePath = `${output}/${homePath}/${homeFilename}`;
 
   saveFile(filePath, note.text);
 };
@@ -57,7 +71,8 @@ const buildPost = (note) => {
 
   if (firstH1) {
     const fileName = slugify(firstH1.text);
-    const filePath = `${postPath}/${fileName}.md`;
+    const output = project(note.tags).output;
+    const filePath = `${output}/${postPath}/${fileName}.md`;
 
     note.title = firstH1.text;
     const post = notePlusMetadata(note);
