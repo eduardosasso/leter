@@ -1,19 +1,11 @@
-{
-  "bearNotes": {
-    "database": "/Users/eduardosasso/Library/Group Containers/9K33E3U3T4.net.shinyfrog.bear/Application Data/database.sqlite",
-    "projects": [
-      {
-        "url": "leter.co",
-        "output": "/Users/eduardosasso/library/CloudStorage/Dropbox/leter"
-      },
-      {
-        "url": "eduardosasso.co",
-        "output": "/Users/eduardosasso/library/CloudStorage/Dropbox/eduardosasso.github.io"
-      }
-    ],
-    "tags": {
-      "post": "post",
-      "home": "home"
-    }
-  }
-}
+bear: 
+  database: "~/Library/Group Containers/9K33E3U3T4.net.shinyfrog.bear/Application Data/database.sqlite"
+  tags:
+    post: "post"
+    home: "home"
+
+projects:
+  - tag: "leter"
+    path: "/Users/eduardosasso/library/CloudStorage/Dropbox/leter"
+  - tag: "eduardosasso"
+    path: "/Users/eduardosasso/library/CloudStorage/Dropbox/eduardosasso.github.io"
