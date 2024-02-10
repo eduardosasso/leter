@@ -1,29 +1,13 @@
 {
   "name": "leter",
   "version": "1.0.0",
-  "description": "",
-  "main": "bear-sync.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --env-file=.env bear-sync.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eduardosasso/leter.git"
-  },
-  "author": "Eduardo Sasso",
+  "homepage": "https://leter.co",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/eduardosasso/leter/issues"
-  },
-  "homepage": "https://github.com/eduardosasso/leter#readme",
-  "dependencies": {
-    "@sindresorhus/slugify": "^2.2.1",
-    "better-sqlite3": "^9.3.0",
-    "marked": "^11.1.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.3"
-  }
+  "workspaces": [
+    "astro",
+    "leter"
+  ],
+"scripts": {
+  "dev:leter": "npm --workspace=leter dev"
+}
 }

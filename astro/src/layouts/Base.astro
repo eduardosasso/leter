@@ -1,0 +1,34 @@
+---
+import Prose from "../components/Prose.astro";
+import "../styles/global.css";
+import { Image } from "astro:assets";
+import avatar from "../images/avatar_round.png";
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="theme-gotham flex flex-col min-h-screen">
+    <main class="flex-1 mx-auto mt-12 mb-12">
+      <a href="/">
+        <Image
+          src={avatar}
+          alt="Profile picture"
+          class="w-16 h-16 mb-12 mx-auto rounded-full hover:outline hover:outline-accent"
+        />
+      </a>
+      <Prose>
+        <slot />
+      </Prose>
+    </main>
+    <footer class="text-center text-sm text-secondary font-bold mb-12">
+      <a href="https://leter.co" class="hover:text-accent">⎣⎤</a>
+    </footer>
+  </body>
+</html>

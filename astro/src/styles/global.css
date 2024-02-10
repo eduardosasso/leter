@@ -1,0 +1,29 @@
+.theme-gotham {
+  --primary: #6aa9b9;
+  --secondary: #2db98c;
+  --background: #10151c;
+  --accent: #e47b57;
+  --bullets: #2db98c;
+  --code: #202129;
+}
+
+.theme-rosepine {
+  --primary: #dfdff4;
+  --secondary: #c4a7e6;
+  --background: #222137;
+  --accent: #ec6f92;
+  --bullets: #ec6f92;
+  --code: #35304f;
+}
+
+body {
+  @apply bg-background
+  prose-code:p-1
+  prose-code:bg-code
+}
+
+code {
+  font-weight: normal !important;
+}
+
+
