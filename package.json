@@ -8,6 +8,7 @@
     "leter"
   ],
 "scripts": {
-  "dev:leter": "npm --workspace=leter dev"
+  "dev:leter": "npm --workspace=leter dev",
+  "test:leter": "npm --workspace=leter test"
 }
 }

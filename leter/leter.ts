@@ -1,14 +1,14 @@
-import Database from "better-sqlite3";
 import { watch } from "fs";
 import { marked } from "marked";
 import fs from "fs";
 import slugify from "@sindresorhus/slugify";
+import { loadConfig } from "./config";
 
-let timeout;
+const start = () => {
+  const config = loadConfig();
 
-const filePath = "./leter.json";
+};
 
-const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
 const bearDbPath = jsonData.bearNotes.database;
 const postPath = "/src/content/posts";
@@ -18,28 +18,7 @@ const homeTag = jsonData.bearNotes.tags.home;
 const postTag = jsonData.bearNotes.tags.post;
 const appleCocoaTimestamp = 978307200;
 
-const db = new Database(bearDbPath, { readonly: true });
 
-// TODO
-// time to reflect my timezone PT instead of UTC
-const query = `
-  SELECT
-    ZSUBTITLE as description,
-    ZTEXT as text,
-    datetime(ZCREATIONDATE + ${appleCocoaTimestamp}, 'unixepoch') as created,
-    datetime(ZMODIFICATIONDATE + ${appleCocoaTimestamp}, 'unixepoch') as updated,	
-    (
-      SELECT GROUP_CONCAT(ZSFNOTETAG.ZTITLE)
-      FROM Z_5TAGS, ZSFNOTETAG
-      WHERE ZSFNOTE.Z_PK = Z_5TAGS.Z_5NOTES
-      AND Z_5TAGS.Z_13TAGS = ZSFNOTETAG.Z_PK	
-      GROUP BY Z_5NOTES
-    ) as tags
-  FROM
-    ZSFNOTE
-  WHERE
-    updated BETWEEN datetime(?) AND datetime(?);
-`;
 
 const projects = {};
 jsonData.bearNotes.projects.forEach((project) => {

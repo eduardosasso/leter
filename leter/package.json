@@ -5,8 +5,8 @@
   "main": "bear-sync.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --env-file=.env bear-sync.js"
+    "test": "node --test --watch",
+    "dev": "nodemon leter.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,9 @@
     "marked": "^11.1.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.3"
+    "@types/better-sqlite3": "^7.6.9",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }
