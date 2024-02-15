@@ -1,24 +1,26 @@
 import fs from 'fs';
+import { Config, JsonConfig } from './types';
 
-const CONFIG_FILE_PATH = './leter.json';
-
-interface Config {
-  bear: {
-    database: string,
-    tags: {
-      post: string,
-      home: string,
-    },
-  };
-  projects: {
-    tag: string,
-    path: string,
-  }[];
-}
+const CONFIG_PATH = './leter.json';
+const HOME_PATH = "/src/pages";
+const HOME_FILENAME = "home.md";
+const POST_PATH = "/src/content/posts";
 
 const loadConfig = (): Config => {
-  const config = JSON.parse(fs.readFileSync(CONFIG_FILE_PATH, 'utf8'));
-  return config;
+  const config: JsonConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
+
+  return {
+    ...config,
+    projects: projects(config),
+  };
 };
 
-export { Config, loadConfig };
+const projects = (config: JsonConfig) => {
+  return config.projects.reduce((acc, project) => {
+    acc[project.tag] = project.path;
+    return acc;
+  }, {} as { [key: string]: string });
+};
+
+
+export { HOME_PATH, HOME_FILENAME, POST_PATH, loadConfig};

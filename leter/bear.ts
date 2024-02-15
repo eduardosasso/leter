@@ -1,15 +1,8 @@
 import Database from "better-sqlite3";
 import { watch } from "fs";
+import { Config, Item, ItemType } from "./types";
 
 const APPLE_COCOA_TIMESTAMP = 978307200;
-
-interface Note {
-  description: string;
-  text: string;
-  created: Date;
-  updated: Date;
-  tags: string;
-}
 
 // TODO
 // time to reflect my timezone PT instead of UTC
@@ -40,13 +33,13 @@ const query = `
     updated BETWEEN datetime(?) AND datetime(?);
 `;
 
-const listen = (dbPath: string, callback: (notes: Note[]) => void) => {
+const bearNotesWatcher = (config: Config, callback: any) => {
   let timeout: NodeJS.Timeout;
   let currentDate = new Date().toISOString();
 
-  const db = new Database(dbPath, { readonly: true });
+  const db = new Database(config.bear.database, { readonly: true });
 
-  watch(dbPath, () => {
+  watch(config.bear.database, () => {
     clearTimeout(timeout);
 
     timeout = setTimeout(() => {
@@ -58,7 +51,8 @@ const listen = (dbPath: string, callback: (notes: Note[]) => void) => {
         ...note,
         text: note.text.replace(/#[a-zA-Z0-9_]+/g, ""), // Remove all tags
         tags: note.tags ? note.tags.split(",") : [],
-      })) as Note[];
+        type: noteType(note.tags, config),
+      })) as Item[];
 
       callback(notes);
 
@@ -66,3 +60,12 @@ const listen = (dbPath: string, callback: (notes: Note[]) => void) => {
     }, 5000); // 5 seconds debounce
   });
 };
+
+const noteType = (tags: string[], config: Config): ItemType | null => {
+  if (tags.includes(config.bear.tags.post)) return ItemType.Post;
+  if (tags.includes(config.bear.tags.home)) return ItemType.Home;
+
+  return null;
+};
+
+export { bearNotesWatcher };
